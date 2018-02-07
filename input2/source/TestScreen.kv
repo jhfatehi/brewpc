@@ -1,0 +1,29 @@
+#: include scList.kv
+#: include BlankScreen.kv
+
+<TestScreen@BlankScreen>:
+    data1: data1
+    data2: data2
+    data3: data3
+
+    TextInput:
+        id: data1
+        size_hint: (.3, .06)
+        pos_hint: {'x': .3, 'y': .8}
+
+    TextInput:
+        id: data2
+        size_hint: (.3, .06)
+        pos_hint: {'x': .3, 'y': .7}
+
+    TextInput:
+        id: data3
+        size_hint: (.3, .06)
+        pos_hint: {'x': .3, 'y': .6}
+
+    Button:
+        id: wrt_btn
+        size_hint: (.06, .06)
+        pos_hint: {'x': .01, 'y': .6}
+        text: 'Save'
+        on_press: app.root.test_write()

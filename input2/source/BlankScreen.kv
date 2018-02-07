@@ -1,0 +1,36 @@
+#: include scList.kv
+
+<BlankScreen@Screen>:
+    screen: screen
+    brew_num: brew_num
+    batch_num: batch_num
+    
+    Label:
+    	text: "Brew #"
+    	size_hint: (.025, .075)
+    	pos_hint: {'x': .01, 'y': .925}
+    TextInput:
+    	id: brew_num
+    	size_hint: (.03, .03)
+    	pos_hint: {'x': .04, 'y': .95}
+
+    Label:
+    	text: "Batch #"
+    	size_hint: (.025, .075)
+    	pos_hint: {'x': .01, 'y': .875}
+    TextInput:
+    	id: batch_num
+    	size_hint: (.03, .03)
+    	pos_hint: {'x': .04, 'y': .9}
+
+    scList:
+        id: screen
+        size_hint: (.06, .06)
+        pos_hint: {'x': .01, 'y': .8}
+
+    Button:
+        id: btn
+        size_hint: (.06, .06)
+        pos_hint: {'x': .01, 'y': .7}
+        text: 'Load'
+        on_press: app.root.change_screen()

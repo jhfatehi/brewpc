@@ -1,0 +1,87 @@
+#: include BlankScreen.kv
+#: include TestScreen.kv
+#: include add_brew.kv
+
+
+<Brew>:
+    manager: manager
+    db_path: db_path
+    ts1: ts1
+    ts2: ts2
+    ts3: ts3
+    ab: ab
+    blk1: blk1
+    blk2: blk2
+    blk3: blk3
+    do_default_tab: False
+
+    TextInput:
+        id: db_path
+        text: '/home/junaid/projects/brewpc/input2/input2_test.db'
+        size_hint: (1, .03)
+        pos_hint: {'x': 0, 'y': 0}
+
+
+    # add a ScreenManager to the panel
+    ScreenManager:
+        id: manager
+        # Screen1:
+        #     id: sc1
+        #     name: 'screen_one'
+        #     # Button:
+        #     #     id: btn
+        #     #     text: 'screen one'
+        #     #     on_press: root.change_screen()
+        # Screen:
+        #     id: sc2
+        #     name: 'screen_two'
+        #     Button:
+        #         text: 'Screen Two'
+        #         on_press: root.change_screen()
+        # Screen:
+        #     id: sc3
+        #     name: 'screen_three'
+        #     Button:
+        #         text: 'screen three'
+        #         on_press: root.change_screen()
+        BlankScreen:
+            id: blk1
+            name: 'blank_screen1'
+        BlankScreen:
+            id: blk2
+            name: 'blank_screen2'
+        BlankScreen:
+            id: blk3
+            name: 'blank_screen3'
+            
+        TestScreen:
+            id: ts1
+            name: 'test_screen1'
+        TestScreen:
+            id: ts2
+            name: 'test_screen2'
+        TestScreen:
+            id: ts3
+            name: 'test_screen3'  
+
+
+
+        add_brew:
+            id: ab
+            name: 'add_brew'
+
+
+
+
+    TabbedPanelHeader:
+        name: 'tab1'
+        text: 'Tab 1'
+    TabbedPanelHeader:
+        name: 'tab2'
+        text: 'Tab 2'
+    TabbedPanelHeader:
+        name: 'tab3'
+        text: 'Tab 3'
+    TabbedPanelHeader:
+        name: 'tab4'
+        text: 'Add Brew'
