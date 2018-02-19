@@ -1,0 +1,34 @@
+last updated 2-18-18 by jhf
+
+todo:
+
+0. remove scList.kv file and put into BlankScreen.kv
+
+1. load should populate data from database
+
+2. add text field in brew.kv for confirmation and error messages
+
+3. build mash/lauter fourm
+	- new database schema for data fields
+	- add recipe table in same db based on brand and size
+
+4. use db_path as a file to read for the db_path
+
+
+
+error handling:
+
+a. require brew and batch numbers when loading
+
+b. require data types
+
+c. verify brand and size exist when adding brew
+
+
+don't forget:
+
+- figure out when to clear test inputs
+
+- figure out window resize option
+
+- drop down for brand and size on add brew which referenced recepie table
