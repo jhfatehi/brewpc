@@ -64,17 +64,14 @@ class Brew(TabbedPanel):
     def test_write(self):
         ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
         x = self.manager.current
-        print('')
-        print(ts[x])
-        print('')
-        dbwrite.test(self.db_path.text, ts[x].brew_num.text, ts[x].batch_num.text, ts[x].data1.text, ts[x].data2.text, ts[x].data3.text)
+        dbwrite.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text, ts[x].data1.text, ts[x].data2.text, ts[x].data3.text)
 
     def create_brew(self):
         n = 'none'
         data = []
         for ii in range(int(self.ab.batches.text)):
             data.append((str(self.ab.brew_num.text), str(ii+1), str(self.ab.brew_size.text), self.ab.brand.text, n,n,n))
-        conn = sqlite3.connect(self.db_path.text)
+        conn = sqlite3.connect(self.db_path)
         c = conn.cursor()
         c.executemany('insert into brew values (?,?,?,?,?,?,?)', data)
         conn.commit()

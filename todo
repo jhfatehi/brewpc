@@ -10,6 +10,8 @@ todo:
 	- new database schema for data fields
 	- add recipe table in same db based on brand and size
 
+5. make brew and batch fields persistant with screen load like the drop down
+
 
 error handling:
 
