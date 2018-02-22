@@ -12,7 +12,10 @@ from kivy.uix.screenmanager import NoTransition
 
 
 class Brew(TabbedPanel):
-    db_path = ObjectProperty()
+    fn = open('db_path', 'r')
+    db_path = fn.read()
+    fn.close()
+
     manager = ObjectProperty(None)
     ts1 = ObjectProperty()
     ts2 = ObjectProperty()

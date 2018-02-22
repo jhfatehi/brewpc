@@ -1,8 +1,6 @@
-last updated 2-18-18 by jhf
+last updated 2-21-18 by jhf
 
 todo:
-
-0. remove scList.kv file and put into BlankScreen.kv
 
 1. load should populate data from database
 
@@ -11,9 +9,6 @@ todo:
 3. build mash/lauter fourm
 	- new database schema for data fields
 	- add recipe table in same db based on brand and size
-
-4. use db_path as a file to read for the db_path
-
 
 
 error handling:
@@ -32,3 +27,10 @@ don't forget:
 - figure out window resize option
 
 - drop down for brand and size on add brew which referenced recepie table
+
+
+Done:
+
+0. remove scList.kv file and put into BlankScreen.kv
+
+4. use db_path as a file to read for the db_path
