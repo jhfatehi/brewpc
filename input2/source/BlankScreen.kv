@@ -1,5 +1,3 @@
-#: include scList.kv
-
 <BlankScreen@Screen>:
     screen: screen
     brew_num: brew_num
@@ -23,10 +21,12 @@
     	size_hint: (.03, .03)
     	pos_hint: {'x': .04, 'y': .9}
 
-    scList:
+    Spinner:
         id: screen
         size_hint: (.06, .06)
         pos_hint: {'x': .01, 'y': .8}
+        values: ['test_screen', 'blank_screen']
+        text: 'test_screen'
 
     Button:
         id: btn
