@@ -1,4 +1,4 @@
-## brewpc
+# brewpc
 
 This repository hosts the source code for a brew process control tool.
 
