@@ -76,6 +76,17 @@ class Brew(TabbedPanel):
         c.executemany('insert into brew values (?,?,?,?,?,?,?)', data)
         conn.commit()
         conn.close()
+    
+    # kjs 180224 -- in progress, incomplete
+    def load_data(self):
+        import sqlite3
+        brew_num = '1'
+        batch = '1'
+        query = 'select data1, data2, data3 from brew where brew_num=' + brew_num + ' and batch=' + batch
+        con = sqlite3.connect('input2_test.db')
+        cursor = con.execute(query)
+        rows = cursor.fetchall()
+        print(rows)
 
 class BrewApp(App):
     def build(self):
