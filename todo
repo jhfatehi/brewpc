@@ -1,8 +1,8 @@
-last updated 2-21-18 by jhf
+last updated 180224 by kjs
 
 todo:
 
-1. load should populate data from database
+1. load should populate data from database (kjs, in progress)
 
 2. add text field in brew.kv for confirmation and error messages
 
