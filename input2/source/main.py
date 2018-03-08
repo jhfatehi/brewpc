@@ -1,3 +1,8 @@
+'''
+print to Status / Error message as follows:
+self.stat.text = 'Status or Error Message'
+'''
+
 import dbwrite
 import sqlite3
 
@@ -16,6 +21,9 @@ class Brew(TabbedPanel):
     db_path = fn.read()
     fn.close()
 
+    #jhf 180307 i think some of these ObjectProperty declatations might not be required
+    #because they are inherited from the class through brew.kv.
+    #not sure.  need to test. seems to work with stat
     manager = ObjectProperty(None)
     ts1 = ObjectProperty()
     ts2 = ObjectProperty()
@@ -50,17 +58,23 @@ class Brew(TabbedPanel):
     def change_screen(self):
         if self.current_tab.name == 'tab1':
             self.tab1 = self.manager.current_screen.screen.text+'1'
+            r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
             self.manager.current = self.tab1
             self.manager.current_screen.screen.text = self.tab1[0:-1]
+            self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
         elif self.current_tab.name == 'tab2':
             self.tab2 = self.manager.current_screen.screen.text+'2'
+            r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
             self.manager.current = self.tab2
             self.manager.current_screen.screen.text = self.tab2[0:-1]
+            self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
         elif self.current_tab.name == 'tab3':
             self.tab3 = self.manager.current_screen.screen.text+'3'
+            r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
             self.manager.current = self.tab3
             self.manager.current_screen.screen.text = self.tab3[0:-1]
-    
+            self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+            
     def test_write(self):
         ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
         x = self.manager.current

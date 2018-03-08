@@ -2,7 +2,6 @@
 #: include TestScreen.kv
 #: include add_brew.kv
 
-
 <Brew>:
     manager: manager
     ts1: ts1
@@ -12,30 +11,13 @@
     blk1: blk1
     blk2: blk2
     blk3: blk3
+    stat: stat
     do_default_tab: False
-
+    
     # add a ScreenManager to the panel
     ScreenManager:
         id: manager
-        # Screen1:
-        #     id: sc1
-        #     name: 'screen_one'
-        #     # Button:
-        #     #     id: btn
-        #     #     text: 'screen one'
-        #     #     on_press: root.change_screen()
-        # Screen:
-        #     id: sc2
-        #     name: 'screen_two'
-        #     Button:
-        #         text: 'Screen Two'
-        #         on_press: root.change_screen()
-        # Screen:
-        #     id: sc3
-        #     name: 'screen_three'
-        #     Button:
-        #         text: 'screen three'
-        #         on_press: root.change_screen()
+
         BlankScreen:
             id: blk1
             name: 'blank_screen1'
@@ -72,3 +54,17 @@
     TabbedPanelHeader:
         name: 'tab4'
         text: 'Add Brew'
+
+    Label:
+        id: stat
+        text: 'Status: BEER!!!'
+        size_hint: (.98, .2)
+        pos_hint: {'x': .01, 'y': .01}
+        color: 0, 0, 0, 1
+        bcolor: 1, 1, 1, 1
+        canvas.before:
+            Color:
+                rgba: self.bcolor
+            Rectangle:
+                pos: self.pos
+                size: self.size
