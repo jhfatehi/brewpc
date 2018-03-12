@@ -1,5 +1,6 @@
 #: include BlankScreen.kv
 #: include TestScreen.kv
+#: include MashScreen.kv
 #: include add_brew.kv
 
 <Brew>:
@@ -38,6 +39,16 @@
             id: ts3
             name: 'test_screen3'  
 
+        MashScreen:
+            id: ms1
+            name: 'mash_screen1'
+        MashScreen:
+            id: ms2
+            name: 'mash_screen2'
+        MashScreen:
+            id: ms3
+            name: 'mash_screen3' 
+
         add_brew:
             id: ab
             name: 'add_brew'
@@ -58,7 +69,7 @@
     Label:
         id: stat
         text: 'Status: BEER!!!'
-        size_hint: (.98, .2)
+        size_hint: (.98, .1)
         pos_hint: {'x': .01, 'y': .01}
         color: 0, 0, 0, 1
         bcolor: 1, 1, 1, 1

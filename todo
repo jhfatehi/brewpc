@@ -4,13 +4,10 @@ todo:
 
 1. load should populate data from database (kjs, in progress)
 
-2. add text field in brew.kv for confirmation and error messages
-
 3. build mash/lauter fourm
+	- .kv for fourm (jhf, in progress)
 	- new database schema for data fields
 	- add recipe table in same db based on brand and size
-
-5. make brew and batch fields persistant with screen load like the drop down
 
 
 error handling:
@@ -34,5 +31,6 @@ don't forget:
 Done:
 
 0. remove scList.kv file and put into BlankScreen.kv
-
 4. use db_path as a file to read for the db_path
+2. add text field in brew.kv for confirmation and error messages
+5. make brew and batch fields persistant with screen load like the drop down
