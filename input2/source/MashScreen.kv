@@ -1,33 +1,265 @@
 #: include BlankScreen.kv
 
+<LabelD@Label>:
+    color: 0, 0, 0, 1
+    bcolor: .78, .92, .24, 1
+    canvas.before:
+        Color:
+            rgba: self.bcolor
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
 <MashScreen@BlankScreen>:
-    data1: data1
-    data2: data2
+#####################################################
+################## Sheet I/O ########################
+    dGRStemp: dGRStemp
+    dSTKtemp: dSTKtemp
+    dMSHvol: dMSHvol
+    dMSHtemp: dMSHtemp
+    dMSHtime: dMSHtime
+    dBREWsig: dBREWsig
+    dRNCvol: dRNCvol
+    dVLFtime: dVLFtime
+    dMASHph: dMASHph
+    d1RNvol: d1RNvol
+    dSPGvol: dSPGvol
+    dROFtime: dROFtime
+    dRACKcnt: dRACKcnt
+    dFILLtime: dFILLtime
+    dFILLvol: dFILLvol
+    tGRStemp: tGRStemp
+    tSTKtemp: tSTKtemp
+    tMSHvol: tMSHvol
+    tMSHtemp: tMSHtemp
+    tMASHphLOW: tMASHphLOW
+    tMASHphHI: tMASHphHI
+    tSPGvol: tSPGvol
+################## Sheet I/O ########################
+#####################################################
 
-    # kjs 180224 -- in progress, incomplete
+#####################################################
+################## Data Input #######################
     Label:
-        size_hint: (.1, .03)
-        pos_hint: {'x': .2, 'y': .8}
-        text: 'data1:'
-    TextInput:
-        id: data1
-        size_hint: (.3, .06)
-        pos_hint: {'x': .3, 'y': .8}
+        text: "Actual"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .925}
 
-    # kjs 180224 -- in progress, incomplete
     Label:
-        size_hint: (.1, .03)
-        pos_hint: {'x': .2, 'y': .7}
-        text: 'data2:'
+        text: "Grist Temp"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .875}
     TextInput:
-        id: data2
-        size_hint: (.3, .06)
-        pos_hint: {'x': .3, 'y': .7}
+        id: dGRStemp
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .90}
 
+    Label:
+        text: "Strike Temp"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .825}
+    TextInput:
+        id: dSTKtemp
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .85}
 
+    Label:
+        text: "Mash Vol"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .775}
+    TextInput:
+        id: dMSHvol
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .80}
+
+    Label:
+        text: "Mash Temp"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .725}
+    TextInput:
+        id: dMSHtemp
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .75}
+
+    Label:
+        text: "Mash In Time"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .675}
+    TextInput:
+        id: dMSHtime
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .70}
+
+    Label:
+        text: "Signature"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .625}
+    TextInput:
+        id: dBREWsig
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .65}
+
+    Label:
+        text: "MT Rince Vol"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .575}
+    TextInput:
+        id: dRNCvol
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .60}
+
+    Label:
+        text: "Vorlouf Time"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .525}
+    TextInput:
+        id: dVLFtime
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .55}
+
+    Label:
+        text: "Mash pH"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .475}
+    TextInput:
+        id: dMASHph
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .50}
+
+    Label:
+        text: "1st Runnings"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .425}
+    TextInput:
+        id: d1RNvol
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .45}
+
+    Label:
+        text: "Sparge Vol"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .375}
+    TextInput:
+        id: dSPGvol
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .40}
+
+    Label:
+        text: "Runoff Start Time"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .325}
+    TextInput:
+        id: dROFtime
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .35}
+
+    Label:
+        text: "Rake Spins"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .275}
+    TextInput:
+        id: dRACKcnt
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .30}
+
+    Label:
+        text: "Kettle Fill Time"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .225}
+    TextInput:
+        id: dFILLtime
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .25}
+
+    Label:
+        text: "Fill Level"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .55, 'y': .175}
+    TextInput:
+        id: dFILLvol
+        size_hint: (.03, .03)
+        pos_hint: {'x': .60, 'y': .20}
+################## Data Input #######################
+#####################################################
+
+#####################################################
+################## Targets ##########################
+    Label:
+        text: "Target"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .35, 'y': .925}
+
+    Label:
+        text: "Grist Temp"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .35, 'y': .875}
+    LabelD:
+        id: tGRStemp
+        size_hint: (.03, .03)
+        pos_hint: {'x': .40, 'y': .90}
+
+    Label:
+        text: "Strike Temp"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .35, 'y': .825}
+    LabelD:
+        id: tSTKtemp
+        size_hint: (.03, .03)
+        pos_hint: {'x': .40, 'y': .85}
+
+    Label:
+        text: "Mash Vol"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .35, 'y': .775}
+    LabelD:
+        id: tMSHvol
+        size_hint: (.03, .03)
+        pos_hint: {'x': .40, 'y': .80}
+
+    Label:
+        text: "Mash Temp"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .35, 'y': .725}
+    LabelD:
+        id: tMSHtemp
+        size_hint: (.03, .03)
+        pos_hint: {'x': .40, 'y': .75}
+
+    Label:
+        text: "Mash pH"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .35, 'y': .475}
+    Label:
+        text: "__"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .428, 'y': .485}
+    LabelD:
+        id: tMASHphLOW
+        size_hint: (.03, .03)
+        pos_hint: {'x': .40, 'y': .50}
+    LabelD:
+        id: tMASHphHI
+        size_hint: (.03, .03)
+        pos_hint: {'x': .45, 'y': .50}
+
+    Label:
+        text: "Sparge Vol"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .35, 'y': .375}
+    LabelD:
+        id: tSPGvol
+        size_hint: (.03, .03)
+        pos_hint: {'x': .40, 'y': .40}        
+################## Targets ##########################
+#####################################################
+
+#####################################################
+################# Save Button #######################
     Button:
         id: wrt_btn
         size_hint: (.06, .06)
         pos_hint: {'x': .01, 'y': .6}
         text: 'Save'
-        on_press: app.root.test_write()
+        on_press: app.root.mash_write()
+################# Save Button #######################
+#####################################################
