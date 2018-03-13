@@ -5,7 +5,6 @@
     data2: data2
     data3: data3
 
-    # kjs 180224 -- in progress, incomplete
     Label:
         size_hint: (.1, .03)
         pos_hint: {'x': .2, 'y': .8}
@@ -15,7 +14,6 @@
         size_hint: (.3, .06)
         pos_hint: {'x': .3, 'y': .8}
 
-    # kjs 180224 -- in progress, incomplete
     Label:
         size_hint: (.1, .03)
         pos_hint: {'x': .2, 'y': .7}
@@ -25,7 +23,6 @@
         size_hint: (.3, .06)
         pos_hint: {'x': .3, 'y': .7}
 
-    # kjs 180224 -- in progress, incomplete
     Label:
         size_hint: (.1, .03)
         pos_hint: {'x': .2, 'y': .6}
@@ -41,3 +38,10 @@
         pos_hint: {'x': .01, 'y': .6}
         text: 'Save'
         on_press: app.root.test_write()
+
+    Button:
+        id: rd_btn
+        size_hint: (.06, .06)
+        pos_hint: {'x': .01, 'y': .6}
+        text: 'Read'
+        on_press: app.root.test_read()

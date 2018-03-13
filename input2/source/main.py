@@ -91,8 +91,8 @@ class Brew(TabbedPanel):
         conn.commit()
         conn.close()
     
-    # kjs 180224 -- in progress, incomplete
-    def load_data(self):
+    # kjs 180313 -- in progress / incomplete
+    def test_read(self):
         import sqlite3
         brew_num = '1'
         batch = '1'

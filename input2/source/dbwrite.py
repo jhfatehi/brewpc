@@ -5,6 +5,7 @@ def test(db_path, brew_num, batch_num, data1, data2, data3):
 	c = conn.cursor()
 	c.execute('''UPDATE brew
            SET data1 = ?, data2 = ?, data3 = ?
-           WHERE brew_num = ? AND batch = ?''', (data1, data2, data3, brew_num, batch_num))
+           WHERE brew_num = ? AND batch = ?''', 
+           (data1, data2, data3, brew_num, batch_num))
 	conn.commit()
 	conn.close()
