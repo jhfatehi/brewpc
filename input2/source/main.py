@@ -8,7 +8,8 @@ import sqlite3
 
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
-from kivy.properties import ObjectProperty
+# kjs_180313: let's try leaving it commented and see if anything breaks
+# from kivy.properties import ObjectProperty
 from kivy.lang import Builder
 from kivy.uix.screenmanager import NoTransition
 #from kivy.config import Config
@@ -24,57 +25,79 @@ class Brew(TabbedPanel):
     #jhf 180307 i think some of these ObjectProperty declatations might not be required
     #because they are inherited from the class through brew.kv.
     #not sure.  need to test. seems to work with stat
-    manager = ObjectProperty(None)
-    ts1 = ObjectProperty()
-    ts2 = ObjectProperty()
-    ts3 = ObjectProperty()
+    # kjs_180313: let's try leaving them commented and see if anything breaks and...
+    # if not we can delete them later
+    # manager = ObjectProperty(None)
+    # ts1 = ObjectProperty()
+    # ts2 = ObjectProperty()
+    # ts3 = ObjectProperty()
 
-    ab = ObjectProperty()
-    blk1 = ObjectProperty()
-    blk2 = ObjectProperty()
-    blk3 = ObjectProperty()
+    # ab = ObjectProperty()
+    # blk1 = ObjectProperty()
+    # blk2 = ObjectProperty()
+    # blk3 = ObjectProperty()
 
-    tab1 = 'blank_screen1'
-    tab2 = 'test_screen2'
-    tab3 = 'test_screen3'
+    scn1 = 'blank_screen1'
+    scn2 = 'blank_screen2'
+    scn3 = 'blank_screen3'
+
+    # kjs_180313: experimental
+
+    # def switch_to(self, header):
+    #     pass
+
+    # def change_screen(self): # self is TabbedPanel
+    #     tlist = self.tab_list
+    #     self.switch_to(tlist[tlist.index(self.current_tab) - 1])
+
+    # jhf production code
 
     def switch_to(self, header):
-        # set the Screen manager to load  the appropriate screen
+        # set the Screen manager to load the appropriate screen
         # linked to the tab head instead of loading content
         if header.name == 'tab1':
-            self.manager.current = self.tab1
+            self.manager.current = self.scn1
         elif header.name == 'tab2':
-            self.manager.current = self.tab2
+            self.manager.current = self.scn2
         elif header.name == 'tab3':
-            self.manager.current = self.tab3
+            self.manager.current = self.scn3
         elif header.name == 'tab4':
             self.manager.current = 'add_brew'
         # we have to replace the functionality of the original switch_to
-        self.current_tab.state = "normal"
-        header.state = 'down'
-        self._current_tab = header
-        self.manager.transition = NoTransition()
-    
+        # kjs_180313: what does the above comment mean? i see that...
+        # it was scraped from the web...
+        # maybe it has something to do with the built-in "switch_to" function in...
+        # https://kivy.org/docs/_modules/kivy/uix/tabbedpanel.html???
+        # self.current_tab.state = 'normal'
+        # kjs_180313: i believe the above line is redundant and can be removed because...
+        # it is the default setting as opposed to 'down'
+        header.state = 'down' # makes tab 1 start in the down position upon opening app
+        # self._current_tab = header
+        # kjs_180313: i commented out the above line because...
+        # i don't know what it does or if it is needed...
+        # if nothing breaks we can delete it
+        self.manager.transition = NoTransition() # prevents tabs from sliding left on transition
+        
     def change_screen(self):
         if self.current_tab.name == 'tab1':
-            self.tab1 = self.manager.current_screen.screen.text+'1'
+            self.scn1 = self.manager.current_screen.screen.text+'1'
             r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
-            self.manager.current = self.tab1
-            self.manager.current_screen.screen.text = self.tab1[0:-1]
+            self.manager.current = self.scn1
+            self.manager.current_screen.screen.text = self.scn1[0:-1]
             self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
         elif self.current_tab.name == 'tab2':
-            self.tab2 = self.manager.current_screen.screen.text+'2'
+            self.scn2 = self.manager.current_screen.screen.text+'2'
             r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
-            self.manager.current = self.tab2
-            self.manager.current_screen.screen.text = self.tab2[0:-1]
+            self.manager.current = self.scn2
+            self.manager.current_screen.screen.text = self.scn2[0:-1]
             self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
         elif self.current_tab.name == 'tab3':
-            self.tab3 = self.manager.current_screen.screen.text+'3'
+            self.scn3 = self.manager.current_screen.screen.text+'3'
             r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
-            self.manager.current = self.tab3
-            self.manager.current_screen.screen.text = self.tab3[0:-1]
+            self.manager.current = self.scn3
+            self.manager.current_screen.screen.text = self.scn3[0:-1]
             self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
-            
+
     def test_write(self):
         ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
         x = self.manager.current
@@ -90,8 +113,8 @@ class Brew(TabbedPanel):
         c.executemany('insert into brew values (?,?,?,?,?,?,?)', data)
         conn.commit()
         conn.close()
-    
-    # kjs 180313 -- in progress / incomplete
+        
+    # kjs_180313: in progress / incomplete
     def test_read(self):
         import sqlite3
         brew_num = '1'
