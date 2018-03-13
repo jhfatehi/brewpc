@@ -1,8 +1,8 @@
-last updated 180312 by jhf
+last updated 180313 by kjs
 
 todo:
 
-1. load should populate data from database (kjs, in progress)
+1. ability to populate / read data from database (kjs, in progress)
 
 3. build mash/lauter fourm
 	- .kv for fourm (jhf, done)
@@ -12,6 +12,10 @@ todo:
 	- write functionality
 
 6. add clock with time format hhmm
+
+7. ideally spinner would read "blank_screen" in blank screen upon opening app; not critical to app functionality
+
+8. screen1.kv file appears unused; if so, delete
 
 
 error handling:
