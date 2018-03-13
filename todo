@@ -13,10 +13,9 @@ todo:
 
 6. add clock with time format hhmm
 
-7. ideally spinner would read "blank_screen" in blank screen upon opening app; not critical to app functionality
-
 8. screen1.kv file appears unused; if so, delete
 
+9. add variable dictionary for developers' reference, possibly to readme
 
 error handling:
 
@@ -42,3 +41,4 @@ Done:
 4. use db_path as a file to read for the db_path
 2. add text field in brew.kv for confirmation and error messages
 5. make brew and batch fields persistant with screen load like the drop down
+7. app opened to blank screen but spinner read "test_screen"; ideally spinner would read "blank_screen" if app opens to blank screen; not critical to app functionality; made all tabs start on blank screen and left default spinner label as "blank_screen"
