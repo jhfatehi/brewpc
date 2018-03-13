@@ -1,13 +1,17 @@
-last updated 180224 by kjs
+last updated 180312 by jhf
 
 todo:
 
 1. load should populate data from database (kjs, in progress)
 
 3. build mash/lauter fourm
-	- .kv for fourm (jhf, in progress)
-	- new database schema for data fields
-	- add recipe table in same db based on brand and size
+	- .kv for fourm (jhf, done)
+	- new database schema for data fields (jhf, done)
+	- add process table in same db based on brand and size (jhf, done)
+	- load functionality
+	- write functionality
+
+6. add clock with time format hhmm
 
 
 error handling:
