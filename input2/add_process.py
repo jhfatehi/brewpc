@@ -1,4 +1,7 @@
 import sqlite3
+import sys
+if sys.version_info[0] > 2:
+    raise "Must be using Python 2"
 
 size = raw_input('Size? ')
 brand = raw_input('Brand? ')
