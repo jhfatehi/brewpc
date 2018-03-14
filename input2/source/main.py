@@ -135,8 +135,9 @@ class Brew(TabbedPanel):
         cur.execute(query)
         rows = cur.fetchall()
         if len(rows) > 1:
-            print('''You have duplicate database entries.
-                  Only values from the 1st row are used.''')
+            error_1 = '''You have duplicate database entries!
+            Only values from the 1st row are used.'''
+            self.stat.text = error_1
         ts[x].data1.text = rows[0][0]
         ts[x].data2.text = rows[0][1]
         ts[x].data3.text = rows[0][2]
