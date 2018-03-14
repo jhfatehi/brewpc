@@ -115,15 +115,25 @@ class Brew(TabbedPanel):
         dbwrite.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text, ts[x].data1.text, ts[x].data2.text, ts[x].data3.text)
 
     def create_brew(self):
-        n = 'none'
-        data = []
-        for ii in range(int(self.ab.batches.text)):
-            data.append((str(self.ab.brew_num.text), str(ii+1), str(self.ab.brew_size.text), self.ab.brand.text, n,n,n))
-        conn = sqlite3.connect(self.db_path)
-        c = conn.cursor()
-        c.executemany('insert into brew values (?,?,?,?,?,?,?)', data)
-        conn.commit()
-        conn.close()
+        print(self.ab.batches.text)
+        print(type(self.ab.batches.text))
+        if (self.ab.brew_num.text == '' or
+            self.ab.brew_size.text =='' or
+            self.ab.brand.text == '' or
+            self.ab.batches.text == ''):
+            error_1 = '''A necessary input is missing.
+            Please recheck inputs.'''
+            self.stat.text = error_1
+        else:
+            n = 'none'
+            data = []
+            for ii in range(int(self.ab.batches.text)):
+                data.append((str(self.ab.brew_num.text), str(ii+1), str(self.ab.brew_size.text), self.ab.brand.text, n,n,n))
+            conn = sqlite3.connect(self.db_path)
+            c = conn.cursor()
+            c.executemany('insert into brew values (?,?,?,?,?,?,?)', data)
+            conn.commit()
+            conn.close()
 
     def test_read(self):
         import sqlite3
