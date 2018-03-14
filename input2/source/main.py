@@ -74,11 +74,12 @@ class Brew(TabbedPanel):
         # it is the default setting as opposed to 'down'
         header.state = 'down' # makes tab 1 start in the down position upon opening app since...
         # the default option is 'normal'
-        # self._current_tab = header
+        self._current_tab = header
         # kjs_180313: i commented out the above line because...
         # i don't know if it is needed because...
         # _current_tab doesn't show up anywhere else
         # if nothing breaks we can delete it
+        # jhf_180313: shit broke with the tab manager.  I uncommented and it works again.
         self.manager.transition = NoTransition() # prevents tabs from sliding left on transition
 
     # notes:
