@@ -124,7 +124,7 @@ class Brew(TabbedPanel):
         c.executemany('insert into brew values (?,?,?,?,?,?,?)', data)
         conn.commit()
         conn.close()
-        
+
     def test_read(self):
         import sqlite3
         ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}

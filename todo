@@ -1,5 +1,6 @@
 last updated 180313 by kjs
 
+
 todo:
 
 1. ability to populate / read data from database
@@ -38,7 +39,7 @@ don't forget:
 - drop down for brand and size on add brew which referenced recepie table
 
 
-Done:
+done:
 
 0. remove scList.kv file and put into BlankScreen.kv
 4. use db_path as a file to read for the db_path
