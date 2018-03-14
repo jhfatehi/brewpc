@@ -2,7 +2,8 @@ last updated 180313 by kjs
 
 todo:
 
-1. ability to populate / read data from database (kjs, in progress)
+1. ability to populate / read data from database
+--example in test_screen completed by kjs
 
 3. build mash/lauter fourm
 	- .kv for fourm (jhf, done)
@@ -16,6 +17,8 @@ todo:
 8. screen1.kv file appears unused; if so, delete
 
 9. add variable dictionary for developers' reference, possibly to readme
+
+10. option to add db_path to .gitignore (also *.db, etc.)
 
 error handling:
 
