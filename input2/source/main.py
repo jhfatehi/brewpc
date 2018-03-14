@@ -10,7 +10,8 @@ from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
 # kjs_180313: let's try leaving it commented and see if anything breaks
 # from kivy.properties import ObjectProperty
-from kivy.lang import Builder
+# Builder also appears to be unused
+# from kivy.lang import Builder
 from kivy.uix.screenmanager import NoTransition
 #from kivy.config import Config
 #Config.set('graphics', 'window_state', 'maximized')
@@ -71,13 +72,23 @@ class Brew(TabbedPanel):
         # self.current_tab.state = 'normal'
         # kjs_180313: i believe the above line is redundant and can be removed because...
         # it is the default setting as opposed to 'down'
-        header.state = 'down' # makes tab 1 start in the down position upon opening app
+        header.state = 'down' # makes tab 1 start in the down position upon opening app since...
+        # the default option is 'normal'
         # self._current_tab = header
         # kjs_180313: i commented out the above line because...
-        # i don't know what it does or if it is needed...
+        # i don't know if it is needed because...
+        # _current_tab doesn't show up anywhere else
         # if nothing breaks we can delete it
         self.manager.transition = NoTransition() # prevents tabs from sliding left on transition
-        
+
+    # notes:
+    # current_tab -- TabbedPanel
+    # current_screen -- Screen manager  -- BlankScreen containing spinner
+    # self.current_tab.name -- e.g., 'tab1'
+    # self.manager.current_screen.screen.text -- e.g., blank_screen2
+    # set self.manager.current equal to some self.manager.current_screen.screen.text
+    # so self.manager.current should be something like 'blank_screen2'
+
     def change_screen(self):
         if self.current_tab.name == 'tab1':
             self.scn1 = self.manager.current_screen.screen.text+'1'
@@ -114,20 +125,27 @@ class Brew(TabbedPanel):
         conn.commit()
         conn.close()
         
-    # kjs_180313: in progress / incomplete
     def test_read(self):
         import sqlite3
-        brew_num = '1'
-        batch = '1'
-        query = 'select data1, data2, data3 from brew where brew_num=' + brew_num + ' and batch=' + batch
-        con = sqlite3.connect('input2_test.db')
-        cursor = con.execute(query)
-        rows = cursor.fetchall()
-        print(rows)
+        ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
+        x = self.manager.current
+        query = 'select data1, data2, data3 from brew where brew_num=' + '"' + ts[x].brew_num.text + '"' + ' and batch=' + '"' + ts[x].brew_num.text + '"'
+        conn = sqlite3.connect(self.db_path)
+        cur = conn.cursor()
+        cur.execute(query)
+        rows = cur.fetchall()
+        if len(rows) > 1:
+            print('''You have duplicate database entries.
+                  Only values from the 1st row are used.''')
+        ts[x].data1.text = rows[0][0]
+        ts[x].data2.text = rows[0][1]
+        ts[x].data3.text = rows[0][2]
+
 
 class BrewApp(App):
     def build(self):
         return Brew()
+
 
 if __name__ == '__main__':
     BrewApp().run()
