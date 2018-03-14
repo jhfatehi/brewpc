@@ -3,8 +3,8 @@ last updated 180313 by kjs
 
 todo:
 
-1. ability to populate / read data from database
---example in test_screen completed by kjs
+1. add ability to populate / read data from database
+--see example read button in test_screen by kjs
 
 3. build mash/lauter fourm
 	- .kv for fourm (jhf, done)
@@ -15,11 +15,11 @@ todo:
 
 6. add clock with time format hhmm
 
-8. screen1.kv file appears unused; if so, delete
+8. screen1.kv file appears unused; if so, delete (defer to jhf)
 
 9. add variable dictionary for developers' reference, possibly to readme
 
-10. option to add db_path to .gitignore (also *.db, etc.)
+10. option to add db_path to .gitignore (also *.db, etc.); this might allow us to commit without affecting the repo
 
 error handling:
 
