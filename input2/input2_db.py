@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect('input2_test2.db')
+conn = sqlite3.connect('input2_test3.db')
 c = conn.cursor()
 c.execute('''CREATE TABLE brew
              (brew_num, batch, size, brand, data1, data2, data3)''')
@@ -24,14 +24,7 @@ c.execute('''CREATE TABLE mash (
 				dROFtime,
 				dRACKcnt,
 				dFILLtime,
-				dFILLvol,
-				tGRStemp,
-				tSTKtemp,
-				tMSHvol,
-				tMSHtemp,
-				tMASHphLOW,
-				tMASHphHI,
-				tSPGvol
+				dFILLvol
 				)''')
 
 c.execute('''CREATE TABLE process (

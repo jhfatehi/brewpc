@@ -128,15 +128,16 @@ class Brew(TabbedPanel):
             Please recheck inputs.'''
             self.stat.text = error_inputs
         else:
-            n = 'none'
-            data = []
-            for ii in range(int(self.ab.batches.text)):
-                data.append((str(self.ab.brew_num.text), str(ii+1), str(self.ab.brew_size.text), self.ab.brand.text, n,n,n))
-            conn = sqlite3.connect(self.db_path)
-            c = conn.cursor()
-            c.executemany('insert into brew values (?,?,?,?,?,?,?)', data)
-            conn.commit()
-            conn.close()
+            dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brew_size.text, self.ab.brand.text)
+            # n = 'none'
+            # data = []
+            # for ii in range(int(self.ab.batches.text)):
+            #     data.append((str(self.ab.brew_num.text), str(ii+1), str(self.ab.brew_size.text), self.ab.brand.text, n,n,n))
+            # conn = sqlite3.connect(self.db_path)
+            # c = conn.cursor()
+            # c.executemany('insert into brew values (?,?,?,?,?,?,?)', data)
+            # conn.commit()
+            # conn.close()
 
     def test_read(self):
         ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}

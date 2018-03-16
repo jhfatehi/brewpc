@@ -13,7 +13,10 @@ tMASHphLOW = raw_input('Low Mash pH? ')
 tMASHphHI = raw_input('High Mash pH? ')
 tSPGvol = raw_input('Sparge Volume? ')
 
-conn = sqlite3.connect('input2_test2.db')
+fn = open('source/db_path', 'r')
+db_path = fn.read()
+fn.close()
+conn = sqlite3.connect(db_path)
 c = conn.cursor()
 c.execute('INSERT INTO process VALUES (?,?,?,?,?,?,?,?,?)', (size,
 															brand,
