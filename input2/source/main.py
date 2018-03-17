@@ -4,7 +4,7 @@ self.stat.text = 'Status or Error Message'
 '''
 
 import dbwrite
-import sqlite3
+import dbread
 
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
@@ -164,25 +164,18 @@ class Brew(TabbedPanel):
     def test_read(self):
         ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
         x = self.manager.current
+        ts[x].data1.text = ''
+        ts[x].data2.text = ''
+        ts[x].data3.text = ''
         if (ts[x].brew_num.text == '' or
             ts[x].batch_num.text ==''):
             error_inputs = '''A necessary input is missing.
             Please recheck inputs.'''
             self.stat.text = error_inputs
         else:
-            import sqlite3
-            query = 'select data1, data2, data3 from brew where brew_num=' + '"' + ts[x].brew_num.text + '"' + ' and batch=' + '"' + ts[x].batch_num.text + '"'
-            conn = sqlite3.connect(self.db_path)
-            cur = conn.cursor()
-            cur.execute(query)
-            rows = cur.fetchall()
-            if len(rows) > 1:
-                error_duplicate = '''You have duplicate database entries!
-                Only values from the 1st row are used.'''
+            ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
+            if error_duplicate != []:
                 self.stat.text = error_duplicate
-            ts[x].data1.text = rows[0][0]
-            ts[x].data2.text = rows[0][1]
-            ts[x].data3.text = rows[0][2]
 
 
 class BrewApp(App):
