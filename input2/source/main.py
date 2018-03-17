@@ -117,6 +117,28 @@ class Brew(TabbedPanel):
         x = self.manager.current
         dbwrite.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text, ts[x].data1.text, ts[x].data2.text, ts[x].data3.text)
 
+    def mash_write(self):
+        ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
+        x = self.manager.current
+        dbwrite.mash(self.db_path,
+            ms[x].brew_num.text,
+            ms[x].batch_num.text,
+            ms[x].dGRStemp.text,
+            ms[x].dSTKtemp.text,
+            ms[x].dMSHvol.text,
+            ms[x].dMSHtemp.text,
+            ms[x].dMSHtime.text,
+            ms[x].dBREWsig.text,
+            ms[x].dRNCvol.text,
+            ms[x].dVLFtime.text,
+            ms[x].dMASHph.text,
+            ms[x].d1RNvol.text,
+            ms[x].dSPGvol.text,
+            ms[x].dROFtime.text,
+            ms[x].dRACKcnt.text,
+            ms[x].dFILLtime.text,
+            ms[x].dFILLvol.text)
+
     def create_brew(self):
         print(self.ab.batches.text)
         print(type(self.ab.batches.text))
