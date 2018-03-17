@@ -1,4 +1,4 @@
-last updated 180313 by kjs
+last updated 180316 by kjs
 
 
 todo:
@@ -15,11 +15,14 @@ todo:
 
 6. add clock with time format hhmm
 
-8. screen1.kv file appears unused; if so, delete (defer to jhf)
+8. screen1.kv file appears unused; if so, delete
 
 9. add variable dictionary for developers' reference, possibly to readme
 
-10. option to add db_path to .gitignore (also *.db, etc.); this might allow us to commit without affecting the repo
+10. optional: add db_path to .gitignore (also *.db, etc.); this might allow us to commit without affecting the repo
+
+11. optional: in db, change 'batch' to 'batch_num' and 'size' to 'size_num' so we don't have to keep track of multiple variable names for each variable
+
 
 error handling:
 
