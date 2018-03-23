@@ -1,21 +1,16 @@
-last updated 180316 by kjs
+last updated 180322 by jhf
 
 
 todo:
-
-1. add ability to populate / read data from database
---see example read button in test_screen by kjs
 
 3. build mash/lauter fourm
 	- .kv for fourm (jhf, done)
 	- new database schema for data fields (jhf, done)
 	- add process table in same db based on brand and size (jhf, done)
 	- load functionality
-	- write functionality
+	- write functionality (done)
 
 6. add clock with time format hhmm
-
-8. screen1.kv file appears unused; if so, delete
 
 9. add variable dictionary for developers' reference, possibly to readme
 
@@ -49,3 +44,5 @@ done:
 2. add text field in brew.kv for confirmation and error messages
 5. make brew and batch fields persistant with screen load like the drop down
 7. app opened to blank screen but spinner read "test_screen"; ideally spinner would read "blank_screen" if app opens to blank screen; not critical to app functionality; made all tabs start on blank screen and left default spinner label as "blank_screen"
+1. add ability to populate / read data from database
+8. screen1.kv file appears unused; if so, delete
