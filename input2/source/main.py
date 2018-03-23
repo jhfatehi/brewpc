@@ -161,21 +161,23 @@ class Brew(TabbedPanel):
             # conn.commit()
             # conn.close()
 
-    def test_read(self):
-        ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
-        x = self.manager.current
-        ts[x].data1.text = ''
-        ts[x].data2.text = ''
-        ts[x].data3.text = ''
-        if (ts[x].brew_num.text == '' or
-            ts[x].batch_num.text ==''):
-            error_inputs = '''A necessary input is missing.
-            Please recheck inputs.'''
-            self.stat.text = error_inputs
-        else:
-            ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
-            if error_duplicate != []:
-                self.stat.text = error_duplicate
+    def db_read(self):
+        #db read from test table
+        if self.manager.current_screen.screen.text == 'test_screen':
+            ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
+            x = self.manager.current
+            ts[x].data1.text = ''
+            ts[x].data2.text = ''
+            ts[x].data3.text = ''
+            if (ts[x].brew_num.text == '' or
+                ts[x].batch_num.text ==''):
+                error_inputs = '''A necessary input is missing.
+                Please recheck inputs.'''
+                self.stat.text = error_inputs
+            else:
+                ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
+                if error_duplicate != []:
+                    self.stat.text = error_duplicate
 
 
 class BrewApp(App):
