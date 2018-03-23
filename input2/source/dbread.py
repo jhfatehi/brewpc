@@ -1,7 +1,7 @@
 import sqlite3
 
 def test(db_path, brew_num, batch_num):
-    query = 'select data1, data2, data3 from brew where brew_num=' + '"' + brew_num + '"' + ' and batch=' + '"' + batch_num + '"'
+    query = 'select data1, data2, data3 from test where brew_num=' + '"' + brew_num + '"' + ' and batch=' + '"' + batch_num + '"'
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     cur.execute(query)
