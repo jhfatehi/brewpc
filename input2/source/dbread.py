@@ -1,10 +1,10 @@
 import sqlite3
 
 def test(db_path, brew_num, batch_num):
-    query = 'select data1, data2, data3 from test where brew_num=' + '"' + brew_num + '"' + ' and batch=' + '"' + batch_num + '"'
+    query = 'SELECT data1, data2, data3 FROM test WHERE brew_num = ? AND batch = ?'
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
-    cur.execute(query)
+    cur.execute(query, (brew_num, batch_num))
     rows = cur.fetchall()
     if len(rows) > 1:
         error_duplicate = '''You have duplicate database entries!
@@ -36,10 +36,6 @@ def mash(db_path, brew_num, batch_num):
     cur = conn.cursor()
     cur.execute(query, (brew_num, batch_num))
     rows = cur.fetchall()
-
-    data1 = rows[0][0]
-    data2 = rows[0][1]
-    data3 = rows[0][2]
 
     dGRStemp = rows[0][0]
     dSTKtemp = rows[0][1]
