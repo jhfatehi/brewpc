@@ -1,4 +1,4 @@
-last updated 180322 by jhf
+last updated 180323 by jhf
 
 
 todo:
@@ -7,7 +7,7 @@ todo:
 	- .kv for fourm (jhf, done)
 	- new database schema for data fields (jhf, done)
 	- add process table in same db based on brand and size (jhf, done)
-	- load functionality
+	- load functionality (half done.  actual values load.  target values do not)
 	- write functionality (done)
 
 6. add clock with time format hhmm

@@ -153,18 +153,23 @@ class Brew(TabbedPanel):
                 ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
                 if error_duplicate != []:
                     self.stat.text = error_duplicate
+
+        if self.manager.current_screen.screen.text == 'mash_screen':
+            ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
+            x = self.manager.current
+            ms[x].dGRStemp.text, ms[x].dSTKtemp.text, ms[x].dMSHvol.text, ms[x].dMSHtemp.text, ms[x].dMSHtime.text, ms[x].dBREWsig.text, ms[x].dRNCvol.text, ms[x].dVLFtime.text, ms[x].dMASHph.text, ms[x].d1RNvol.text, ms[x].dSPGvol.text, ms[x].dROFtime.text, ms[x].dRACKcnt.text, ms[x].dFILLtime.text, ms[x].dFILLvol.text = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
         #####################################################
 
 
     def db_write(self):
-        ############# db read from test table ###############
+        ############# db write from test table ###############
         if self.manager.current_screen.screen.text == 'test_screen':
             ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
             x = self.manager.current
             dbwrite.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text, ts[x].data1.text, ts[x].data2.text, ts[x].data3.text)
         #####################################################
 
-        ############# db read from mash table ###############
+        ############# db write from mash table ###############
         if self.manager.current_screen.screen.text == 'mash_screen':
             ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
             x = self.manager.current
