@@ -14,9 +14,13 @@ def test(db_path, brew_num, batch_num):
     data1 = rows[0][0]
     data2 = rows[0][1]
     data3 = rows[0][2]
+    conn.close()
     return data1, data2, data3, error_duplicate
 
 def mash(db_path, brew_num, batch_num):
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+
     query = '''SELECT dGRStemp,
     dSTKtemp,
     dMSHvol,
@@ -32,11 +36,8 @@ def mash(db_path, brew_num, batch_num):
     dRACKcnt,
     dFILLtime,
     dFILLvol FROM mash WHERE brew_num = ? AND batch = ?'''
-    conn = sqlite3.connect(db_path)
-    cur = conn.cursor()
     cur.execute(query, (brew_num, batch_num))
     rows = cur.fetchall()
-
     dGRStemp = rows[0][0]
     dSTKtemp = rows[0][1]
     dMSHvol = rows[0][2]
@@ -53,4 +54,21 @@ def mash(db_path, brew_num, batch_num):
     dFILLtime = rows[0][13]
     dFILLvol = rows[0][14]
 
-    return dGRStemp, dSTKtemp, dMSHvol, dMSHtemp, dMSHtime, dBREWsig, dRNCvol, dVLFtime, dMASHph, d1RNvol, dSPGvol, dROFtime, dRACKcnt, dFILLtime, dFILLvol
+    query = '''SELECT process.* from process 
+            left join mash on 
+            process.size = mash.size and process.brand = mash.brand
+            where mash.brew_num = ? and mash.batch = ?'''
+    cur.execute(query, (brew_num, batch_num))
+    rows = cur.fetchall()
+    tsize = rows[0][0]
+    tbrand = rows[0][1]
+    tGRStemp = rows[0][2]
+    tSTKtemp = rows[0][3]
+    tMSHvol = rows[0][4]
+    tMSHtemp = rows[0][5]
+    tMASHphLOW = rows[0][6]
+    tMASHphHI = rows[0][7]
+    tSPGvol = rows[0][8]
+
+    conn.close()
+    return dGRStemp, dSTKtemp, dMSHvol, dMSHtemp, dMSHtime, dBREWsig, dRNCvol, dVLFtime, dMASHph, d1RNvol, dSPGvol, dROFtime, dRACKcnt, dFILLtime, dFILLvol, tsize, tbrand, tGRStemp, tSTKtemp, tMSHvol, tMSHtemp, tMASHphLOW, tMASHphHI, tSPGvol

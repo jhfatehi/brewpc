@@ -28,6 +28,8 @@
     dRACKcnt: dRACKcnt # Actual Rake Spins
     dFILLtime: dFILLtime # Actual Kettle Fill Time
     dFILLvol: dFILLvol # Actual Fill Level
+    tbrand:tbrand # Brand for targets
+    tsize:tsize # Brew size for targets
     tGRStemp: tGRStemp # Target Grist Temp
     tSTKtemp: tSTKtemp # Target Strike Temp
     tMSHvol: tMSHvol # Target Mash Vol
@@ -188,6 +190,24 @@
         text: "Target"
         size_hint: (.025, .075)
         pos_hint: {'x': .35, 'y': .925}
+
+    Label:
+        text: "Brand"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .1, 'y': .925}
+    LabelD:
+        id: tbrand
+        size_hint: (.07, .03)
+        pos_hint: {'x': .13, 'y': .95}
+
+    Label:
+        text: "Size"
+        size_hint: (.025, .075)
+        pos_hint: {'x': .1, 'y': .875}     
+    LabelD:
+        id: tsize
+        size_hint: (.03, .03)
+        pos_hint: {'x': .13, 'y': .9}
 
     Label:
         text: "Grist Temp"
