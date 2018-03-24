@@ -8,35 +8,12 @@ import dbread
 
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
-# kjs_180313: let's try leaving it commented and see if anything breaks
-# from kivy.properties import ObjectProperty
-# Builder also appears to be unused
-# from kivy.lang import Builder
 from kivy.uix.screenmanager import NoTransition
-#from kivy.config import Config
-#Config.set('graphics', 'window_state', 'maximized')
-#Config.write()
-
 
 class Brew(TabbedPanel):
     fn = open('db_path', 'r')
     db_path = fn.read()
     fn.close()
-
-    #jhf 180307 i think some of these ObjectProperty declatations might not be required
-    #because they are inherited from the class through brew.kv.
-    #not sure.  need to test. seems to work with stat
-    # kjs_180313: let's try leaving them commented and see if anything breaks and...
-    # if not we can delete them later
-    # manager = ObjectProperty(None)
-    # ts1 = ObjectProperty()
-    # ts2 = ObjectProperty()
-    # ts3 = ObjectProperty()
-
-    # ab = ObjectProperty()
-    # blk1 = ObjectProperty()
-    # blk2 = ObjectProperty()
-    # blk3 = ObjectProperty()
 
     scn1 = 'blank_screen1'
     scn2 = 'blank_screen2'
@@ -112,8 +89,6 @@ class Brew(TabbedPanel):
             self.manager.current_screen.screen.text = self.scn3[0:-1]
             self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
 
-
-
     def create_brew(self):
         print(self.ab.batches.text)
         print(type(self.ab.batches.text))
@@ -126,15 +101,6 @@ class Brew(TabbedPanel):
             self.stat.text = error_inputs
         else:
             dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brew_size.text, self.ab.brand.text)
-            # n = 'none'
-            # data = []
-            # for ii in range(int(self.ab.batches.text)):
-            #     data.append((str(self.ab.brew_num.text), str(ii+1), str(self.ab.brew_size.text), self.ab.brand.text, n,n,n))
-            # conn = sqlite3.connect(self.db_path)
-            # c = conn.cursor()
-            # c.executemany('insert into brew values (?,?,?,?,?,?,?)', data)
-            # conn.commit()
-            # conn.close()
 
     def db_read(self):
         ############# db read from test table ###############
@@ -159,7 +125,6 @@ class Brew(TabbedPanel):
             x = self.manager.current
             ms[x].dGRStemp.text, ms[x].dSTKtemp.text, ms[x].dMSHvol.text, ms[x].dMSHtemp.text, ms[x].dMSHtime.text, ms[x].dBREWsig.text, ms[x].dRNCvol.text, ms[x].dVLFtime.text, ms[x].dMASHph.text, ms[x].d1RNvol.text, ms[x].dSPGvol.text, ms[x].dROFtime.text, ms[x].dRACKcnt.text, ms[x].dFILLtime.text, ms[x].dFILLvol.text = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
         #####################################################
-
 
     def db_write(self):
         ############# db write from test table ###############
@@ -193,11 +158,9 @@ class Brew(TabbedPanel):
                 ms[x].dFILLvol.text)
         #####################################################
 
-
 class BrewApp(App):
     def build(self):
         return Brew()
-
 
 if __name__ == '__main__':
     BrewApp().run()
