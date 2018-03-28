@@ -1,14 +1,7 @@
-last updated 180323 by jhf
+last updated 180327 by jhf
 
 
 todo:
-
-3. build mash/lauter fourm
-	- .kv for fourm (jhf, done)
-	- new database schema for data fields (jhf, done)
-	- add process table in same db based on brand and size (jhf, done)
-	- load functionality (half done.  actual values load.  target values do not)
-	- write functionality (done)
 
 6. add clock with time format hhmm
 
@@ -25,7 +18,7 @@ a. require brew and batch numbers when loading
 
 b. require data types
 
-c. verify brand and size exist when adding brew
+
 
 
 don't forget:
@@ -46,3 +39,10 @@ done:
 7. app opened to blank screen but spinner read "test_screen"; ideally spinner would read "blank_screen" if app opens to blank screen; not critical to app functionality; made all tabs start on blank screen and left default spinner label as "blank_screen"
 1. add ability to populate / read data from database
 8. screen1.kv file appears unused; if so, delete
+3. build mash/lauter fourm
+	- .kv for fourm (jhf, done)
+	- new database schema for data fields (jhf, done)
+	- add process table in same db based on brand and size (jhf, done)
+	- load functionality (done)
+	- write functionality (done)
+c. verify brand and size exist when adding brew

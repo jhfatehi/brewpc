@@ -5,6 +5,7 @@ self.stat.text = 'Status or Error Message'
 
 import dbwrite
 import dbread
+import inval
 
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
@@ -90,17 +91,15 @@ class Brew(TabbedPanel):
             self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
 
     def create_brew(self):
-        print(self.ab.batches.text)
-        print(type(self.ab.batches.text))
-        if (self.ab.brew_num.text == '' or
-            self.ab.brew_size.text =='' or
-            self.ab.brand.text == '' or
-            self.ab.batches.text == ''):
-            error_inputs = '''A necessary input is missing.
-            Please recheck inputs.'''
-            self.stat.text = error_inputs
-        else:
-            dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brew_size.text, self.ab.brand.text)
+        if not inval.check_brew(self.db_path, self.ab.brew_num.text):
+            if inval.check_int(self.ab.batches.text):
+                if inval.check_brand_size(self.db_path, self.ab.brand.text, self.ab.brew_size.text):
+                    dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brew_size.text, self.ab.brand.text)
+                    self.stat.text = 'Status - Brew number ' + self.ab.brew_num.text + ' has been added.'
+                else: self.stat.text = 'Error - No process for brand and size.'
+            else: self.stat.text = 'Error - Number of bacthes must be an integer.'
+        else: self.stat.text = 'Error - Brew number aready exists.'
+
 
     def db_read(self):
         ############# db read from test table ###############
