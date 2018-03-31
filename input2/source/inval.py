@@ -1,5 +1,15 @@
 import sqlite3
 
+def check_brew_batch(db_path, brew_num, batch):
+	query = '''SELECT count(1)
+				from mash
+				where brew_num = ? and batch = ?'''
+	conn = sqlite3.connect(db_path)
+	cur = conn.cursor()
+	cur.execute(query, (brew_num, batch))
+	rows = cur.fetchall()
+	return rows[0][0]	
+
 def check_brew(db_path, brew_num):
 	query = '''SELECT count(1)
 				from mash

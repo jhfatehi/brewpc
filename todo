@@ -14,8 +14,6 @@ todo:
 
 error handling:
 
-a. require brew and batch numbers when loading
-
 b. require data types
 
 
@@ -46,3 +44,4 @@ done:
 	- load functionality (done)
 	- write functionality (done)
 c. verify brand and size exist when adding brew
+a. require brew and batch numbers when loading

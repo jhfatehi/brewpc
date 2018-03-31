@@ -71,24 +71,27 @@ class Brew(TabbedPanel):
     # so self.manager.current should be something like 'blank_screen2'
 
     def change_screen(self):
-        if self.current_tab.name == 'tab1':
-            self.scn1 = self.manager.current_screen.screen.text+'1'
-            r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
-            self.manager.current = self.scn1
-            self.manager.current_screen.screen.text = self.scn1[0:-1]
-            self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
-        elif self.current_tab.name == 'tab2':
-            self.scn2 = self.manager.current_screen.screen.text+'2'
-            r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
-            self.manager.current = self.scn2
-            self.manager.current_screen.screen.text = self.scn2[0:-1]
-            self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
-        elif self.current_tab.name == 'tab3':
-            self.scn3 = self.manager.current_screen.screen.text+'3'
-            r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
-            self.manager.current = self.scn3
-            self.manager.current_screen.screen.text = self.scn3[0:-1]
-            self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+        if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
+            self.stat.text = 'Status: change_screen'
+            if self.current_tab.name == 'tab1':
+                self.scn1 = self.manager.current_screen.screen.text+'1'
+                r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
+                self.manager.current = self.scn1
+                self.manager.current_screen.screen.text = self.scn1[0:-1]
+                self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+            elif self.current_tab.name == 'tab2':
+                self.scn2 = self.manager.current_screen.screen.text+'2'
+                r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
+                self.manager.current = self.scn2
+                self.manager.current_screen.screen.text = self.scn2[0:-1]
+                self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+            elif self.current_tab.name == 'tab3':
+                self.scn3 = self.manager.current_screen.screen.text+'3'
+                r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
+                self.manager.current = self.scn3
+                self.manager.current_screen.screen.text = self.scn3[0:-1]
+                self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+        else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
     def create_brew(self):
         if not inval.check_brew(self.db_path, self.ab.brew_num.text):
@@ -102,60 +105,64 @@ class Brew(TabbedPanel):
 
 
     def db_read(self):
-        ############# db read from test table ###############
-        if self.manager.current_screen.screen.text == 'test_screen':
-            ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
-            x = self.manager.current
-            ts[x].data1.text = ''
-            ts[x].data2.text = ''
-            ts[x].data3.text = ''
-            if (ts[x].brew_num.text == '' or
-                ts[x].batch_num.text ==''):
-                error_inputs = '''A necessary input is missing.
-                Please recheck inputs.'''
-                self.stat.text = error_inputs
-            else:
-                ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
-                if error_duplicate != []:
-                    self.stat.text = error_duplicate
+        if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
+            self.stat.text = 'Status: db_read'
+            ############# db read from test table ###############
+            if self.manager.current_screen.screen.text == 'test_screen':
+                ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
+                x = self.manager.current
+                ts[x].data1.text = ''
+                ts[x].data2.text = ''
+                ts[x].data3.text = ''
+                if (ts[x].brew_num.text == '' or
+                    ts[x].batch_num.text ==''):
+                    error_inputs = '''A necessary input is missing.
+                    Please recheck inputs.'''
+                    self.stat.text = error_inputs
+                else:
+                    ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
+                    if error_duplicate != []:
+                        self.stat.text = error_duplicate
 
-        if self.manager.current_screen.screen.text == 'mash_screen':
-            ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
-            x = self.manager.current
-            ms[x].dGRStemp.text, ms[x].dSTKtemp.text, ms[x].dMSHvol.text, ms[x].dMSHtemp.text, ms[x].dMSHtime.text, ms[x].dBREWsig.text, ms[x].dRNCvol.text, ms[x].dVLFtime.text, ms[x].dMASHph.text, ms[x].d1RNvol.text, ms[x].dSPGvol.text, ms[x].dROFtime.text, ms[x].dRACKcnt.text, ms[x].dFILLtime.text, ms[x].dFILLvol.text, ms[x].tsize.text, ms[x].tbrand.text , ms[x].tGRStemp.text , ms[x].tSTKtemp.text , ms[x].tMSHvol.text , ms[x].tMSHtemp.text , ms[x].tMASHphLOW.text , ms[x].tMASHphHI.text , ms[x].tSPGvol.text  = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
+            if self.manager.current_screen.screen.text == 'mash_screen':
+                ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
+                x = self.manager.current
+                ms[x].dGRStemp.text, ms[x].dSTKtemp.text, ms[x].dMSHvol.text, ms[x].dMSHtemp.text, ms[x].dMSHtime.text, ms[x].dBREWsig.text, ms[x].dRNCvol.text, ms[x].dVLFtime.text, ms[x].dMASHph.text, ms[x].d1RNvol.text, ms[x].dSPGvol.text, ms[x].dROFtime.text, ms[x].dRACKcnt.text, ms[x].dFILLtime.text, ms[x].dFILLvol.text, ms[x].tsize.text, ms[x].tbrand.text , ms[x].tGRStemp.text , ms[x].tSTKtemp.text , ms[x].tMSHvol.text , ms[x].tMSHtemp.text , ms[x].tMASHphLOW.text , ms[x].tMASHphHI.text , ms[x].tSPGvol.text  = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
         #####################################################
 
     def db_write(self):
-        ############# db write from test table ###############
-        if self.manager.current_screen.screen.text == 'test_screen':
-            ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
-            x = self.manager.current
-            dbwrite.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text, ts[x].data1.text, ts[x].data2.text, ts[x].data3.text)
-        #####################################################
+        if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
+            self.stat.text = 'Status: db_write'
+            ############# db write from test table ###############
+            if self.manager.current_screen.screen.text == 'test_screen':
+                ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
+                x = self.manager.current
+                dbwrite.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text, ts[x].data1.text, ts[x].data2.text, ts[x].data3.text)
+            #####################################################
 
-        ############# db write from mash table ###############
-        if self.manager.current_screen.screen.text == 'mash_screen':
-            ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
-            x = self.manager.current
-            dbwrite.mash(self.db_path,
-                ms[x].brew_num.text,
-                ms[x].batch_num.text,
-                ms[x].dGRStemp.text,
-                ms[x].dSTKtemp.text,
-                ms[x].dMSHvol.text,
-                ms[x].dMSHtemp.text,
-                ms[x].dMSHtime.text,
-                ms[x].dBREWsig.text,
-                ms[x].dRNCvol.text,
-                ms[x].dVLFtime.text,
-                ms[x].dMASHph.text,
-                ms[x].d1RNvol.text,
-                ms[x].dSPGvol.text,
-                ms[x].dROFtime.text,
-                ms[x].dRACKcnt.text,
-                ms[x].dFILLtime.text,
-                ms[x].dFILLvol.text)
-        #####################################################
+            ############# db write from mash table ###############
+            if self.manager.current_screen.screen.text == 'mash_screen':
+                ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
+                x = self.manager.current
+                dbwrite.mash(self.db_path,
+                    ms[x].brew_num.text,
+                    ms[x].batch_num.text,
+                    ms[x].dGRStemp.text,
+                    ms[x].dSTKtemp.text,
+                    ms[x].dMSHvol.text,
+                    ms[x].dMSHtemp.text,
+                    ms[x].dMSHtime.text,
+                    ms[x].dBREWsig.text,
+                    ms[x].dRNCvol.text,
+                    ms[x].dVLFtime.text,
+                    ms[x].dMASHph.text,
+                    ms[x].d1RNvol.text,
+                    ms[x].dSPGvol.text,
+                    ms[x].dROFtime.text,
+                    ms[x].dRACKcnt.text,
+                    ms[x].dFILLtime.text,
+                    ms[x].dFILLvol.text)
+            #####################################################
 
 class BrewApp(App):
     def build(self):
