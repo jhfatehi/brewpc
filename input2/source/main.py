@@ -111,18 +111,22 @@ class Brew(TabbedPanel):
             if self.manager.current_screen.screen.text == 'test_screen':
                 ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
                 x = self.manager.current
-                ts[x].data1.text = ''
-                ts[x].data2.text = ''
-                ts[x].data3.text = ''
-                if (ts[x].brew_num.text == '' or
-                    ts[x].batch_num.text ==''):
-                    error_inputs = '''A necessary input is missing.
-                    Please recheck inputs.'''
-                    self.stat.text = error_inputs
-                else:
-                    ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
-                    if error_duplicate != []:
-                        self.stat.text = error_duplicate
+                ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
+                # relavent data is writent to the fields when page loads 
+                # input is checked at begining of function
+                # if everything works, remove code below.  jhf-184016
+                # ts[x].data1.text = ''
+                # ts[x].data2.text = ''
+                # ts[x].data3.text = ''
+                # if (ts[x].brew_num.text == '' or
+                #     ts[x].batch_num.text ==''):
+                #     error_inputs = '''A necessary input is missing.
+                #     Please recheck inputs.'''
+                #     self.stat.text = error_inputs
+                # else:
+                #     ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
+                #     if error_duplicate != []:
+                #         self.stat.text = error_duplicate
 
             if self.manager.current_screen.screen.text == 'mash_screen':
                 ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
