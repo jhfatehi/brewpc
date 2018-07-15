@@ -99,10 +99,15 @@ class Brew(TabbedPanel):
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
     def db_write(self):
+        def xfloat(s):
+            if s == '':
+                return None
+            return float(s)
+
         self.db_path = ConfigParser.RawConfigParser()
         self.db_path.read('conn.cfg')
         if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
-            self.stat.text = 'Status: db_write'
+            self.stat.text = 'Status: Save in progress'
             ############# db write from test table ###############
             if self.manager.current_screen.screen.text == 'test_screen':
                 ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
@@ -114,24 +119,28 @@ class Brew(TabbedPanel):
             if self.manager.current_screen.screen.text == 'mash_screen':
                 ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
                 x = self.manager.current
-                dbwrite.mash(self.db_path,
-                    ms[x].brew_num.text,
-                    ms[x].batch_num.text,
-                    ms[x].dGRStemp.text,
-                    ms[x].dSTKtemp.text,
-                    ms[x].dMSHvol.text,
-                    ms[x].dMSHtemp.text,
-                    ms[x].dMSHtime.text,
-                    ms[x].dBREWsig.text,
-                    ms[x].dRNCvol.text,
-                    ms[x].dVLFtime.text,
-                    ms[x].dMASHph.text,
-                    ms[x].d1RNvol.text,
-                    ms[x].dSPGvol.text,
-                    ms[x].dROFtime.text,
-                    ms[x].dRACKcnt.text,
-                    ms[x].dFILLtime.text,
-                    ms[x].dFILLvol.text)
+                try:
+                    dbwrite.mash(self.db_path,
+                        xfloat(ms[x].brew_num.text),
+                        xfloat(ms[x].batch_num.text),
+                        xfloat(ms[x].dGRStemp.text),
+                        xfloat(ms[x].dSTKtemp.text),
+                        xfloat(ms[x].dMSHvol.text),
+                        xfloat(ms[x].dMSHtemp.text),
+                        ms[x].dMSHtime.text,
+                        ms[x].dBREWsig.text,
+                        xfloat(ms[x].dRNCvol.text),
+                        ms[x].dVLFtime.text,
+                        xfloat(ms[x].dMASHph.text),
+                        xfloat(ms[x].d1RNvol.text),
+                        xfloat(ms[x].dSPGvol.text),
+                        ms[x].dROFtime.text,
+                        xfloat(ms[x].dRACKcnt.text),
+                        ms[x].dFILLtime.text,
+                        xfloat(ms[x].dFILLvol.text))
+                    self.stat.text = 'Status: Save complete'
+                except:
+                    self.stat.text = 'Error - A non-number was entered.'
             #####################################################
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
@@ -152,11 +161,11 @@ class BrewApp(App):
         with open('conn.cfg', 'wb') as configfile:
             config.write(configfile)
 
-        print 'ssh tunnel opened'
+        print('ssh tunnel opened')
 
     def on_stop(self):
         self.tunnel.stop()
-        print 'ssh tunnel closed'
+        print('ssh tunnel closed')
 
     def build(self):
         return Brew()

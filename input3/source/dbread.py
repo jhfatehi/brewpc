@@ -1,5 +1,10 @@
 import mysql.connector
 
+def xstr(s):
+    if s is None:
+        return ''
+    return str(s)
+
 def test(db_path, brew_num, batch_num):
     query = 'SELECT data1, data2, data3 FROM test WHERE brew_num = %s AND batch = %s'
     conn = mysql.connector.connect(
@@ -48,21 +53,21 @@ def mash(db_path, brew_num, batch_num):
     dFILLvol FROM mash WHERE brew_num = %s AND batch = %s'''
     cur.execute(query, (brew_num, batch_num))
     rows = cur.fetchall()
-    dGRStemp = str(rows[0][0])
-    dSTKtemp = str(rows[0][1])
-    dMSHvol = str(rows[0][2])
-    dMSHtemp = str(rows[0][3])
-    dMSHtime = str(rows[0][4])
-    dBREWsig = str(rows[0][5])
-    dRNCvol = str(rows[0][6])
-    dVLFtime = str(rows[0][7])
-    dMASHph = str(rows[0][8])
-    d1RNvol = str(rows[0][9])
-    dSPGvol = str(rows[0][10])
-    dROFtime = str(rows[0][11])
-    dRACKcnt = str(rows[0][12])
-    dFILLtime = str(rows[0][13])
-    dFILLvol = str(rows[0][14])
+    dGRStemp = xstr(rows[0][0])
+    dSTKtemp = xstr(rows[0][1])
+    dMSHvol = xstr(rows[0][2])
+    dMSHtemp = xstr(rows[0][3])
+    dMSHtime = xstr(rows[0][4])
+    dBREWsig = xstr(rows[0][5])
+    dRNCvol = xstr(rows[0][6])
+    dVLFtime = xstr(rows[0][7])
+    dMASHph = xstr(rows[0][8])
+    d1RNvol = xstr(rows[0][9])
+    dSPGvol = xstr(rows[0][10])
+    dROFtime = xstr(rows[0][11])
+    dRACKcnt = xstr(rows[0][12])
+    dFILLtime = xstr(rows[0][13])
+    dFILLvol = xstr(rows[0][14])
 
     query = '''SELECT process.* from process 
             left join mash on 
