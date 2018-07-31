@@ -1,25 +1,9 @@
-#import mysql.connector
 import mysql.connector
 
 def xNone(s):
     if s == '':
         return None
     return str(s)
-
-def test(db_path, brew_num, batch_num, data1, data2, data3):
-	conn = mysql.connector.connect(
-			user=db_path.get('mysql', 'usr'),
-			password=db_path.get('mysql', 'pw'),
-			host='127.0.0.1',
-			database=db_path.get('mysql', 'db'),
-			port=int(db_path.get('mysql', 'local_bind_port')))
-	c = conn.cursor()
-	c.execute('''UPDATE test
-			SET data1 = %s, data2 = %s, data3 = %s
-			WHERE brew_num = %s AND batch = %s''', 
-			(data1, data2, data3, brew_num, batch_num))
-	conn.commit()
-	conn.close()
 
 def add_brew(db_path, batches, brew_num, brew_size, brand):
 	n = 'none'
@@ -35,7 +19,6 @@ def add_brew(db_path, batches, brew_num, brew_size, brand):
 			database=db_path.get('mysql', 'db'),
 			port=int(db_path.get('mysql', 'local_bind_port')))
 	c = conn.cursor()
-	c.executemany('INSERT into test (brew_num, batch, size, brand) values (%s,%s,%s,%s)', brew_data) #for test sheet.  remmove latter
 	c.executemany('INSERT into mash (brew_num, batch, size, brand) values (%s,%s,%s,%s)', mash_data)
 	conn.commit()
 	conn.close()

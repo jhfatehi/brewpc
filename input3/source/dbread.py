@@ -5,28 +5,6 @@ def xstr(s):
         return ''
     return str(s)
 
-def test(db_path, brew_num, batch_num):
-    query = 'SELECT data1, data2, data3 FROM test WHERE brew_num = %s AND batch = %s'
-    conn = mysql.connector.connect(
-            user=db_path.get('mysql', 'usr'),
-            password=db_path.get('mysql', 'pw'),
-            host='127.0.0.1',
-            database=db_path.get('mysql', 'db'),
-            port=db_path.get('mysql', 'local_bind_port'))
-    cur = conn.cursor()
-    cur.execute(query, (brew_num, batch_num))
-    rows = cur.fetchall()
-    if len(rows) > 1:
-        error_duplicate = '''You have duplicate database entries!
-        Only values from the 1st row are used.'''
-    else:
-        error_duplicate = []
-    data1 = rows[0][0]
-    data2 = rows[0][1]
-    data3 = rows[0][2]
-    conn.close()
-    return data1, data2, data3, error_duplicate
-
 def mash(db_path, brew_num, batch_num):
     conn = mysql.connector.connect(
             user=db_path.get('mysql', 'usr'),

@@ -74,6 +74,7 @@ class Brew(TabbedPanel):
         if not inval.check_brew(self.db_path, self.ab.brew_num.text):
             if inval.check_int(self.ab.batches.text):
                 if inval.check_brand_size(self.db_path, self.ab.brand.text, self.ab.brew_size.text):
+                    self.stat.text = 'Status - Working'
                     dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brew_size.text, self.ab.brand.text)
                     self.stat.text = 'Status - Brew number ' + self.ab.brew_num.text + ' has been added.'
                 else: self.stat.text = 'Error - No process for brand and size.'
@@ -85,16 +86,13 @@ class Brew(TabbedPanel):
         self.db_path = ConfigParser.RawConfigParser()
         self.db_path.read('conn.cfg')
         if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
-            self.stat.text = 'Status: db_read'
-            ############# db read from test table ###############
-            if self.manager.current_screen.screen.text == 'test_screen':
-                ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
-                x = self.manager.current
-                ts[x].data1.text, ts[x].data2.text, ts[x].data3.text, error_duplicate = dbread.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text)
+            ############# db read from mash table ###############
             if self.manager.current_screen.screen.text == 'mash_screen':
                 ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
                 x = self.manager.current
+                self.stat.text = 'Status - Working'
                 ms[x].dGRStemp.text, ms[x].dSTKtemp.text, ms[x].dMSHvol.text, ms[x].dMSHtemp.text, ms[x].dMSHtime.text, ms[x].dBREWsig.text, ms[x].dRNCvol.text, ms[x].dVLFtime.text, ms[x].dMASHph.text, ms[x].d1RNvol.text, ms[x].dSPGvol.text, ms[x].dROFtime.text, ms[x].dRACKcnt.text, ms[x].dFILLtime.text, ms[x].dFILLvol.text, ms[x].tsize.text, ms[x].tbrand.text , ms[x].tGRStemp.text , ms[x].tSTKtemp.text , ms[x].tMSHvol.text , ms[x].tMSHtemp.text , ms[x].tMASHphLOW.text , ms[x].tMASHphHI.text , ms[x].tSPGvol.text  = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
+                self.stat.text = 'Status: Load Complete'
             #####################################################
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
@@ -108,18 +106,13 @@ class Brew(TabbedPanel):
         self.db_path.read('conn.cfg')
         if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
             self.stat.text = 'Status: Save in progress'
-            ############# db write from test table ###############
-            if self.manager.current_screen.screen.text == 'test_screen':
-                ts = {'test_screen1':self.ts1, 'test_screen2':self.ts2, 'test_screen3':self.ts3}
-                x = self.manager.current
-                dbwrite.test(self.db_path, ts[x].brew_num.text, ts[x].batch_num.text, ts[x].data1.text, ts[x].data2.text, ts[x].data3.text)
-            #####################################################
 
             ############# db write from mash table ###############
             if self.manager.current_screen.screen.text == 'mash_screen':
                 ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
                 x = self.manager.current
                 try:
+                    self.stat.text = 'Status - Working'
                     dbwrite.mash(self.db_path,
                         xfloat(ms[x].brew_num.text),
                         xfloat(ms[x].batch_num.text),

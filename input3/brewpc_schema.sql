@@ -1,15 +1,6 @@
-DROP SCHEMA IF EXISTS brewpc;
-CREATE SCHEMA brewpc;
-USE brewpc;
-
-CREATE TABLE test (
-	brew_num int, 
-	batch int, 
-	size int, 
-	brand varchar(20), 
-	data1 float, 
-	data2 float, 
-	data3 float);
+DROP SCHEMA IF EXISTS brewpc_test;
+CREATE SCHEMA brewpc_test;
+USE brewpc_test;
 
 CREATE TABLE mash (
 	brew_num int,
@@ -42,3 +33,12 @@ CREATE TABLE process (
 	tMASHphLOW float,
 	tMASHphHI float,
 	tSPGvol float);
+    
+CREATE TABLE brews (
+	brew_num int,
+	batch int,
+	size int,
+	brand varchar(20),
+    PRIMARY KEY(brew_num));
+    
+INSERT INTO process VALUES (0,0,0,0,0,0,0,0,0);
