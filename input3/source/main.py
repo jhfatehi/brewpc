@@ -9,6 +9,7 @@ import inval
 
 import ConfigParser
 import sshtunnel
+import time
 
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
@@ -102,6 +103,14 @@ class Brew(TabbedPanel):
                 return None
             return float(s)
 
+        def xtime(s):
+            try:
+                print '0'
+                x = time.strptime(s, '%H%M')
+            except:
+                print '1'
+                pass
+
         self.db_path = ConfigParser.RawConfigParser()
         self.db_path.read('conn.cfg')
         if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
@@ -120,16 +129,16 @@ class Brew(TabbedPanel):
                         xfloat(ms[x].dSTKtemp.text),
                         xfloat(ms[x].dMSHvol.text),
                         xfloat(ms[x].dMSHtemp.text),
-                        ms[x].dMSHtime.text,
+                        xtime(ms[x].dMSHtime.text),
                         ms[x].dBREWsig.text,
                         xfloat(ms[x].dRNCvol.text),
-                        ms[x].dVLFtime.text,
+                        xtime(ms[x].dVLFtime.text),
                         xfloat(ms[x].dMASHph.text),
                         xfloat(ms[x].d1RNvol.text),
                         xfloat(ms[x].dSPGvol.text),
-                        ms[x].dROFtime.text,
+                        xtime(ms[x].dROFtime.text),
                         xfloat(ms[x].dRACKcnt.text),
-                        ms[x].dFILLtime.text,
+                        xtime(ms[x].dFILLtime.text),
                         xfloat(ms[x].dFILLvol.text))
                     self.stat.text = 'Status: Save complete'
                 except:
