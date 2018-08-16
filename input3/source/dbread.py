@@ -1,9 +1,18 @@
 import mysql.connector
+import time
 
 def xstr(s):
     if s is None:
         return ''
     return str(s)
+
+def xtime(s):
+    if s is None:
+        return ''
+    s = str(s)
+    x = time.strptime(s, '%H:%M:%S')
+    return time.strftime('%H%M', x)
+
 
 def mash(db_path, brew_num, batch_num):
     conn = mysql.connector.connect(
@@ -35,16 +44,16 @@ def mash(db_path, brew_num, batch_num):
     dSTKtemp = xstr(rows[0][1])
     dMSHvol = xstr(rows[0][2])
     dMSHtemp = xstr(rows[0][3])
-    dMSHtime = xstr(rows[0][4])
+    dMSHtime = xtime(rows[0][4])
     dBREWsig = xstr(rows[0][5])
     dRNCvol = xstr(rows[0][6])
-    dVLFtime = xstr(rows[0][7])
+    dVLFtime = xtime(rows[0][7])
     dMASHph = xstr(rows[0][8])
     d1RNvol = xstr(rows[0][9])
     dSPGvol = xstr(rows[0][10])
-    dROFtime = xstr(rows[0][11])
+    dROFtime = xtime(rows[0][11])
     dRACKcnt = xstr(rows[0][12])
-    dFILLtime = xstr(rows[0][13])
+    dFILLtime = xtime(rows[0][13])
     dFILLvol = xstr(rows[0][14])
 
     query = '''SELECT process.* from process 

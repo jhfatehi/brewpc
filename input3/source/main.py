@@ -105,10 +105,9 @@ class Brew(TabbedPanel):
 
         def xtime(s):
             try:
-                print '0'
                 x = time.strptime(s, '%H%M')
+                return (s+'00')
             except:
-                print '1'
                 pass
 
         self.db_path = ConfigParser.RawConfigParser()
@@ -142,7 +141,7 @@ class Brew(TabbedPanel):
                         xfloat(ms[x].dFILLvol.text))
                     self.stat.text = 'Status: Save complete'
                 except:
-                    self.stat.text = 'Error - A non-number was entered.'
+                    self.stat.text = 'Error - A non-number or bad time was entered.'
             #####################################################
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
