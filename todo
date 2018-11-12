@@ -1,5 +1,4 @@
-last updated 180327 by jhf
-
+last updated 181112 by jhf
 
 todo:
 
@@ -7,21 +6,9 @@ todo:
 
 9. add variable dictionary for developers' reference, possibly to readme
 
-10. optional: add db_path to .gitignore (also *.db, etc.); this might allow us to commit without affecting the repo
-
-11. optional: in db, change 'batch' to 'batch_num' and 'size' to 'size_num' so we don't have to keep track of multiple variable names for each variable
-
-
 error handling:
 
-b. require data types
-
-
-
-
 don't forget:
-
-- figure out when to clear test inputs
 
 - figure out window resize option
 
@@ -45,3 +32,7 @@ done:
 	- write functionality (done)
 c. verify brand and size exist when adding brew
 a. require brew and batch numbers when loading
+b. require data types
+10. db_path is not used anymroe.  a conn.cfg is used and *.cfg has been added to .gitignore
+11. batch and been changed to batch_num in mash table.  size has been removed from mash table and has same name in new "brews" table
+- figure out when to clear inputs
