@@ -3,7 +3,7 @@ import mysql.connector
 def check_brew_batch(db_path, brew_num, batch):
 	query = '''SELECT count(1)
 				from mash
-				where brew_num = %s and batch = %s'''
+				where brew_num = %s and batch_num = %s'''
 	conn = mysql.connector.connect(
 			user=db_path.get('mysql', 'usr'),
 			password=db_path.get('mysql', 'pw'),
@@ -17,7 +17,7 @@ def check_brew_batch(db_path, brew_num, batch):
 
 def check_brew(db_path, brew_num):
 	query = '''SELECT count(1)
-				from mash
+				from brews
 				where brew_num = %s'''
 	conn = mysql.connector.connect(
 			user=db_path.get('mysql', 'usr'),

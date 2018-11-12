@@ -1,0 +1,89 @@
+<Label1@Label>:
+    size_hint: (.025, .075)
+    font_size: 30
+
+<Text1@TextInput>:
+    size_hint: (.15, .05)
+    font_size: 30
+
+<add_process@Screen>:
+
+    batch_size: batch_size
+    brand: brand
+    tGRStemp: tGRStemp
+    tSTKtemp: tSTKtemp
+    tMSHvol: tMSHvol
+    tMSHtemp: tMSHtemp
+    tMASHphLOW: tMASHphLOW
+    tMASHphHI: tMASHphHI
+    tSPGvol: tSPGvol
+    
+    Label1:
+        text: "Brand Name:"
+        pos_hint: {'x': .4, 'y': .8}
+    Text1:
+        id: brand
+        pos_hint: {'x': .50, 'y': .81}
+
+    Label1:
+        text: "Btach Size:"
+        pos_hint: {'x': .4, 'y': .725}
+    Text1:
+        id: batch_size
+        pos_hint: {'x': .50, 'y': .735}
+
+    Label1:
+        text: "Target Grist Temp:"
+        pos_hint: {'x': .4, 'y': .65}
+    Text1:
+        id: tGRStemp
+        pos_hint: {'x': .50, 'y': .66}
+
+    Label1:
+        text: "Target Strike Temp:"
+        pos_hint: {'x': .4, 'y': .575}
+    Text1:
+        id: tSTKtemp
+        pos_hint: {'x': .50, 'y': .585}
+
+    Label1:
+        text: "Target Mash Vol:"
+        pos_hint: {'x': .4, 'y': .5}
+    Text1:
+        id: tMSHvol
+        pos_hint: {'x': .50, 'y': .51}
+
+    Label1:
+        text: "Target Mash Temp:"
+        pos_hint: {'x': .4, 'y': .425}
+    Text1:
+        id: tMSHtemp
+        pos_hint: {'x': .50, 'y': .435}
+
+    Label1:
+        text: "Target Mash pH Low:"
+        pos_hint: {'x': .4, 'y': .35}
+    Text1:
+        id: tMASHphLOW
+        pos_hint: {'x': .50, 'y': .36}
+
+    Label1:
+        text: "Target Mash pH Hi:"
+        pos_hint: {'x': .4, 'y': .275}
+    Text1:
+        id: tMASHphHI
+        pos_hint: {'x': .50, 'y': .285}
+
+    Label1:
+        text: "Target Sparge Vol:"
+        pos_hint: {'x': .4, 'y': .2}
+    Text1:
+        id: tSPGvol
+        pos_hint: {'x': .50, 'y': .21}
+
+    Button:
+        size_hint: (.095, .075)
+        pos_hint: {'x': .01, 'y': .7}
+        text: 'Create Process'
+        font_size: 25
+        on_press: app.root.create_process()

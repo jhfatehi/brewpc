@@ -5,13 +5,16 @@ def xNone(s):
         return None
     return str(s)
 
-def add_brew(db_path, batches, brew_num, brew_size, brand):
-	n = 'none'
-	brew_data = []
-	mash_data = []
-	for ii in range(int(batches)):
-		brew_data.append((brew_num, str(ii+1), brew_size, brand)) #for test sheet.  remmove latter
-		mash_data.append((brew_num, str(ii+1), brew_size, brand))
+def add_process(db_path,
+	batch_size,
+	brand,
+	tGRStemp,
+	tSTKtemp,
+	tMSHvol,
+	tMSHtemp,
+	tMASHphLOW,
+	tMASHphHI,
+	tSPGvol):
 	conn = mysql.connector.connect(
 			user=db_path.get('mysql', 'usr'),
 			password=db_path.get('mysql', 'pw'),
@@ -19,7 +22,40 @@ def add_brew(db_path, batches, brew_num, brew_size, brand):
 			database=db_path.get('mysql', 'db'),
 			port=int(db_path.get('mysql', 'local_bind_port')))
 	c = conn.cursor()
-	c.executemany('INSERT into mash (brew_num, batch, size, brand) values (%s,%s,%s,%s)', mash_data)
+	c.execute('''INSERT INTO process (size,
+		brand,
+		tGRStemp,
+		tSTKtemp,
+		tMSHvol,
+		tMSHtemp,
+		tMASHphLOW,
+		tMASHphHI,
+		tSPGvol) values (%s, %s, %s, %s, %s, %s, %s, %s, %s)''',
+		(batch_size,
+		xNone(brand),
+		tGRStemp,
+		tSTKtemp,
+		tMSHvol,
+		tMSHtemp,
+		tMASHphLOW,
+		tMASHphHI,
+		tSPGvol))
+	conn.commit()
+	conn.close()
+
+def add_brew(db_path, batches, brew_num, brew_size, brand):
+	mash_data = []
+	for ii in range(int(batches)):
+		mash_data.append((brew_num, str(ii+1)))
+	conn = mysql.connector.connect(
+			user=db_path.get('mysql', 'usr'),
+			password=db_path.get('mysql', 'pw'),
+			host='127.0.0.1',
+			database=db_path.get('mysql', 'db'),
+			port=int(db_path.get('mysql', 'local_bind_port')))
+	c = conn.cursor()
+	c.execute('INSERT into brews (brew_num, batchs, size, brand) values (%s,%s,%s,%s)', [brew_num, batches, brew_size, brand])
+	c.executemany('INSERT into mash (brew_num, batch_num) values (%s,%s)', mash_data)
 	conn.commit()
 	conn.close()
 
@@ -64,7 +100,7 @@ def mash(db_path,
 			dRACKcnt = %s,
 			dFILLtime = %s,
 			dFILLvol = %s
-			WHERE brew_num = %s AND batch = %s''',
+			WHERE brew_num = %s AND batch_num = %s''',
 			(xNone(dGRStemp),
 			xNone(dSTKtemp),
 			xNone(dMSHvol),

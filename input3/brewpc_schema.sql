@@ -2,11 +2,16 @@ DROP SCHEMA IF EXISTS brewpc_test;
 CREATE SCHEMA brewpc_test;
 USE brewpc_test;
 
-CREATE TABLE mash (
+CREATE TABLE brews (
 	brew_num int,
-	batch int,
+	batchs int,
 	size int,
 	brand varchar(20),
+    PRIMARY KEY(brew_num));
+    
+CREATE TABLE mash (
+    brew_num int, 
+	batch_num int,
 	dGRStemp float,
 	dSTKtemp float,
 	dMSHvol float,
@@ -21,24 +26,21 @@ CREATE TABLE mash (
 	dROFtime time,
 	dRACKcnt int,
 	dFILLtime time,
-	dFILLvol float);
+	dFILLvol float,
+    foreign key (brew_num) references brews(brew_num)
+    ); 
 
 CREATE TABLE process (
 	size int,
-	brand varchar(20),
+	brand varchar(20) NOT NULL,
 	tGRStemp float,
 	tSTKtemp float,
 	tMSHvol float,
 	tMSHtemp float,
 	tMASHphLOW float,
 	tMASHphHI float,
-	tSPGvol float);
+	tSPGvol float,
+    PRIMARY KEY (size, brand));
     
-CREATE TABLE brews (
-	brew_num int,
-	batch int,
-	size int,
-	brand varchar(20),
-    PRIMARY KEY(brew_num));
     
 INSERT INTO process VALUES (0,0,0,0,0,0,0,0,0);

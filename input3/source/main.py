@@ -31,7 +31,8 @@ class Brew(TabbedPanel):
             self.manager.current = self.scn3
         elif header.name == 'tab4':
             self.manager.current = 'add_brew'
-        
+        elif header.name == 'tab5':
+            self.manager.current = 'add_process'
         header.state = 'down' # makes tab 1 start in the down position
         self._current_tab = header
         self.manager.transition = NoTransition() # prevents tabs from sliding left on transition
@@ -68,6 +69,39 @@ class Brew(TabbedPanel):
                 self.manager.current_screen.screen.text = self.scn3[0:-1]
                 self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
+
+    def create_process(self):
+        self.db_path = ConfigParser.RawConfigParser()
+        self.db_path.read('conn.cfg')
+
+        try:
+            self.stat.text = 'Status - Working'
+            batch_size = float(self.ap.batch_size.text)
+            tGRStemp = float(self.ap.tGRStemp.text)
+            tSTKtemp = float(self.ap.tSTKtemp.text)
+            tMSHvol = float(self.ap.tMSHvol.text)
+            tMSHtemp = float(self.ap.tMSHtemp.text)
+            tMASHphLOW = float(self.ap.tMASHphLOW.text)
+            tMASHphHI = float(self.ap.tMASHphHI.text)
+            tSPGvol = float(self.ap.tSPGvol.text)
+
+            try:
+                dbwrite.add_process(self.db_path,
+                    batch_size,
+                    self.ap.brand.text,
+                    tGRStemp,
+                    tSTKtemp,
+                    tMSHvol,
+                    tMSHtemp,
+                    tMASHphLOW,
+                    tMASHphHI,
+                    tSPGvol)
+                self.stat.text = 'Status: Process Created'
+            except:
+                self.stat.text = 'Error - The Brand Size Combination Already Exists.'
+                
+        except:
+            self.stat.text = 'Error - A non-number was entered.'
 
     def create_brew(self):
         self.db_path = ConfigParser.RawConfigParser()
@@ -143,6 +177,9 @@ class Brew(TabbedPanel):
                 except:
                     self.stat.text = 'Error - A non-number or bad time was entered.'
             #####################################################
+
+
+
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
 class BrewApp(App):

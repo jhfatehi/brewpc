@@ -1,6 +1,7 @@
 #: include BlankScreen.kv
 #: include MashScreen.kv
 #: include add_brew.kv
+#: include add_process.kv
 
 <Brew>:
     manager: manager
@@ -11,6 +12,7 @@
     ms2: ms2
     ms3: ms3
     ab: ab
+    ap: ap
     do_default_tab: False
     stat: stat
 
@@ -43,6 +45,10 @@
             id: ab
             name: 'add_brew'
 
+        add_process:
+            id: ap
+            name: 'add_process'
+
     TabbedPanelHeader:
         name: 'tab1'
         text: 'Tab 1'
@@ -55,6 +61,9 @@
     TabbedPanelHeader:
         name: 'tab4'
         text: 'Add Brew'
+    TabbedPanelHeader:
+        name: 'tab5'
+        text: 'Add Process'
 
     Label:
         id: stat

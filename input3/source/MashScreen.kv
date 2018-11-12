@@ -1,6 +1,11 @@
 #: include BlankScreen.kv
 
-<LabelD@Label>:
+<Label3@Label>:
+    font_size: 25
+
+<Label2@Label>:
+    font_size: 25
+    size_hint: (.07, .03)
     color: 0, 0, 0, 1
     bcolor: .78, .92, .24, 1
     canvas.before:
@@ -9,6 +14,10 @@
         Rectangle:
             pos: self.pos
             size: self.size
+
+<Text2@TextInput>:
+    font_size: 25
+    size_hint: (.07, .042)
 
 <MashScreen@BlankScreen>:
 #####################################################
@@ -40,245 +49,225 @@
 ################## Sheet I/O ########################
 #####################################################
 
-    Label:
+    Label3:
         text: "All Time Must be in the format hhmm"
         size_hint: (.025, .075)
         pos_hint: {'x': .8, 'y': .8}
+        font_size: 30
 
-    Label:
+    Label3:
         text: "where hh is 00 to 23."
         size_hint: (.025, .075)
         pos_hint: {'x': .8, 'y': .75}
+        font_size: 30
 
 #####################################################
 ################## Data Input #######################
-    Label:
+    Label3:
         text: "Actual"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .925}
+        pos_hint: {'x': .52, 'y': .925}
 
-    Label:
+    Label3:
         text: "Grist Temp"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .875}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .875}
+    Text2:
         id: dGRStemp
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .90}
+        pos_hint: {'x': .60, 'y': .89}
 
-    Label:
+    Label3:
         text: "Strike Temp"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .825}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .825}
+    Text2:
         id: dSTKtemp
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .85}
+        pos_hint: {'x': .60, 'y': .84}
 
-    Label:
+    Label3:
         text: "Mash Vol"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .775}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .775}
+    Text2:
         id: dMSHvol
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .80}
+        pos_hint: {'x': .60, 'y': .79}
 
-    Label:
+    Label3:
         text: "Mash Temp"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .725}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .725}
+    Text2:
         id: dMSHtemp
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .75}
+        pos_hint: {'x': .60, 'y': .74}
 
-    Label:
+    Label3:
         text: "Mash In Time"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .675}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .675}
+    Text2:
         id: dMSHtime
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .70}
+        pos_hint: {'x': .60, 'y': .69}
 
-    Label:
+    Label3:
         text: "Signature"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .625}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .625}
+    Text2:
         id: dBREWsig
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .65}
+        pos_hint: {'x': .60, 'y': .64}
 
-    Label:
+    Label3:
         text: "MT Rince Vol"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .575}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .575}
+    Text2:
         id: dRNCvol
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .60}
+        pos_hint: {'x': .60, 'y': .59}
 
-    Label:
+    Label3:
         text: "Vorlouf Time"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .525}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .525}
+    Text2:
         id: dVLFtime
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .55}
+        pos_hint: {'x': .60, 'y': .54}
 
-    Label:
+    Label3:
         text: "Mash pH"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .475}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .475}
+    Text2:
         id: dMASHph
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .50}
+        pos_hint: {'x': .60, 'y': .49}
 
-    Label:
+    Label3:
         text: "1st Runnings"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .425}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .425}
+    Text2:
         id: d1RNvol
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .45}
+        pos_hint: {'x': .60, 'y': .44}
 
-    Label:
+    Label3:
         text: "Sparge Vol"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .375}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .375}
+    Text2:
         id: dSPGvol
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .40}
+        pos_hint: {'x': .60, 'y': .39}
 
-    Label:
+    Label3:
         text: "Runoff Start Time"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .325}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .325}
+    Text2:
         id: dROFtime
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .35}
+        pos_hint: {'x': .60, 'y': .34}
 
-    Label:
+    Label3:
         text: "Rake Spins"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .275}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .275}
+    Text2:
         id: dRACKcnt
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .30}
+        pos_hint: {'x': .60, 'y': .29}
 
-    Label:
+    Label3:
         text: "Kettle Fill Time"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .225}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .225}
+    Text2:
         id: dFILLtime
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .25}
+        pos_hint: {'x': .60, 'y': .24}
 
-    Label:
+    Label3:
         text: "Fill Level"
         size_hint: (.025, .075)
-        pos_hint: {'x': .55, 'y': .175}
-    TextInput:
+        pos_hint: {'x': .52, 'y': .175}
+    Text2:
         id: dFILLvol
-        size_hint: (.03, .03)
-        pos_hint: {'x': .60, 'y': .20}
+        pos_hint: {'x': .60, 'y': .19}
 ################## Data Input #######################
 #####################################################
 
 #####################################################
 ################## Targets ##########################
-    Label:
+    Label3:
         text: "Target"
         size_hint: (.025, .075)
-        pos_hint: {'x': .35, 'y': .925}
+        pos_hint: {'x': .3, 'y': .925}
 
-    Label:
+    Label3:
         text: "Brand"
         size_hint: (.025, .075)
-        pos_hint: {'x': .1, 'y': .925}
-    LabelD:
+        pos_hint: {'x': .15, 'y': .925}
+    Label2:
         id: tbrand
-        size_hint: (.07, .03)
-        pos_hint: {'x': .13, 'y': .95}
+        pos_hint: {'x': .19, 'y': .95}
 
-    Label:
+    Label3:
         text: "Size"
         size_hint: (.025, .075)
-        pos_hint: {'x': .1, 'y': .875}     
-    LabelD:
+        pos_hint: {'x': .15, 'y': .875}     
+    Label2:
         id: tsize
-        size_hint: (.03, .03)
-        pos_hint: {'x': .13, 'y': .9}
+        pos_hint: {'x': .19, 'y': .9}
 
-    Label:
+    Label3:
         text: "Grist Temp"
         size_hint: (.025, .075)
-        pos_hint: {'x': .35, 'y': .875}
-    LabelD:
+        pos_hint: {'x': .3, 'y': .875}
+    Label2:
         id: tGRStemp
-        size_hint: (.03, .03)
-        pos_hint: {'x': .40, 'y': .90}
+        pos_hint: {'x': .36, 'y': .90}
 
-    Label:
+    Label3:
         text: "Strike Temp"
         size_hint: (.025, .075)
-        pos_hint: {'x': .35, 'y': .825}
-    LabelD:
+        pos_hint: {'x': .3, 'y': .825}
+    Label2:
         id: tSTKtemp
-        size_hint: (.03, .03)
-        pos_hint: {'x': .40, 'y': .85}
+        pos_hint: {'x': .36, 'y': .85}
 
-    Label:
+    Label3:
         text: "Mash Vol"
         size_hint: (.025, .075)
-        pos_hint: {'x': .35, 'y': .775}
-    LabelD:
+        pos_hint: {'x': .3, 'y': .775}
+    Label2:
         id: tMSHvol
-        size_hint: (.03, .03)
-        pos_hint: {'x': .40, 'y': .80}
+        pos_hint: {'x': .36, 'y': .80}
 
-    Label:
+    Label3:
         text: "Mash Temp"
         size_hint: (.025, .075)
-        pos_hint: {'x': .35, 'y': .725}
-    LabelD:
+        pos_hint: {'x': .3, 'y': .725}
+    Label2:
         id: tMSHtemp
-        size_hint: (.03, .03)
-        pos_hint: {'x': .40, 'y': .75}
+        pos_hint: {'x': .36, 'y': .75}
 
-    Label:
+    Label3:
         text: "Mash pH"
         size_hint: (.025, .075)
-        pos_hint: {'x': .35, 'y': .475}
-    Label:
+        pos_hint: {'x': .3, 'y': .475}
+    Label3:
         text: "__"
         size_hint: (.025, .075)
-        pos_hint: {'x': .428, 'y': .485}
-    LabelD:
+        pos_hint: {'x': .388, 'y': .485}
+    Label2:
         id: tMASHphLOW
         size_hint: (.03, .03)
-        pos_hint: {'x': .40, 'y': .50}
-    LabelD:
+        pos_hint: {'x': .36, 'y': .50}
+    Label2:
         id: tMASHphHI
         size_hint: (.03, .03)
-        pos_hint: {'x': .45, 'y': .50}
+        pos_hint: {'x': .41, 'y': .50}
 
-    Label:
+    Label3:
         text: "Sparge Vol"
         size_hint: (.025, .075)
-        pos_hint: {'x': .35, 'y': .375}
-    LabelD:
+        pos_hint: {'x': .3, 'y': .375}
+    Label2:
         id: tSPGvol
-        size_hint: (.03, .03)
-        pos_hint: {'x': .40, 'y': .40}
+        pos_hint: {'x': .36, 'y': .40}
 ################## Targets ##########################
 #####################################################

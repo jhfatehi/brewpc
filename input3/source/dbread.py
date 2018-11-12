@@ -37,7 +37,7 @@ def mash(db_path, brew_num, batch_num):
     dROFtime,
     dRACKcnt,
     dFILLtime,
-    dFILLvol FROM mash WHERE brew_num = %s AND batch = %s'''
+    dFILLvol FROM mash WHERE brew_num = %s AND batch_num = %s'''
     cur.execute(query, (brew_num, batch_num))
     rows = cur.fetchall()
     dGRStemp = xstr(rows[0][0])
@@ -56,11 +56,15 @@ def mash(db_path, brew_num, batch_num):
     dFILLtime = xtime(rows[0][13])
     dFILLvol = xstr(rows[0][14])
 
+    # query = '''SELECT process.* from process 
+    #         left join mash on 
+    #         process.size = mash.size and process.brand = mash.brand
+    #         where mash.brew_num = %s and mash.batch_num = %s'''
     query = '''SELECT process.* from process 
-            left join mash on 
-            process.size = mash.size and process.brand = mash.brand
-            where mash.brew_num = %s and mash.batch = %s'''
-    cur.execute(query, (brew_num, batch_num))
+            left join brews on 
+            process.size = brews.size and process.brand = brews.brand
+            where brews.brew_num = %s'''
+    cur.execute(query, (brew_num,))
     rows = cur.fetchall()
     tsize = str(rows[0][0])
     tbrand = str(rows[0][1])
