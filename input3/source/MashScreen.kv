@@ -1,23 +1,5 @@
 #: include BlankScreen.kv
-
-<Label3@Label>:
-    font_size: 25
-
-<Label2@Label>:
-    font_size: 25
-    size_hint: (.07, .03)
-    color: 0, 0, 0, 1
-    bcolor: .78, .92, .24, 1
-    canvas.before:
-        Color:
-            rgba: self.bcolor
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-<Text2@TextInput>:
-    font_size: 25
-    size_hint: (.07, .042)
+#: include Formats.kv
 
 <MashScreen@BlankScreen>:
 #####################################################
@@ -51,13 +33,11 @@
 
     Label3:
         text: "All Time Must be in the format hhmm"
-        size_hint: (.025, .075)
         pos_hint: {'x': .8, 'y': .8}
         font_size: 30
 
     Label3:
         text: "where hh is 00 to 23."
-        size_hint: (.025, .075)
         pos_hint: {'x': .8, 'y': .75}
         font_size: 30
 
@@ -65,12 +45,10 @@
 ################## Data Input #######################
     Label3:
         text: "Actual"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .925}
 
     Label3:
         text: "Grist Temp"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .875}
     Text2:
         id: dGRStemp
@@ -78,7 +56,6 @@
 
     Label3:
         text: "Strike Temp"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .825}
     Text2:
         id: dSTKtemp
@@ -86,7 +63,6 @@
 
     Label3:
         text: "Mash Vol"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .775}
     Text2:
         id: dMSHvol
@@ -94,7 +70,6 @@
 
     Label3:
         text: "Mash Temp"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .725}
     Text2:
         id: dMSHtemp
@@ -102,7 +77,6 @@
 
     Label3:
         text: "Mash In Time"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .675}
     Text2:
         id: dMSHtime
@@ -110,7 +84,6 @@
 
     Label3:
         text: "Signature"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .625}
     Text2:
         id: dBREWsig
@@ -118,7 +91,6 @@
 
     Label3:
         text: "MT Rince Vol"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .575}
     Text2:
         id: dRNCvol
@@ -126,7 +98,6 @@
 
     Label3:
         text: "Vorlouf Time"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .525}
     Text2:
         id: dVLFtime
@@ -134,7 +105,6 @@
 
     Label3:
         text: "Mash pH"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .475}
     Text2:
         id: dMASHph
@@ -142,7 +112,6 @@
 
     Label3:
         text: "1st Runnings"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .425}
     Text2:
         id: d1RNvol
@@ -150,7 +119,6 @@
 
     Label3:
         text: "Sparge Vol"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .375}
     Text2:
         id: dSPGvol
@@ -158,7 +126,6 @@
 
     Label3:
         text: "Runoff Start Time"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .325}
     Text2:
         id: dROFtime
@@ -166,7 +133,6 @@
 
     Label3:
         text: "Rake Spins"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .275}
     Text2:
         id: dRACKcnt
@@ -174,7 +140,6 @@
 
     Label3:
         text: "Kettle Fill Time"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .225}
     Text2:
         id: dFILLtime
@@ -182,7 +147,6 @@
 
     Label3:
         text: "Fill Level"
-        size_hint: (.025, .075)
         pos_hint: {'x': .52, 'y': .175}
     Text2:
         id: dFILLvol
@@ -194,12 +158,10 @@
 ################## Targets ##########################
     Label3:
         text: "Target"
-        size_hint: (.025, .075)
         pos_hint: {'x': .3, 'y': .925}
 
     Label3:
         text: "Brand"
-        size_hint: (.025, .075)
         pos_hint: {'x': .15, 'y': .925}
     Label2:
         id: tbrand
@@ -207,7 +169,6 @@
 
     Label3:
         text: "Size"
-        size_hint: (.025, .075)
         pos_hint: {'x': .15, 'y': .875}     
     Label2:
         id: tsize
@@ -215,7 +176,6 @@
 
     Label3:
         text: "Grist Temp"
-        size_hint: (.025, .075)
         pos_hint: {'x': .3, 'y': .875}
     Label2:
         id: tGRStemp
@@ -223,7 +183,6 @@
 
     Label3:
         text: "Strike Temp"
-        size_hint: (.025, .075)
         pos_hint: {'x': .3, 'y': .825}
     Label2:
         id: tSTKtemp
@@ -231,7 +190,6 @@
 
     Label3:
         text: "Mash Vol"
-        size_hint: (.025, .075)
         pos_hint: {'x': .3, 'y': .775}
     Label2:
         id: tMSHvol
@@ -239,7 +197,6 @@
 
     Label3:
         text: "Mash Temp"
-        size_hint: (.025, .075)
         pos_hint: {'x': .3, 'y': .725}
     Label2:
         id: tMSHtemp
@@ -247,11 +204,9 @@
 
     Label3:
         text: "Mash pH"
-        size_hint: (.025, .075)
         pos_hint: {'x': .3, 'y': .475}
     Label3:
         text: "__"
-        size_hint: (.025, .075)
         pos_hint: {'x': .388, 'y': .485}
     Label2:
         id: tMASHphLOW
@@ -264,7 +219,6 @@
 
     Label3:
         text: "Sparge Vol"
-        size_hint: (.025, .075)
         pos_hint: {'x': .3, 'y': .375}
     Label2:
         id: tSPGvol

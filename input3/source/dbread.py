@@ -39,42 +39,43 @@ def mash(db_path, brew_num, batch_num):
     dFILLtime,
     dFILLvol FROM mash WHERE brew_num = %s AND batch_num = %s'''
     cur.execute(query, (brew_num, batch_num))
+    
+    datas = {}
     rows = cur.fetchall()
-    dGRStemp = xstr(rows[0][0])
-    dSTKtemp = xstr(rows[0][1])
-    dMSHvol = xstr(rows[0][2])
-    dMSHtemp = xstr(rows[0][3])
-    dMSHtime = xtime(rows[0][4])
-    dBREWsig = xstr(rows[0][5])
-    dRNCvol = xstr(rows[0][6])
-    dVLFtime = xtime(rows[0][7])
-    dMASHph = xstr(rows[0][8])
-    d1RNvol = xstr(rows[0][9])
-    dSPGvol = xstr(rows[0][10])
-    dROFtime = xtime(rows[0][11])
-    dRACKcnt = xstr(rows[0][12])
-    dFILLtime = xtime(rows[0][13])
-    dFILLvol = xstr(rows[0][14])
+    datas['dGRStemp'] = xstr(rows[0][0])
+    datas['dSTKtemp'] = xstr(rows[0][1])
+    datas['dMSHvol'] = xstr(rows[0][2])
+    datas['dMSHtemp'] = xstr(rows[0][3])
+    datas['dMSHtime'] = xtime(rows[0][4])
+    datas['dBREWsig'] = xstr(rows[0][5])
+    datas['dRNCvol'] = xstr(rows[0][6])
+    datas['dVLFtime'] = xtime(rows[0][7])
+    datas['dMASHph'] = xstr(rows[0][8])
+    datas['d1RNvol'] = xstr(rows[0][9])
+    datas['dSPGvol'] = xstr(rows[0][10])
+    datas['dROFtime'] = xtime(rows[0][11])
+    datas['dRACKcnt'] = xstr(rows[0][12])
+    datas['dFILLtime'] = xtime(rows[0][13])
+    datas['dFILLvol'] = xstr(rows[0][14])
 
-    # query = '''SELECT process.* from process 
-    #         left join mash on 
-    #         process.size = mash.size and process.brand = mash.brand
-    #         where mash.brew_num = %s and mash.batch_num = %s'''
     query = '''SELECT process.* from process 
             left join brews on 
             process.size = brews.size and process.brand = brews.brand
             where brews.brew_num = %s'''
     cur.execute(query, (brew_num,))
+
+    targets = {}
     rows = cur.fetchall()
-    tsize = str(rows[0][0])
-    tbrand = str(rows[0][1])
-    tGRStemp = str(rows[0][2])
-    tSTKtemp = str(rows[0][3])
-    tMSHvol = str(rows[0][4])
-    tMSHtemp = str(rows[0][5])
-    tMASHphLOW = str(rows[0][6])
-    tMASHphHI = str(rows[0][7])
-    tSPGvol = str(rows[0][8])
+    targets['tsize'] = str(rows[0][0])
+    targets['tbrand'] = str(rows[0][1])
+    targets['tGRStemp'] = str(rows[0][2])
+    targets['tSTKtemp'] = str(rows[0][3])
+    targets['tMSHvol'] = str(rows[0][4])
+    targets['tMSHtemp'] = str(rows[0][5])
+    targets['tMASHphLOW'] = str(rows[0][6])
+    targets['tMASHphHI'] = str(rows[0][7])
+    targets['tSPGvol'] = str(rows[0][8])
 
     conn.close()
-    return dGRStemp, dSTKtemp, dMSHvol, dMSHtemp, dMSHtime, dBREWsig, dRNCvol, dVLFtime, dMASHph, d1RNvol, dSPGvol, dROFtime, dRACKcnt, dFILLtime, dFILLvol, tsize, tbrand, tGRStemp, tSTKtemp, tMSHvol, tMSHtemp, tMASHphLOW, tMASHphHI, tSPGvol
+    #return dGRStemp, dSTKtemp, dMSHvol, dMSHtemp, dMSHtime, dBREWsig, dRNCvol, dVLFtime, dMASHph, d1RNvol, dSPGvol, dROFtime, dRACKcnt, dFILLtime, dFILLvol, tsize, tbrand, tGRStemp, tSTKtemp, tMSHvol, tMSHtemp, tMASHphLOW, tMASHphHI, tSPGvol
+    return datas, targets
