@@ -76,7 +76,6 @@ class Brew(TabbedPanel):
 
         try:
             self.stat.text = 'Status - Working'
-            batch_size = float(self.ap.batch_size.text)
             tGRStemp = float(self.ap.tGRStemp.text)
             tSTKtemp = float(self.ap.tSTKtemp.text)
             tMSHvol = float(self.ap.tMSHvol.text)
@@ -87,7 +86,6 @@ class Brew(TabbedPanel):
 
             try:
                 dbwrite.add_process(self.db_path,
-                    batch_size,
                     self.ap.brand.text,
                     tGRStemp,
                     tSTKtemp,
@@ -108,11 +106,11 @@ class Brew(TabbedPanel):
         self.db_path.read('conn.cfg')
         if not inval.check_brew(self.db_path, self.ab.brew_num.text):
             if inval.check_int(self.ab.batches.text):
-                if inval.check_brand_size(self.db_path, self.ab.brand.text, self.ab.brew_size.text):
+                if inval.check_brand(self.db_path, self.ab.brand.text):
                     self.stat.text = 'Status - Working'
-                    dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brew_size.text, self.ab.brand.text)
+                    dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brand.text)
                     self.stat.text = 'Status - Brew number ' + self.ab.brew_num.text + ' has been added.'
-                else: self.stat.text = 'Error - No process for brand and size.'
+                else: self.stat.text = 'Error - No process for brand.'
             else: self.stat.text = 'Error - Number of bacthes must be an integer.'
         else: self.stat.text = 'Error - Brew number aready exists.'
 
@@ -143,7 +141,6 @@ class Brew(TabbedPanel):
                 ms[x].dRACKcnt.text   = datas['dRACKcnt']
                 ms[x].dFILLtime.text  = datas['dFILLtime']
                 ms[x].dFILLvol.text   = datas['dFILLvol']
-                ms[x].tsize.text      = targets['tsize']
                 ms[x].tbrand.text     = targets['tbrand']
                 ms[x].tGRStemp.text   = targets['tGRStemp']
                 ms[x].tSTKtemp.text   = targets['tSTKtemp']
@@ -159,10 +156,12 @@ class Brew(TabbedPanel):
     def db_write(self):
         def xfloat(s):
             if s == '':
-                return None
+                return ''
             return float(s)
 
         def xtime(s):
+            if s == '':
+                return ''
             try:
                 x = time.strptime(s, '%H%M')
                 return (s+'00')

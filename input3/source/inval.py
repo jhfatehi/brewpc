@@ -37,10 +37,10 @@ def check_int(x):
 		return 0
 	return 1
 
-def check_brand_size(db_path, brand, size):
+def check_brand(db_path, brand):
 	query = '''SELECT count(1)
 			from process
-			where brand = %s and size = %s'''
+			where brand = %s'''
 	conn = mysql.connector.connect(
 			user=db_path.get('mysql', 'usr'),
 			password=db_path.get('mysql', 'pw'),
@@ -48,6 +48,6 @@ def check_brand_size(db_path, brand, size):
 			database=db_path.get('mysql', 'db'),
 			port=db_path.get('mysql', 'local_bind_port'))
 	cur = conn.cursor()
-	cur.execute(query, (brand, size))
+	cur.execute(query, (brand,))
 	rows = cur.fetchall()
 	return rows[0][0]

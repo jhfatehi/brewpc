@@ -6,7 +6,6 @@ def xNone(s):
     return str(s)
 
 def add_process(db_path,
-	batch_size,
 	brand,
 	tGRStemp,
 	tSTKtemp,
@@ -22,17 +21,15 @@ def add_process(db_path,
 			database=db_path.get('mysql', 'db'),
 			port=int(db_path.get('mysql', 'local_bind_port')))
 	c = conn.cursor()
-	c.execute('''INSERT INTO process (size,
-		brand,
+	c.execute('''INSERT INTO process (brand,
 		tGRStemp,
 		tSTKtemp,
 		tMSHvol,
 		tMSHtemp,
 		tMASHphLOW,
 		tMASHphHI,
-		tSPGvol) values (%s, %s, %s, %s, %s, %s, %s, %s, %s)''',
-		(batch_size,
-		xNone(brand),
+		tSPGvol) values (%s, %s, %s, %s, %s, %s, %s, %s)''',
+		(xNone(brand),
 		tGRStemp,
 		tSTKtemp,
 		tMSHvol,
@@ -43,7 +40,7 @@ def add_process(db_path,
 	conn.commit()
 	conn.close()
 
-def add_brew(db_path, batches, brew_num, brew_size, brand):
+def add_brew(db_path, batches, brew_num, brand):
 	mash_data = []
 	for ii in range(int(batches)):
 		mash_data.append((brew_num, str(ii+1)))
@@ -54,7 +51,7 @@ def add_brew(db_path, batches, brew_num, brew_size, brand):
 			database=db_path.get('mysql', 'db'),
 			port=int(db_path.get('mysql', 'local_bind_port')))
 	c = conn.cursor()
-	c.execute('INSERT into brews (brew_num, batchs, size, brand) values (%s,%s,%s,%s)', [brew_num, batches, brew_size, brand])
+	c.execute('INSERT into brews (brew_num, batchs, brand) values (%s,%s,%s)', [brew_num, batches, brand])
 	c.executemany('INSERT into mash (brew_num, batch_num) values (%s,%s)', mash_data)
 	conn.commit()
 	conn.close()

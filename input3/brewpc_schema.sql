@@ -5,7 +5,6 @@ USE brewpc_test;
 CREATE TABLE brews (
 	brew_num int,
 	batchs int,
-	size int,
 	brand varchar(20),
     PRIMARY KEY(brew_num));
     
@@ -31,7 +30,6 @@ CREATE TABLE mash (
     ); 
 
 CREATE TABLE process (
-	size int,
 	brand varchar(20) NOT NULL,
 	tGRStemp float,
 	tSTKtemp float,
@@ -40,7 +38,7 @@ CREATE TABLE process (
 	tMASHphLOW float,
 	tMASHphHI float,
 	tSPGvol float,
-    PRIMARY KEY (size, brand));
+    PRIMARY KEY (brand));
     
     
-INSERT INTO process VALUES (0,0,0,0,0,0,0,0,0);
+INSERT INTO process VALUES (0,0,0,0,0,0,0,0);

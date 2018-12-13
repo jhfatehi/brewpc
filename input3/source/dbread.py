@@ -60,21 +60,20 @@ def mash(db_path, brew_num, batch_num):
 
     query = '''SELECT process.* from process 
             left join brews on 
-            process.size = brews.size and process.brand = brews.brand
+            process.brand = brews.brand
             where brews.brew_num = %s'''
     cur.execute(query, (brew_num,))
 
     targets = {}
     rows = cur.fetchall()
-    targets['tsize'] = str(rows[0][0])
-    targets['tbrand'] = str(rows[0][1])
-    targets['tGRStemp'] = str(rows[0][2])
-    targets['tSTKtemp'] = str(rows[0][3])
-    targets['tMSHvol'] = str(rows[0][4])
-    targets['tMSHtemp'] = str(rows[0][5])
-    targets['tMASHphLOW'] = str(rows[0][6])
-    targets['tMASHphHI'] = str(rows[0][7])
-    targets['tSPGvol'] = str(rows[0][8])
+    targets['tbrand'] = str(rows[0][0])
+    targets['tGRStemp'] = str(rows[0][1])
+    targets['tSTKtemp'] = str(rows[0][2])
+    targets['tMSHvol'] = str(rows[0][3])
+    targets['tMSHtemp'] = str(rows[0][4])
+    targets['tMASHphLOW'] = str(rows[0][5])
+    targets['tMASHphHI'] = str(rows[0][6])
+    targets['tSPGvol'] = str(rows[0][7])
 
     conn.close()
     #return dGRStemp, dSTKtemp, dMSHvol, dMSHtemp, dMSHtime, dBREWsig, dRNCvol, dVLFtime, dMASHph, d1RNvol, dSPGvol, dROFtime, dRACKcnt, dFILLtime, dFILLvol, tsize, tbrand, tGRStemp, tSTKtemp, tMSHvol, tMSHtemp, tMASHphLOW, tMASHphHI, tSPGvol
