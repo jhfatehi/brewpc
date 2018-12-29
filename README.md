@@ -5,9 +5,13 @@ This repository hosts the source code for a brew process control tool.
 ## Requirements
 
 conda create -n brewpc python=2
+
 conda activate brewpc
+
 conda install -c conda-forge kivy
+
 conda install -c conda-forge mysql-connector-python
+
 conda install -c conda-forge sshtunnel
 
 ## Getting Started
