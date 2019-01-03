@@ -1,0 +1,20 @@
+<Text2@TextInput>:
+    font_size: 25
+    size_hint: (.07, .042)
+    write_tab: False
+
+<Label3@Label>:
+    font_size: 25
+    size_hint: (.025, .075)
+
+<Label2@Label>:
+    font_size: 25
+    size_hint: (.07, .03)
+    color: 0, 0, 0, 1
+    bcolor: .78, .92, .24, 1
+    canvas.before:
+        Color:
+            rgba: self.bcolor
+        Rectangle:
+            pos: self.pos
+            size: self.size

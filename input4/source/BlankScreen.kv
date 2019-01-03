@@ -1,0 +1,53 @@
+<BlankScreen@Screen>:
+    screen: screen
+    brew_num: brew_num
+    batch_num: batch_num
+
+    Label:
+    	text: "Brew #"
+    	size_hint: (.025, .075)
+    	pos_hint: {'x': .03, 'y': .925}
+        font_size: 30
+    TextInput:
+    	id: brew_num
+    	size_hint: (.05, .05)
+    	pos_hint: {'x': .08, 'y': .945}
+        font_size: 30
+        write_tab: False
+
+    Label:
+    	text: "Batch #"
+    	size_hint: (.025, .075)
+    	pos_hint: {'x': .03, 'y': .85}
+        font_size: 30 	
+    TextInput:
+    	id: batch_num
+    	size_hint: (.05, .05)
+    	pos_hint: {'x': .08, 'y': .87}
+        font_size: 30
+        write_tab: False
+
+    Spinner:
+        id: screen
+        size_hint: (.095, .075)
+        pos_hint: {'x': .01, 'y': .7}
+        values: ['blank_screen', 'mash_screen']
+        text: 'blank_screen'
+        font_size: 30
+
+    Button:
+        id: btn
+        size_hint: (.095, .075)
+        pos_hint: {'x': .01, 'y': .55}
+        text: 'Load'
+        font_size: 30
+        on_press: app.root.change_screen()
+        on_release: app.root.db_read()
+
+    Button:
+        id: wrt_btn
+        size_hint: (.095, .075)
+        pos_hint: {'x': .01, 'y': .4}
+        text: 'Save'
+        font_size: 30
+        on_press: app.root.db_write()

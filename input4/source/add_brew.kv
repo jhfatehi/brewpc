@@ -1,0 +1,48 @@
+<add_brew@Screen>:
+
+    brew_num: brew_num
+    brand: brand
+    batches: batches
+
+    Label:
+        size_hint: (.1, .03)
+        pos_hint: {'x': .4, 'y': .6}
+        font_size: 30
+        text: 'Brew Number:'
+    TextInput:
+        id: brew_num
+        size_hint: (.1, .05)
+        pos_hint: {'x': .55, 'y': .6}
+        font_size: 30
+        write_tab: False
+
+    Label:
+        size_hint: (.1, .03)
+        pos_hint: {'x': .4, 'y': .4}
+        font_size: 30
+        text: 'Brew Brand:'
+    TextInput:
+        id: brand
+        size_hint: (.1, .05)
+        pos_hint: {'x': .55, 'y': .4}
+        font_size: 30
+        write_tab: False
+
+    Label:
+        size_hint: (.1, .03)
+        pos_hint: {'x': .4, 'y': .3}
+        font_size: 30
+        text: 'Number of Batches:'
+    TextInput:
+        id: batches
+        size_hint: (.1, .05)
+        pos_hint: {'x': .55, 'y': .3}
+        font_size: 30
+        write_tab: False
+
+    Button:
+        size_hint: (.095, .075)
+        pos_hint: {'x': .01, 'y': .7}
+        text: 'Create Brew'
+        font_size: 30
+        on_press: app.root.create_brew()

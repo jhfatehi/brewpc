@@ -1,0 +1,81 @@
+#: include BlankScreen.kv
+#: include MashScreen.kv
+#: include add_brew.kv
+#: include add_process.kv
+
+<Brew>:
+    manager: manager
+    blk1: blk1
+    blk2: blk2
+    blk3: blk3
+    ms1: ms1
+    ms2: ms2
+    ms3: ms3
+    ab: ab
+    ap: ap
+    do_default_tab: False
+    stat: stat
+
+    
+    # add a ScreenManager to the panel
+    ScreenManager:
+        id: manager
+
+        BlankScreen:
+            id: blk1
+            name: 'blank_screen1'
+        BlankScreen:
+            id: blk2
+            name: 'blank_screen2'
+        BlankScreen:
+            id: blk3
+            name: 'blank_screen3'
+
+        MashScreen:
+            id: ms1
+            name: 'mash_screen1'
+        MashScreen:
+            id: ms2
+            name: 'mash_screen2'
+        MashScreen:
+            id: ms3
+            name: 'mash_screen3'
+
+        add_brew:
+            id: ab
+            name: 'add_brew'
+
+        add_process:
+            id: ap
+            name: 'add_process'
+
+    TabbedPanelHeader:
+        name: 'tab1'
+        text: 'Tab 1'
+    TabbedPanelHeader:
+        name: 'tab2'
+        text: 'Tab 2'
+    TabbedPanelHeader:
+        name: 'tab3'
+        text: 'Tab 3'
+    TabbedPanelHeader:
+        name: 'tab4'
+        text: 'Add Brew'
+    TabbedPanelHeader:
+        name: 'tab5'
+        text: 'Add Process'
+
+    Label:
+        id: stat
+        text: 'Status: BEER!!!'
+        font_size: 30
+        size_hint: (.98, .1)
+        pos_hint: {'x': .01, 'y': .01}
+        color: 0, 0, 0, 1
+        bcolor: 1, 1, 1, 1
+        canvas.before:
+            Color:
+                rgba: self.bcolor
+            Rectangle:
+                pos: self.pos
+                size: self.size
