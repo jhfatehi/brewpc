@@ -29,16 +29,43 @@ CREATE TABLE mash (
 	dRACKcnt int,
 	dFILLtime time,
 	dFILLvol float,
-    foreign key (brew_num) references brews(brew_num)
+	dMASHnote varchar(280),
+    foreign key (brew_num) references brews(brew_num),
+    foreign key (batch_num) references brews(batch_num)
     ); 
 
 CREATE TABLE boil (
+	brew_num int, 
+	batch_num int,
 	dBOILtime time,
-	
+	dHOP1time time,
+	dIGp float,
+	dIPH float,
+	dLIQ1gal float,
+	dHOP2time time,
+	dZINCtime time,
+	dKICKtime time,
+	dHOP3time time,
+	dMESLVLbbl float,
+	dMESGp float,
+	dLIQ2gal float,
+	dFNLLVLbbl float,
+	dFNLGp float,
+	dFNLPH float
+	dBOILnote varchar(280),
+	foreign key (brew_num) references brews(brew_num),
+    foreign key (batch_num) references brews(batch_num)
 	);
 
 CREATE TABLE ko (
-	temp int
+	brew_num int, 
+	batch_num int,
+	
+
+	
+	dKOnote varchar(280),
+	foreign key (brew_num) references brews(brew_num),
+    foreign key (batch_num) references brews(batch_num)
 	);
 
 CREATE TABLE process (
