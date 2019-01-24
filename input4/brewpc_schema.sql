@@ -60,7 +60,14 @@ CREATE TABLE boil (
 CREATE TABLE ko (
 	brew_num int, 
 	batch_num int,
-	
+	dKOSRTtime time,
+	dKOsig varchar(20),
+	dKOtemp float,
+	dO2lpm float,
+	dO2ppm float,
+	dKOENDtime time,
+	dFMVOLbbl float,
+	dCLDFVbbl float,
 
 	
 	dKOnote varchar(280),
