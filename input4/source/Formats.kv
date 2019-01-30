@@ -1,3 +1,5 @@
+
+# old, remove when screens are updated
 <Text2@TextInput>:
     font_size: 25
     size_hint: (.07, .042)
@@ -18,3 +20,33 @@
         Rectangle:
             pos: self.pos
             size: self.size
+#######################################
+
+
+
+
+
+# new
+<Target@Label>:
+    font_size: 25
+    size_hint: (.015, .03)
+    color: 0, 0, 0, 1
+    bcolor: .78, .92, .24, 1
+    canvas.before:
+        Color:
+            rgba: self.bcolor
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+<Data@TextInput>:
+    size_hint: (.015, .03)
+    font_size: 25
+    write_tab: False
+    padding_y: -1
+
+<TextBox@Label>:
+    font_size: 25
+    text_size: self.size
+    halign: "left"
+    valign: "bottom"
