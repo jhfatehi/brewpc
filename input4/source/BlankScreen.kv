@@ -2,8 +2,6 @@
     screen: screen
     brew_num: brew_num
     batch_num: batch_num
-    pre: pre
-    nex: nex
 
     TextBox:
     	text: "Brew #"
@@ -31,17 +29,6 @@
         size_hint: (.015, .03)
         pos_hint: {'x': .11, 'y': .87}
 
-
-
-
-
-
-
-
-
-
-
-
     TextBox:
         text: "Brand"
         pos_hint: {'x': .01, 'y': .83}
@@ -59,7 +46,6 @@
         font_size: 25
 
     Button:
-        id: btn
         size_hint: (.095, .075)
         pos_hint: {'x': .01, 'y': .6}
         text: 'Load'
@@ -68,7 +54,6 @@
         on_release: app.root.db_read()
 
     Button:
-        id: wrt_btn
         size_hint: (.095, .075)
         pos_hint: {'x': .01, 'y': .5}
         text: 'Save'
@@ -76,7 +61,6 @@
         on_press: app.root.db_write()
 
     Button:
-        id: pre
         size_hint: (.095, .075)
         pos_hint: {'x': .01, 'y': .35}
         font_size: 25
@@ -84,7 +68,6 @@
         on_release: app.root.db_read()
 
     Button:
-        id: nex
         size_hint: (.095, .075)
         pos_hint: {'x': .01, 'y': .2}
         font_size: 25
