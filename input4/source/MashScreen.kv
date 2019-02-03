@@ -19,7 +19,7 @@
     dRACKcnt: dRACKcnt # Actual Rake Spins
     dFILLtime: dFILLtime # Actual Kettle Fill Time
     dFILLvol: dFILLvol # Actual Fill Level
-    tbrand:tbrand # Brand for targets
+    # tbrand:tbrand # Brand for targets
     tGRStemp: tGRStemp # Target Grist Temp
     tSTKtemp: tSTKtemp # Target Strike Temp
     tMSHvol: tMSHvol # Target Mash Vol
@@ -38,124 +38,124 @@
         text: 'Boil'
         pos_hint: {'x': .045, 'y': .22}
 
-    Label3:
+    TextBox:
         text: "All Time Must be in the format hhmm"
         pos_hint: {'x': .8, 'y': .8}
         font_size: 30
 
-    Label3:
+    TextBox:
         text: "where hh is 00 to 23."
         pos_hint: {'x': .8, 'y': .75}
         font_size: 30
 
 #####################################################
 ################## Data Input #######################
-    Label3:
+    TextBox:
         text: "Actual"
         pos_hint: {'x': .52, 'y': .925}
 
-    Label3:
+    TextBox:
         text: "Grist Temp"
         pos_hint: {'x': .52, 'y': .875}
-    Text2:
+    Data:
         id: dGRStemp
         pos_hint: {'x': .60, 'y': .89}
 
-    Label3:
+    TextBox:
         text: "Strike Temp"
         pos_hint: {'x': .52, 'y': .825}
-    Text2:
+    Data:
         id: dSTKtemp
         pos_hint: {'x': .60, 'y': .84}
 
-    Label3:
+    TextBox:
         text: "Mash Vol"
         pos_hint: {'x': .52, 'y': .775}
-    Text2:
+    Data:
         id: dMSHvol
         pos_hint: {'x': .60, 'y': .79}
 
-    Label3:
+    TextBox:
         text: "Mash Temp"
         pos_hint: {'x': .52, 'y': .725}
-    Text2:
+    Data:
         id: dMSHtemp
         pos_hint: {'x': .60, 'y': .74}
 
-    Label3:
+    TextBox:
         text: "Mash In Time"
         pos_hint: {'x': .52, 'y': .675}
-    Text2:
+    Data:
         id: dMSHtime
         pos_hint: {'x': .60, 'y': .69}
 
-    Label3:
+    TextBox:
         text: "Signature"
         pos_hint: {'x': .52, 'y': .625}
-    Text2:
+    Data:
         id: dBREWsig
         pos_hint: {'x': .60, 'y': .64}
 
-    Label3:
+    TextBox:
         text: "MT Rince Vol"
         pos_hint: {'x': .52, 'y': .575}
-    Text2:
+    Data:
         id: dRNCvol
         pos_hint: {'x': .60, 'y': .59}
 
-    Label3:
+    TextBox:
         text: "Vorlouf Time"
         pos_hint: {'x': .52, 'y': .525}
-    Text2:
+    Data:
         id: dVLFtime
         pos_hint: {'x': .60, 'y': .54}
 
-    Label3:
+    TextBox:
         text: "Mash pH"
         pos_hint: {'x': .52, 'y': .475}
-    Text2:
+    Data:
         id: dMASHph
         pos_hint: {'x': .60, 'y': .49}
 
-    Label3:
+    TextBox:
         text: "1st Runnings"
         pos_hint: {'x': .52, 'y': .425}
-    Text2:
+    Data:
         id: d1RNvol
         pos_hint: {'x': .60, 'y': .44}
 
-    Label3:
+    TextBox:
         text: "Sparge Vol"
         pos_hint: {'x': .52, 'y': .375}
-    Text2:
+    Data:
         id: dSPGvol
         pos_hint: {'x': .60, 'y': .39}
 
-    Label3:
+    TextBox:
         text: "Runoff Start Time"
         pos_hint: {'x': .52, 'y': .325}
-    Text2:
+    Data:
         id: dROFtime
         pos_hint: {'x': .60, 'y': .34}
 
-    Label3:
+    TextBox:
         text: "Rake Spins"
         pos_hint: {'x': .52, 'y': .275}
-    Text2:
+    Data:
         id: dRACKcnt
         pos_hint: {'x': .60, 'y': .29}
 
-    Label3:
+    TextBox:
         text: "Kettle Fill Time"
         pos_hint: {'x': .52, 'y': .225}
-    Text2:
+    Data:
         id: dFILLtime
         pos_hint: {'x': .60, 'y': .24}
 
-    Label3:
+    TextBox:
         text: "Fill Level"
         pos_hint: {'x': .52, 'y': .175}
-    Text2:
+    Data:
         id: dFILLvol
         pos_hint: {'x': .60, 'y': .19}
 ################## Data Input #######################
@@ -163,64 +163,64 @@
 
 #####################################################
 ################## Targets ##########################
-    Label3:
+    TextBox:
         text: "Target"
         pos_hint: {'x': .3, 'y': .925}
 
-    Label3:
-        text: "Brand"
-        pos_hint: {'x': .15, 'y': .925}
-    Label2:
-        id: tbrand
-        pos_hint: {'x': .19, 'y': .95}
+    # TextBox:
+    #     text: "Brand"
+    #     pos_hint: {'x': .15, 'y': .925}
+    # Target:
+    #     id: tbrand
+    #     pos_hint: {'x': .19, 'y': .95}
 
-    Label3:
+    TextBox:
         text: "Grist Temp"
         pos_hint: {'x': .3, 'y': .875}
-    Label2:
+    Target:
         id: tGRStemp
         pos_hint: {'x': .36, 'y': .90}
 
-    Label3:
+    TextBox:
         text: "Strike Temp"
         pos_hint: {'x': .3, 'y': .825}
-    Label2:
+    Target:
         id: tSTKtemp
         pos_hint: {'x': .36, 'y': .85}
 
-    Label3:
+    TextBox:
         text: "Mash Vol"
         pos_hint: {'x': .3, 'y': .775}
-    Label2:
+    Target:
         id: tMSHvol
         pos_hint: {'x': .36, 'y': .80}
 
-    Label3:
+    TextBox:
         text: "Mash Temp"
         pos_hint: {'x': .3, 'y': .725}
-    Label2:
+    Target:
         id: tMSHtemp
         pos_hint: {'x': .36, 'y': .75}
 
-    Label3:
+    TextBox:
         text: "Mash pH"
         pos_hint: {'x': .3, 'y': .475}
-    Label3:
+    TextBox:
         text: "__"
         pos_hint: {'x': .388, 'y': .485}
-    Label2:
+    Target:
         id: tMASHphLOW
         size_hint: (.03, .03)
         pos_hint: {'x': .36, 'y': .50}
-    Label2:
+    Target:
         id: tMASHphHI
         size_hint: (.03, .03)
         pos_hint: {'x': .41, 'y': .50}
 
-    Label3:
+    TextBox:
         text: "Sparge Vol"
         pos_hint: {'x': .3, 'y': .375}
-    Label2:
+    Target:
         id: tSPGvol
         pos_hint: {'x': .36, 'y': .40}
 ################## Targets ##########################

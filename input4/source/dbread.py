@@ -75,6 +75,13 @@ def mash(db_path, brew_num, batch_num):
     targets['tMASHphHI'] = str(rows[0][6])
     targets['tSPGvol'] = str(rows[0][7])
 
+    query = '''SELECT batches from brews 
+            where brews.brew_num = %s'''
+    cur.execute(query, (brew_num,))
+
+    rows = cur.fetchall()
+    batches = str(rows[0][0])
+
     conn.close()
     #return dGRStemp, dSTKtemp, dMSHvol, dMSHtemp, dMSHtime, dBREWsig, dRNCvol, dVLFtime, dMASHph, d1RNvol, dSPGvol, dROFtime, dRACKcnt, dFILLtime, dFILLvol, tsize, tbrand, tGRStemp, tSTKtemp, tMSHvol, tMSHtemp, tMASHphLOW, tMASHphHI, tSPGvol
-    return datas, targets
+    return datas, targets, batches

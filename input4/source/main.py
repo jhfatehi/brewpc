@@ -125,7 +125,7 @@ class Brew(TabbedPanel):
                 x = self.manager.current
                 self.stat.text = 'Status - Working'
                 #ms[x].dGRStemp.text, ms[x].dSTKtemp.text, ms[x].dMSHvol.text, ms[x].dMSHtemp.text, ms[x].dMSHtime.text, ms[x].dBREWsig.text, ms[x].dRNCvol.text, ms[x].dVLFtime.text, ms[x].dMASHph.text, ms[x].d1RNvol.text, ms[x].dSPGvol.text, ms[x].dROFtime.text, ms[x].dRACKcnt.text, ms[x].dFILLtime.text, ms[x].dFILLvol.text, ms[x].tsize.text, ms[x].tbrand.text , ms[x].tGRStemp.text , ms[x].tSTKtemp.text , ms[x].tMSHvol.text , ms[x].tMSHtemp.text , ms[x].tMASHphLOW.text , ms[x].tMASHphHI.text , ms[x].tSPGvol.text  = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
-                datas, targets = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
+                datas, targets, batches = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
                 ms[x].dGRStemp.text   = datas['dGRStemp']
                 ms[x].dSTKtemp.text   = datas['dSTKtemp']
                 ms[x].dMSHvol.text    = datas['dMSHvol']
@@ -149,6 +149,7 @@ class Brew(TabbedPanel):
                 ms[x].tMASHphLOW.text = targets['tMASHphLOW']
                 ms[x].tMASHphHI.text  = targets['tMASHphHI']
                 ms[x].tSPGvol.text    = targets['tSPGvol']
+                ms[x].tbatches.text   = batches
                 self.stat.text = 'Status: Load Complete'
             #####################################################
         else: self.stat.text = 'Error - Brew and Batch do not exist.'

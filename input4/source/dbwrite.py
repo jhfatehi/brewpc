@@ -51,7 +51,7 @@ def add_brew(db_path, batches, brew_num, brand):
 			database=db_path.get('mysql', 'db'),
 			port=int(db_path.get('mysql', 'local_bind_port')))
 	c = conn.cursor()
-	c.execute('INSERT into brews (brew_num, batchs, brand) values (%s,%s,%s)', [brew_num, batches, brand])
+	c.execute('INSERT into brews (brew_num, batches, brand) values (%s,%s,%s)', [brew_num, batches, brand])
 	c.executemany('INSERT into mash (brew_num, batch_num) values (%s,%s)', mash_data)
 	conn.commit()
 	conn.close()

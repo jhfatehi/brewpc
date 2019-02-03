@@ -4,7 +4,7 @@ USE brewpc_test;
 
 CREATE TABLE brews (
 	brew_num int,
-	batchs int,
+	batches int,
 	brand varchar(20),
 	FV int,
 	strtDATE date,
