@@ -39,17 +39,41 @@
         pos_hint: {'x': .05, 'y': .83}
         size_hint: (.1, .03)
 
+    TextBox:
+        text: "FV"
+        pos_hint: {'x': .01, 'y': .79}
+    Target:
+        id: tfv
+        pos_hint: {'x': .05, 'y': .79}
+        size_hint: (.1, .03)
+
+    TextBox:
+        text: "Start Date"
+        pos_hint: {'x': .01, 'y': .75}
+    Target:
+        id: tstartdate
+        pos_hint: {'x': .08, 'y': .75}
+        size_hint: (.07, .03)
+
+    TextBox:
+        text: "End Date"
+        pos_hint: {'x': .01, 'y': .71}
+    Target:
+        id: tfindate
+        pos_hint: {'x': .08, 'y': .71}
+        size_hint: (.07, .03)
+
     Spinner:
         id: screen
         size_hint: (.095, .075)
-        pos_hint: {'x': .01, 'y': .7}
+        pos_hint: {'x': .01, 'y': .6}
         values: ['blank_screen', 'mash_screen']
         text: 'blank_screen'
         font_size: 25
 
     Button:
         size_hint: (.095, .075)
-        pos_hint: {'x': .01, 'y': .6}
+        pos_hint: {'x': .01, 'y': .5}
         text: 'Load'
         font_size: 25
         on_press: app.root.change_screen()
@@ -57,21 +81,21 @@
 
     Button:
         size_hint: (.095, .075)
-        pos_hint: {'x': .01, 'y': .5}
+        pos_hint: {'x': .01, 'y': .4}
         text: 'Save'
         font_size: 25
         on_press: app.root.db_write()
 
     Button:
         size_hint: (.095, .075)
-        pos_hint: {'x': .01, 'y': .35}
+        pos_hint: {'x': .01, 'y': .25}
         font_size: 25
         on_press: app.root.change_screen()
         on_release: app.root.db_read()
 
     Button:
         size_hint: (.095, .075)
-        pos_hint: {'x': .01, 'y': .2}
+        pos_hint: {'x': .01, 'y': .1}
         font_size: 25
         on_press: app.root.change_screen()
         on_release: app.root.db_read()
