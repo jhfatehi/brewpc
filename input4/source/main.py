@@ -19,6 +19,7 @@ class Brew(TabbedPanel):
     scn1 = 'blank_screen1'
     scn2 = 'blank_screen2'
     scn3 = 'blank_screen3'
+    scn4 = 'blank_screen4'
 
     def switch_to(self, header):
         # source of this switch_to logic is
@@ -30,8 +31,10 @@ class Brew(TabbedPanel):
         elif header.name == 'tab3':
             self.manager.current = self.scn3
         elif header.name == 'tab4':
-            self.manager.current = 'add_brew'
+            self.manager.current = self.scn4
         elif header.name == 'tab5':
+            self.manager.current = 'add_brew'
+        elif header.name == 'tab6':
             self.manager.current = 'add_process'
         header.state = 'down' # makes tab 1 start in the down position
         self._current_tab = header
@@ -67,6 +70,12 @@ class Brew(TabbedPanel):
                 r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
                 self.manager.current = self.scn3
                 self.manager.current_screen.screen.text = self.scn3[0:-1]
+                self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+            elif self.current_tab.name == 'tab4':
+                self.scn4 = self.manager.current_screen.screen.text+'4'
+                r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
+                self.manager.current = self.scn4
+                self.manager.current_screen.screen.text = self.scn4[0:-1]
                 self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
@@ -121,7 +130,7 @@ class Brew(TabbedPanel):
         if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
             ############# db read from mash table ###############
             if self.manager.current_screen.screen.text == 'mash_screen':
-                ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
+                ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3, 'mash_screen4':self.ms4}
                 x = self.manager.current
                 self.stat.text = 'Status - Working'
                 #ms[x].dGRStemp.text, ms[x].dSTKtemp.text, ms[x].dMSHvol.text, ms[x].dMSHtemp.text, ms[x].dMSHtime.text, ms[x].dBREWsig.text, ms[x].dRNCvol.text, ms[x].dVLFtime.text, ms[x].dMASHph.text, ms[x].d1RNvol.text, ms[x].dSPGvol.text, ms[x].dROFtime.text, ms[x].dRACKcnt.text, ms[x].dFILLtime.text, ms[x].dFILLvol.text, ms[x].tsize.text, ms[x].tbrand.text , ms[x].tGRStemp.text , ms[x].tSTKtemp.text , ms[x].tMSHvol.text , ms[x].tMSHtemp.text , ms[x].tMASHphLOW.text , ms[x].tMASHphHI.text , ms[x].tSPGvol.text  = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
@@ -176,7 +185,7 @@ class Brew(TabbedPanel):
 
             ############# db write from mash table ###############
             if self.manager.current_screen.screen.text == 'mash_screen':
-                ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3}
+                ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3, 'mash_screen4':self.ms4}
                 x = self.manager.current
                 try:
                     self.stat.text = 'Status - Working'
