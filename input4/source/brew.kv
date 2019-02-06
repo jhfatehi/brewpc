@@ -1,5 +1,8 @@
+#: include Formats.kv
 #: include BlankScreen.kv
 #: include MashScreen.kv
+#: include BoilScreen.kv
+#: include KoScreen.kv
 #: include add_brew.kv
 #: include add_process.kv
 
@@ -13,6 +16,14 @@
     ms2: ms2
     ms3: ms3
     ms4: ms4
+    bs1: bs1
+    bs2: bs2
+    bs3: bs3
+    bs4: bs4
+    ks1: ks1
+    ks2: ks2
+    ks3: ks3
+    ks4: ks4
     ab: ab
     ap: ap
     do_default_tab: False
@@ -48,6 +59,32 @@
         MashScreen:
             id: ms4
             name: 'mash_screen4'
+
+        BoilScreen:
+            id: bs1
+            name: 'boil_screen1'
+        BoilScreen:
+            id: bs2
+            name: 'boil_screen2'
+        BoilScreen:
+            id: bs3
+            name: 'boil_screen3'
+        BoilScreen:
+            id: bs4
+            name: 'boil_screen4'
+
+        KoScreen:
+            id: ks1
+            name: 'knock_out_screen1'
+        KoScreen:
+            id: ks2
+            name: 'knock_out_screen2'
+        KoScreen:
+            id: ks3
+            name: 'knock_out_screen3'
+        KoScreen:
+            id: ks4
+            name: 'knock_out_screen4'
 
         add_brew:
             id: ab
