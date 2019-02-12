@@ -1,4 +1,371 @@
 <BoilScreen@BlankScreen>:
+#####################################################
+################## Sheet I/O ########################
+    dBOILtime: dBOILtime
+    dHOP1time: dHOP1time 
+    dIGp: dIGp
+    dIPH: dIPH
+    dLIQ1gal: dLIQ1gal
+    dHOP2time: dHOP2time
+    dZINCtime: dZINCtime
+    dKICKtime: dKICKtime
+    dHOP3time: dHOP3time
+    dMESLVLbbl: dMESLVLbbl
+    dMESGp: dMESGp
+    dLIQ2gal: dLIQ2gal
+    dFNLLVLbbl: dFNLLVLbbl
+    dFNLGp: dFNLGp
+    dFNLPH: dFNLPH
+    dBOILnote: dBOILnote
+    tFG: tFG
+    tBOILphLO: tBOILphLO
+    tBOILphHI: tBOILphHI
+    iZNg: iZNg
+    iKICKoz: iKICKoz
+    iHOP1: iHOP1
+    iHOP1kg: iHOP1kg
+    iHOP1min: iHOP1min
+    iHOP2: iHOP2
+    iHOP2kg: iHOP2kg
+    iHOP2min: iHOP2min
+    iHOP3: iHOP3
+    iHOP3kg: iHOP3kg
+    iHOP3min: iHOP3min
+    iHOP4: iHOP4
+    iHOP4kg: iHOP4kg
+    iHOP4min: iHOP4min
+    iHOP5: iHOP5
+    iHOP5kg: iHOP5kg
+    iHOP5min: iHOP5min
+    iHOP6: iHOP6
+    iHOP6kg: iHOP6kg
+    iHOP6min: iHOP6min
+    iHOP7: iHOP7
+    iHOP7kg: iHOP7kg
+    iHOP7min: iHOP7min
+################## Sheet I/O ########################
+#####################################################
+
+#######################################
     TextBox:
-	    text: 'BOIL SCREEN PLACEHOLDER'
-	    pos_hint: {'x': .5, 'y': .5}
+        text: "Zinc Amount"
+        pos_hint: {'x': .17, 'y': .55}
+    Target:
+        id: iZNg
+        pos_hint: {'x': .25, 'y': .55}
+    TextBox:
+        text: "g"
+        pos_hint: {'x': .30, 'y': .55}
+#######################################
+    TextBox:
+        text: "Kick Amount"
+        pos_hint: {'x': .17, 'y': .50}
+    Target:
+        id: iKICKoz
+        pos_hint: {'x': .25, 'y': .50}
+    TextBox:
+        text: "oz"
+        pos_hint: {'x': .30, 'y': .50}
+#######################################
+    TextBox:
+        text: "Target"
+        pos_hint: {'x': .17, 'y': .25}
+        font_size: 28
+#######################################
+    TextBox:
+        text: "Final Gravity"
+        pos_hint: {'x': .17, 'y': .20}
+    Target:
+        id: tFG
+        pos_hint: {'x': .25, 'y': .20}
+    TextBox:
+        text: "oP"
+        pos_hint: {'x': .30, 'y': .20}
+#######################################
+    TextBox:
+        text: "Final pH"
+        pos_hint: {'x': .17, 'y': .15}
+    Target:
+        id: tBOILphLO
+        pos_hint: {'x': .23, 'y': .15}
+        size_hint: (.03, .03)
+    TextBox:
+        text: "-"
+        pos_hint: {'x': .27, 'y': .15}
+    Target:
+        id: tBOILphHI
+        pos_hint: {'x': .28, 'y': .15}
+        size_hint: (.03, .03)
+
+#######################################
+#######################################
+
+    TextBox:
+        text: "Actual"
+        pos_hint: {'x': .34, 'y': .9}
+        font_size: 28
+#######################################
+    TextBox:
+        text: "Boil Time"
+        pos_hint: {'x': .34, 'y': .85}
+    Data:
+        id: dBOILtime
+        pos_hint: {'x': .45, 'y': .85}
+    TextBox:
+        text: "time"
+        pos_hint: {'x': .50, 'y': .85}
+#######################################
+    TextBox:
+        text: "1st Hops"
+        pos_hint: {'x': .34, 'y': .80}
+    Data:
+        id: dHOP1time
+        pos_hint: {'x': .45, 'y': .80}
+    TextBox:
+        text: "time"
+        pos_hint: {'x': .50, 'y': .80}
+#######################################
+    TextBox:
+        text: "Initial Gravity"
+        pos_hint: {'x': .34, 'y': .75}
+    Data:
+        id: dIGp
+        pos_hint: {'x': .45, 'y': .75}
+    TextBox:
+        text: "oP"
+        pos_hint: {'x': .50, 'y': .75}
+#######################################
+    TextBox:
+        text: "Initial pH"
+        pos_hint: {'x': .34, 'y': .70}
+    Data:
+        id: dIPH
+        pos_hint: {'x': .45, 'y': .70}
+    TextBox:
+        text: "pH"
+        pos_hint: {'x': .50, 'y': .70}
+#######################################
+    TextBox:
+        text: "Liquor Added"
+        pos_hint: {'x': .34, 'y': .65}
+    Data:
+        id: dLIQ1gal
+        pos_hint: {'x': .45, 'y': .65}
+    TextBox:
+        text: "gal"
+        pos_hint: {'x': .50, 'y': .65}
+#######################################
+    TextBox:
+        text: "2nd Hops"
+        pos_hint: {'x': .34, 'y': .60}
+    Data:
+        id: dHOP2time
+        pos_hint: {'x': .45, 'y': .60}
+    TextBox:
+        text: "time"
+        pos_hint: {'x': .50, 'y': .60}
+#######################################
+    TextBox:
+        text: "Zinc Time"
+        pos_hint: {'x': .34, 'y': .55}
+    Data:
+        id: dZINCtime
+        pos_hint: {'x': .45, 'y': .55}
+    TextBox:
+        text: "time"
+        pos_hint: {'x': .50, 'y': .55}
+#######################################
+    TextBox:
+        text: "Kick Time"
+        pos_hint: {'x': .34, 'y': .50}
+    Data:
+        id: dKICKtime
+        pos_hint: {'x': .45, 'y': .50}
+    TextBox:
+        text: "time"
+        pos_hint: {'x': .50, 'y': .50}
+#######################################
+    TextBox:
+        text: "3rd Hops"
+        pos_hint: {'x': .34, 'y': .45}
+    Data:
+        id: dHOP3time
+        pos_hint: {'x': .45, 'y': .45}
+    TextBox:
+        text: "time"
+        pos_hint: {'x': .50, 'y': .45}
+#######################################
+    TextBox:
+        text: "Measured Level"
+        pos_hint: {'x': .34, 'y': .40}
+    Data:
+        id: dMESLVLbbl
+        pos_hint: {'x': .45, 'y': .40}
+    TextBox:
+        text: "bbl"
+        pos_hint: {'x': .50, 'y': .40}
+#######################################
+    TextBox:
+        text: "Measured Gravity"
+        pos_hint: {'x': .34, 'y': .35}
+    Data:
+        id: dMESGp
+        pos_hint: {'x': .45, 'y': .35}
+    TextBox:
+        text: "oP"
+        pos_hint: {'x': .50, 'y': .35}
+#######################################
+    TextBox:
+        text: "Liquor Added"
+        pos_hint: {'x': .34, 'y': .30}
+    Data:
+        id: dLIQ2gal
+        pos_hint: {'x': .45, 'y': .30}
+    TextBox:
+        text: "gal"
+        pos_hint: {'x': .50, 'y': .30}
+#######################################
+    TextBox:
+        text: "Final Level"
+        pos_hint: {'x': .34, 'y': .25}
+    Data:
+        id: dFNLLVLbbl
+        pos_hint: {'x': .45, 'y': .25}
+    TextBox:
+        text: "bbl"
+        pos_hint: {'x': .50, 'y': .25}
+#######################################
+    TextBox:
+        text: "Final Gravity"
+        pos_hint: {'x': .34, 'y': .20}
+    Data:
+        id: dFNLGp
+        pos_hint: {'x': .45, 'y': .20}
+    TextBox:
+        text: "oP"
+        pos_hint: {'x': .50, 'y': .20}
+#######################################
+    TextBox:
+        text: "Final pH"
+        pos_hint: {'x': .34, 'y': .15}
+    Data:
+        id: dFNLPH
+        pos_hint: {'x': .45, 'y': .15}
+    TextBox:
+        text: "pH"
+        pos_hint: {'x': .50, 'y': .15}
+#######################################
+    TextBox:
+        text: "Notes"
+        pos_hint: {'x': .13, 'y': .10}
+    Data:
+        id: dBOILnote
+        pos_hint: {'x': .17, 'y': .07}
+        size_hint: (.815, .06)
+
+#######################################
+#######################################
+
+    TextBox:
+        text: "Hops"
+        pos_hint: {'x': .60, 'y': .9}
+        font_size: 28
+    TextBox:
+        text: "kg"
+        pos_hint: {'x': .87, 'y': .9}
+        font_size: 28
+    TextBox:
+        text: "minutes"
+        pos_hint: {'x': .92, 'y': .9}
+        font_size: 28
+#######################################
+    Target:
+        id: iHOP1
+        pos_hint: {'x': .60, 'y': .85}
+        size_hint: (.25, .03)
+    Target:
+        id: iHOP1kg
+        pos_hint: {'x': .87, 'y': .85}
+        size_hint: (.04, .03)
+    Target:
+        id: iHOP1min
+        pos_hint: {'x': .92, 'y': .85}
+        size_hint: (.04, .03)
+#######################################
+    Target:
+        id: iHOP2
+        pos_hint: {'x': .60, 'y': .80}
+        size_hint: (.25, .03)
+    Target:
+        id: iHOP2kg
+        pos_hint: {'x': .87, 'y': .80}
+        size_hint: (.04, .03)
+    Target:
+        id: iHOP2min
+        pos_hint: {'x': .92, 'y': .80}
+        size_hint: (.04, .03)
+#######################################
+    Target:
+        id: iHOP3
+        pos_hint: {'x': .60, 'y': .75}
+        size_hint: (.25, .03)
+    Target:
+        id: iHOP3kg
+        pos_hint: {'x': .87, 'y': .75}
+        size_hint: (.04, .03)
+    Target:
+        id: iHOP3min
+        pos_hint: {'x': .92, 'y': .75}
+        size_hint: (.04, .03)
+#######################################
+    Target:
+        id: iHOP4
+        pos_hint: {'x': .60, 'y': .70}
+        size_hint: (.25, .03)
+    Target:
+        id: iHOP4kg
+        pos_hint: {'x': .87, 'y': .70}
+        size_hint: (.04, .03)
+    Target:
+        id: iHOP4min
+        pos_hint: {'x': .92, 'y': .70}
+        size_hint: (.04, .03)
+#######################################
+    Target:
+        id: iHOP5
+        pos_hint: {'x': .60, 'y': .65}
+        size_hint: (.25, .03)
+    Target:
+        id: iHOP5kg
+        pos_hint: {'x': .87, 'y': .65}
+        size_hint: (.04, .03)
+    Target:
+        id: iHOP5min
+        pos_hint: {'x': .92, 'y': .65}
+        size_hint: (.04, .03)
+#######################################
+    Target:
+        id: iHOP6
+        pos_hint: {'x': .60, 'y': .60}
+        size_hint: (.25, .03)
+    Target:
+        id: iHOP6kg
+        pos_hint: {'x': .87, 'y': .60}
+        size_hint: (.04, .03)
+    Target:
+        id: iHOP6min
+        pos_hint: {'x': .92, 'y': .60}
+        size_hint: (.04, .03)
+#######################################
+    Target:
+        id: iHOP7
+        pos_hint: {'x': .60, 'y': .55}
+        size_hint: (.25, .03)
+    Target:
+        id: iHOP7kg
+        pos_hint: {'x': .87, 'y': .55}
+        size_hint: (.04, .03)
+    Target:
+        id: iHOP7min
+        pos_hint: {'x': .92, 'y': .55}
+        size_hint: (.04, .03)
