@@ -3,6 +3,9 @@
     batch_num: batch_num
     tbatches: tbatches
     tbrand: tbrand
+    tFV: tFV
+    tstrtDATE: tstrtDATE
+    tfinDATE: tfinDATE
     screen: screen
 
     TextBox:
@@ -43,7 +46,7 @@
         text: "FV"
         pos_hint: {'x': .01, 'y': .79}
     Target:
-        id: tfv
+        id: tFV
         pos_hint: {'x': .05, 'y': .79}
         size_hint: (.1, .03)
 
@@ -51,7 +54,7 @@
         text: "Start Date"
         pos_hint: {'x': .01, 'y': .75}
     Target:
-        id: tstartdate
+        id: tstrtDATE
         pos_hint: {'x': .08, 'y': .75}
         size_hint: (.07, .03)
 
@@ -59,7 +62,7 @@
         text: "End Date"
         pos_hint: {'x': .01, 'y': .71}
     Target:
-        id: tfindate
+        id: tfinDATE
         pos_hint: {'x': .08, 'y': .71}
         size_hint: (.07, .03)
 

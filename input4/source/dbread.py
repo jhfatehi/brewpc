@@ -58,7 +58,15 @@ def mash(db_path, brew_num, batch_num):
     datas['dFILLtime'] = xtime(rows[0][13])
     datas['dFILLvol'] = xstr(rows[0][14])
 
-    query = '''SELECT process.* from process 
+    query = '''SELECT
+                tGRStemp,
+                tSTKtemp,
+                tMSHvol,
+                tMSHtemp,
+                tMASHphLOW,
+                tMASHphHI,
+                tSPGvol
+                from process 
             left join brews on 
             process.brand = brews.brand
             where brews.brew_num = %s'''
@@ -66,22 +74,26 @@ def mash(db_path, brew_num, batch_num):
 
     targets = {}
     rows = cur.fetchall()
-    targets['tbrand'] = str(rows[0][0])
-    targets['tGRStemp'] = str(rows[0][1])
-    targets['tSTKtemp'] = str(rows[0][2])
-    targets['tMSHvol'] = str(rows[0][3])
-    targets['tMSHtemp'] = str(rows[0][4])
-    targets['tMASHphLOW'] = str(rows[0][5])
-    targets['tMASHphHI'] = str(rows[0][6])
-    targets['tSPGvol'] = str(rows[0][7])
+    targets['tGRStemp'] = str(rows[0][0])
+    targets['tSTKtemp'] = str(rows[0][1])
+    targets['tMSHvol'] = str(rows[0][2])
+    targets['tMSHtemp'] = str(rows[0][3])
+    targets['tMASHphLOW'] = str(rows[0][4])
+    targets['tMASHphHI'] = str(rows[0][5])
+    targets['tSPGvol'] = str(rows[0][6])
 
-    query = '''SELECT batches from brews 
+    query = '''SELECT brand, batches, FV, strtDATE, finDATE from brews 
             where brews.brew_num = %s'''
     cur.execute(query, (brew_num,))
 
+    brewfo = {}
     rows = cur.fetchall()
-    batches = str(rows[0][0])
+    brewfo['tbrand'] = str(rows[0][0])
+    brewfo['tbatches'] = str(rows[0][1])
+    brewfo['tFV'] = str(rows[0][2])
+    brewfo['tstrtDATE'] = str(rows[0][3])
+    brewfo['tfinDATE'] = str(rows[0][4])
 
     conn.close()
     #return dGRStemp, dSTKtemp, dMSHvol, dMSHtemp, dMSHtime, dBREWsig, dRNCvol, dVLFtime, dMASHph, d1RNvol, dSPGvol, dROFtime, dRACKcnt, dFILLtime, dFILLvol, tsize, tbrand, tGRStemp, tSTKtemp, tMSHvol, tMSHtemp, tMASHphLOW, tMASHphHI, tSPGvol
-    return datas, targets, batches
+    return datas, targets, brewfo
