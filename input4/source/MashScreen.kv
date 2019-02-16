@@ -16,7 +16,7 @@
     dRACKcnt: dRACKcnt # Actual Rake Spins
     dFILLtime: dFILLtime # Actual Kettle Fill Time
     dFILLvol: dFILLvol # Actual Fill Level
-    # tbrand:tbrand # Brand for targets
+
     tGRStemp: tGRStemp # Target Grist Temp
     tSTKtemp: tSTKtemp # Target Strike Temp
     tMSHvol: tMSHvol # Target Mash Vol
@@ -24,17 +24,55 @@
     tMASHphLOW: tMASHphLOW # Target Mash pH Low
     tMASHphHI: tMASHphHI # Target Mash pH Hi
     tSPGvol: tSPGvol # Target Sparge Vol
+
+    iWT1: iWT1
+    iWT1lb: iWT1lb
+    iWT2: iWT2
+    iWT2lb: iWT2lb
+    iWT3: iWT3
+    iWT3lb: iWT3lb
+    iWT4: iWT4
+    iWT4lb: iWT4lb
+    iWT5: iWT5
+    iWT5lb: iWT5lb
+
+    iGST1: iGST1
+    iGST1sk: iGST1sk
+    iGST1lb: iGST1lb
+    iGST2: iGST2
+    iGST2sk: iGST2sk
+    iGST2lb: iGST2lb
+    iGST3: iGST3
+    iGST3sk: iGST3sk
+    iGST3lb: iGST3lb
+    iGST4: iGST4
+    iGST4sk: iGST4sk
+    iGST4lb: iGST4lb
+    iGST5: iGST5
+    iGST5sk: iGST5sk
+    iGST5lb: iGST5lb
+    iGST6: iGST6
+    iGST6sk: iGST6sk
+    iGST6lb: iGST6lb
+    iGST7: iGST7
+    iGST7sk: iGST7sk
+    iGST7lb: iGST7lb
+    iGSTtotlb: iGSTtotlb
+
+
+    dMASHnote: dMASHnote
 ################## Sheet I/O ########################
 #####################################################
 
     TextBox:
         text: 'Knock Out'
         pos_hint: {'x': .03, 'y': .275}
-        # pos_hint: {'x': .030, 'y': .37}
+        color: [1,1,1,1]
 
     TextBox:
         text: 'Boil'
         pos_hint: {'x': .045, 'y': .125}
+        color: [1,1,1,1]
 
     # TextBox:
     #     text: "All Time Must be in the format hhmm"
@@ -167,13 +205,6 @@
         bold: True
         pos_hint: {'x': .2, 'y': .9}
 
-    # TextBox:
-    #     text: "Brand"
-    #     pos_hint: {'x': .15, 'y': .925}
-    # Target:
-    #     id: tbrand
-    #     pos_hint: {'x': .19, 'y': .95}
-
     TextBox:
         text: "Grist Temp"
         pos_hint: {'x': .2, 'y': .85}
@@ -204,18 +235,18 @@
 
     TextBox:
         text: "Mash pH"
-        pos_hint: {'x': .2, 'y': .4}
-    # TextBox:
-    #     text: "__"
-    #     pos_hint: {'x': .388, 'y': .485}
+        pos_hint: {'x': .2, 'y': .45}
     Target:
         id: tMASHphLOW
-        # size_hint: (.03, .03)
-        pos_hint: {'x': .275, 'y': .4}
+        pos_hint: {'x': .26, 'y': .45}
+        size_hint: (.03, .03)
+    TextBox:
+        text: "-"
+        pos_hint: {'x': .3, 'y': .45}
     Target:
         id: tMASHphHI
-        # size_hint: (.03, .03)
-        pos_hint: {'x': .275, 'y': .35}
+        pos_hint: {'x': .31, 'y': .45}
+        size_hint: (.03, .03)
 
     TextBox:
         text: "Sparge Vol"
@@ -237,51 +268,55 @@
         bold: True
         pos_hint: {'x': .6, 'y': .9}
 
-    # TextBox:
-    #     text: "Brand"
-    #     pos_hint: {'x': .15, 'y': .925}
-    # Target:
-    #     id: tbrand
-    #     pos_hint: {'x': .19, 'y': .95}
+    TextBox:
+        text: "lbs"
+        bold: True
+        pos_hint: {'x': .92, 'y': .9}
 
     Target:
-        id: tGRStemp
+        id: iWT1
         size_hint: (.25, .03)
         pos_hint: {'x': .6, 'y': .85}
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .95, 'y': .85}
+        id: iWT1lb
+        pos_hint: {'x': .92, 'y': .85}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
+        id: iWT2
         size_hint: (.25, .03)
         pos_hint: {'x': .6, 'y': .8}
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .8}
+        id: iWT2lb
+        pos_hint: {'x': .92, 'y': .8}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
+        id: iWT3
         size_hint: (.25, .03)
         pos_hint: {'x': .6, 'y': .75}
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .75}
+        id: iWT3lb
+        pos_hint: {'x': .92, 'y': .75}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
+        id: iWT4
         size_hint: (.25, .03)
         pos_hint: {'x': .6, 'y': .7}
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .7}
+        id: iWT4lb
+        pos_hint: {'x': .92, 'y': .7}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
+        id: iWT5
+        size_hint: (.25, .03)
         pos_hint: {'x': .6, 'y': .65}
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .65}
+        id: iWT5lb
+        pos_hint: {'x': .92, 'y': .65}
+        size_hint: (.04, .03)
 
 
 ################## Water Treatment ##################
@@ -289,89 +324,130 @@
 
 #####################################################
 ################## Grist ############################
+
     TextBox:
         text: "Grist"
+        pos_hint: {'x': .60, 'y': .55}
         bold: True
-        pos_hint: {'x': .6, 'y': .55}
+    TextBox:
+        text: "Sacks"
+        pos_hint: {'x': .87, 'y': .55}
+        bold: True
+    TextBox:
+        text: "lbs"
+        pos_hint: {'x': .92, 'y': .55}
+        bold: True
 
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .6, 'y': .5}
+        id: iGST1
+        pos_hint: {'x': .60, 'y': .5}
+        size_hint: (.25, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .825, 'y': .5}
+        id: iGST1sk
+        pos_hint: {'x': .87, 'y': .5}
+        size_hint: (.04, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .5}
+        id: iGST1lb
+        pos_hint: {'x': .92, 'y': .5}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .6, 'y': .45}
+        id: iGST2
+        pos_hint: {'x': .60, 'y': .45}
+        size_hint: (.25, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .825, 'y': .45}
+        id: iGST2sk
+        pos_hint: {'x': .87, 'y': .45}
+        size_hint: (.04, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .45}
+        id: iGST2lb
+        pos_hint: {'x': .92, 'y': .45}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .6, 'y': .4}
+        id: iGST3
+        pos_hint: {'x': .60, 'y': .4}
+        size_hint: (.25, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .825, 'y': .4}
+        id: iGST3sk
+        pos_hint: {'x': .87, 'y': .4}
+        size_hint: (.04, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .4}
+        id: iGST3lb
+        pos_hint: {'x': .92, 'y': .4}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .6, 'y': .35}
+        id: iGST4
+        pos_hint: {'x': .60, 'y': .35}
+        size_hint: (.25, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .825, 'y': .35}
+        id: iGST4sk
+        pos_hint: {'x': .87, 'y': .35}
+        size_hint: (.04, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .35}
+        id: iGST4lb
+        pos_hint: {'x': .92, 'y': .35}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .6, 'y': .3}
+        id: iGST5
+        pos_hint: {'x': .60, 'y': .3}
+        size_hint: (.25, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .825, 'y': .3}
+        id: iGST5sk
+        pos_hint: {'x': .87, 'y': .3}
+        size_hint: (.04, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .3}
+        id: iGST5lb
+        pos_hint: {'x': .92, 'y': .3}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .6, 'y': .25}
+        id: iGST6
+        pos_hint: {'x': .60, 'y': .25}
+        size_hint: (.25, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .825, 'y': .25}
+        id: iGST6sk
+        pos_hint: {'x': .87, 'y': .25}
+        size_hint: (.04, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .25}
+        id: iGST6lb
+        pos_hint: {'x': .92, 'y': .25}
+        size_hint: (.04, .03)
 
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .6, 'y': .2}
+        id: iGST7
+        pos_hint: {'x': .60, 'y': .2}
+        size_hint: (.25, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .825, 'y': .2}
+        id: iGST7sk
+        pos_hint: {'x': .87, 'y': .2}
+        size_hint: (.04, .03)
     Target:
-        id: tGRStemp
-        pos_hint: {'x': .9, 'y': .2}
+        id: iGST7lb
+        pos_hint: {'x': .92, 'y': .2}
+        size_hint: (.04, .03)
 
     TextBox:
         text: "Total Grist"
         bold: True
         pos_hint: {'x': .6, 'y': .15}
     Target:
-        id: tGRStemp
-        size_hint: (.125, .03)
-        pos_hint: {'x': .825, 'y': .15}
+        id: iGSTtotlb
+        size_hint: (.09, .03)
+        pos_hint: {'x': .87, 'y': .15}
 
 ################## Grist ############################
 #####################################################
+
+#######################################
+#######################################
+
+    TextBox:
+        text: "Notes"
+        pos_hint: {'x': .13, 'y': .10}
+    Data:
+        id: dMASHnote
+        pos_hint: {'x': .17, 'y': .07}
+        size_hint: (.815, .06)

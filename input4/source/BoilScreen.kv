@@ -49,10 +49,12 @@
     TextBox:
         text: 'Mash'
         pos_hint: {'x': .04, 'y': .27}
+        color: [1,1,1,1]
 
     TextBox:
         text: 'Knock Out'
         pos_hint: {'x': .03, 'y': .12}
+        color: [1,1,1,1]
 
 #######################################
     TextBox:
@@ -78,7 +80,7 @@
     TextBox:
         text: "Target"
         pos_hint: {'x': .17, 'y': .25}
-        font_size: 28
+        bold: True
 #######################################
     TextBox:
         text: "Final Gravity"
@@ -111,7 +113,7 @@
     TextBox:
         text: "Actual"
         pos_hint: {'x': .34, 'y': .9}
-        font_size: 28
+        bold: True
 #######################################
     TextBox:
         text: "Boil Time"
@@ -262,14 +264,6 @@
     TextBox:
         text: "pH"
         pos_hint: {'x': .50, 'y': .15}
-#######################################
-    TextBox:
-        text: "Notes"
-        pos_hint: {'x': .13, 'y': .10}
-    Data:
-        id: dBOILnote
-        pos_hint: {'x': .17, 'y': .07}
-        size_hint: (.815, .06)
 
 #######################################
 #######################################
@@ -277,15 +271,15 @@
     TextBox:
         text: "Hops"
         pos_hint: {'x': .60, 'y': .9}
-        font_size: 28
+        bold: True
     TextBox:
         text: "kg"
         pos_hint: {'x': .87, 'y': .9}
-        font_size: 28
+        bold: True
     TextBox:
         text: "minutes"
         pos_hint: {'x': .92, 'y': .9}
-        font_size: 28
+        bold: True
 #######################################
     Target:
         id: iHOP1
@@ -377,3 +371,14 @@
         id: iHOP7min
         pos_hint: {'x': .92, 'y': .55}
         size_hint: (.04, .03)
+
+#######################################
+#######################################
+
+    TextBox:
+        text: "Notes"
+        pos_hint: {'x': .13, 'y': .10}
+    Data:
+        id: dBOILnote
+        pos_hint: {'x': .17, 'y': .07}
+        size_hint: (.815, .06)
