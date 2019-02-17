@@ -31,7 +31,7 @@ def mash(db_path, brew_num, batch_num):
     dRNCvol,
     dVLFtime,
     dMASHph,
-    d1RNvol,
+    d1RNp,
     dSPGvol,
     dROFtime,
     dRACKcnt,
@@ -52,7 +52,7 @@ def mash(db_path, brew_num, batch_num):
     datas['dRNCvol'] = xstr(rows[0][6])
     datas['dVLFtime'] = xtime(rows[0][7])
     datas['dMASHph'] = xstr(rows[0][8])
-    datas['d1RNvol'] = xstr(rows[0][9])
+    datas['d1RNp'] = xstr(rows[0][9])
     datas['dSPGvol'] = xstr(rows[0][10])
     datas['dROFtime'] = xtime(rows[0][11])
     datas['dRACKcnt'] = xstr(rows[0][12])
@@ -161,7 +161,7 @@ def mash(db_path, brew_num, batch_num):
     brewfo['tfinDATE'] = str(rows[0][4])
 
     conn.close()
-    #return dGRStemp, dSTKtemp, dMSHvol, dMSHtemp, dMSHtime, dBREWsig, dRNCvol, dVLFtime, dMASHph, d1RNvol, dSPGvol, dROFtime, dRACKcnt, dFILLtime, dFILLvol, tsize, tbrand, tGRStemp, tSTKtemp, tMSHvol, tMSHtemp, tMASHphLOW, tMASHphHI, tSPGvol
+
     return datas, targets, brewfo
 
 def boil(db_path, brew_num, batch_num):
@@ -288,5 +288,5 @@ def boil(db_path, brew_num, batch_num):
     brewfo['tfinDATE'] = str(rows[0][4])
 
     conn.close()
-    #return dGRStemp, dSTKtemp, dMSHvol, dMSHtemp, dMSHtime, dBREWsig, dRNCvol, dVLFtime, dMASHph, d1RNvol, dSPGvol, dROFtime, dRACKcnt, dFILLtime, dFILLvol, tsize, tbrand, tGRStemp, tSTKtemp, tMSHvol, tMSHtemp, tMASHphLOW, tMASHphHI, tSPGvol
+
     return datas, targets, brewfo

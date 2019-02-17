@@ -142,7 +142,7 @@ class Brew(TabbedPanel):
                 ms[x].dRNCvol.text    = datas['dRNCvol']
                 ms[x].dVLFtime.text   = datas['dVLFtime']
                 ms[x].dMASHph.text    = datas['dMASHph']
-                ms[x].d1RNvol.text    = datas['d1RNvol']
+                ms[x].d1RNp.text      = datas['d1RNp']
                 ms[x].dSPGvol.text    = datas['dSPGvol']
                 ms[x].dROFtime.text   = datas['dROFtime']
                 ms[x].dRACKcnt.text   = datas['dRACKcnt']
@@ -294,7 +294,7 @@ class Brew(TabbedPanel):
                         xfloat(ms[x].dRNCvol.text),
                         xtime(ms[x].dVLFtime.text),
                         xfloat(ms[x].dMASHph.text),
-                        xfloat(ms[x].d1RNvol.text),
+                        xfloat(ms[x].d1RNp.text),
                         xfloat(ms[x].dSPGvol.text),
                         xtime(ms[x].dROFtime.text),
                         xfloat(ms[x].dRACKcnt.text),
