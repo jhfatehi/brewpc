@@ -254,7 +254,39 @@ class Brew(TabbedPanel):
             #####################################################
             ############# db read from knock_out table ###############
             if self.manager.current_screen.screen.text == 'knock_out_screen':
-                print('ko_read')
+                ms = {'knock_out_screen1':self.ks1, 'knock_out_screen2':self.ks2, 'knock_out_screen3':self.ks3, 'knock_out_screen4':self.ks4}
+                x = self.manager.current
+                self.stat.text = 'Status - Working'
+                datas, targets, brewfo  = dbread.knock_out(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)              
+                ms[x].dKOSRTtime.text   = datas['dKOSRTtime']
+                ms[x].dKOsig.text       = datas['dKOsig']
+                ms[x].dKOtemp.text      = datas['dKOtemp']
+                ms[x].dO2lpm.text       = datas['dO2lpm']
+                ms[x].dO2ppm.text       = datas['dO2ppm']
+                ms[x].dKOENDtime.text   = datas['dKOENDtime']
+                ms[x].dFMVOLbbl.text    = datas['dFMVOLbbl']
+                ms[x].dCLDFVbbl.text    = datas['dCLDFVbbl']
+                ms[x].dBD600sig.text    = datas['dBD600sig']
+                ms[x].dBD900sig.text    = datas['dBD900sig']
+                ms[x].dBD1200sig.text   = datas['dBD1200sig']
+                ms[x].dBD1500sig.text   = datas['dBD1500sig']
+                ms[x].dOGp.text         = datas['dOGp']
+                ms[x].dYSTGEN.text      = datas['dYSTGEN']
+                ms[x].dSRCFV.text       = datas['dSRCFV']
+                ms[x].dSRCNUM.text      = datas['dSRCNUM']
+                ms[x].dAMTPTCHtime.text = datas['dAMTPTCHtime']
+                ms[x].dFRMTEMPsig.text  = datas['dFRMTEMPsig']
+                ms[x].dAFOoz.text       = datas['dAFOoz']
+                ms[x].dAFOsig.text      = datas['dAFOsig']
+                ms[x].dKOnote.text      = datas['dKOnote']
+                ms[x].tWASTEbbl.text    = targets['tWASTEbbl']
+                ms[x].tFERMf.text       = targets['tFERMf']
+                ms[x].tYEASTtype.text   = targets['tYEASTtype']
+                ms[x].tbrand.text       = brewfo['tbrand']
+                ms[x].tbatches.text     = brewfo['tbatches']
+                ms[x].tFV.text          = brewfo['tFV']
+                ms[x].tstrtDATE.text    = brewfo['tstrtDATE']
+                ms[x].tfinDATE.text     = brewfo['tfinDATE']
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
     def db_write(self):

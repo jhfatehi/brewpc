@@ -290,3 +290,120 @@ def boil(db_path, brew_num, batch_num):
     conn.close()
 
     return datas, targets, brewfo
+
+
+
+
+def knock_out(db_path, brew_num, batch_num):
+    conn = mysql.connector.connect(
+            user=db_path.get('mysql', 'usr'),
+            password=db_path.get('mysql', 'pw'),
+            host='127.0.0.1',
+            database=db_path.get('mysql', 'db'),
+            port=db_path.get('mysql', 'local_bind_port'))
+    cur = conn.cursor()
+
+    query = '''SELECT 
+        dKOSRTtime,
+        dKOsig,
+        dKOtemp,
+        dO2lpm,
+        dO2ppm,
+        dKOENDtime,
+        dFMVOLbbl,
+        dCLDFVbbl,
+        dBD600sig,
+        dBD900sig,
+        dBD1200sig,
+        dBD1500sig,
+        dOGp,
+        dYSTGEN,
+        dSRCFV,
+        dSRCNUM,
+        dAMTPTCHtime,
+        dFRMTEMPsig,
+        dAFOoz,
+        dAFOsig,
+        dKOnote
+     FROM ko WHERE brew_num = %s AND batch_num = %s'''
+    cur.execute(query, (brew_num, batch_num))
+    
+    datas = {}
+    rows = cur.fetchall()
+    datas['dKOSRTtime'] = xtime(rows[0][0])
+    datas['dKOsig'] = xstr(rows[0][1])
+    datas['dKOtemp'] = xstr(rows[0][2])
+    datas['dO2lpm'] = xstr(rows[0][3])
+    datas['dO2ppm'] = xstr(rows[0][4])
+    datas['dKOENDtime'] = xtime(rows[0][5])
+    datas['dFMVOLbbl'] = xstr(rows[0][6])
+    datas['dCLDFVbbl'] = xstr(rows[0][7])
+    datas['dBD600sig'] = xstr(rows[0][8])
+    datas['dBD900sig'] = xstr(rows[0][9])
+    datas['dBD1200sig'] = xstr(rows[0][10])
+    datas['dBD1500sig'] = xstr(rows[0][11])
+    datas['dOGp'] = xstr(rows[0][12])
+    datas['dYSTGEN'] = xstr(rows[0][13])
+    datas['dSRCFV'] = xstr(rows[0][14])
+    datas['dSRCNUM'] = xstr(rows[0][15])
+    datas['dAMTPTCHtime'] = xtime(rows[0][16])
+    datas['dFRMTEMPsig'] = xstr(rows[0][17])
+    datas['dAFOoz'] = xstr(rows[0][18])
+    datas['dAFOsig'] = xstr(rows[0][19])
+    datas['dKOnote'] = xstr(rows[0][20])
+
+    query = '''SELECT
+                tWASTEbbl,
+                tFERMf,
+                tYEASTtype
+            from process 
+            left join brews on 
+            process.brand = brews.brand
+            where brews.brew_num = %s'''
+    cur.execute(query, (brew_num,))
+
+    targets = {}
+    rows = cur.fetchall()
+    targets['tWASTEbbl'] = str(rows[0][0])
+    targets['tFERMf'] = str(rows[0][1])
+    targets['tYEASTtype'] = str(rows[0][2])
+
+    query = '''SELECT brand, batches, FV, strtDATE, finDATE from brews 
+            where brews.brew_num = %s'''
+    cur.execute(query, (brew_num,))
+
+    brewfo = {}
+    rows = cur.fetchall()
+    brewfo['tbrand'] = str(rows[0][0])
+    brewfo['tbatches'] = str(rows[0][1])
+    brewfo['tFV'] = str(rows[0][2])
+    brewfo['tstrtDATE'] = str(rows[0][3])
+    brewfo['tfinDATE'] = str(rows[0][4])
+
+    conn.close()
+
+    return datas, targets, brewfo
+
+
+
+dKOSRTtime
+dKOsig
+dKOtemp
+dO2lpm
+dO2ppm
+dKOENDtime
+dFMVOLbbl
+dCLDFVbbl
+dBD600sig
+dBD900sig
+dBD1200sig
+dBD1500sig
+dOGp
+dYSTGEN
+dSRCFV
+dSRCNUM
+dAMTPTCHtime
+dFRMTEMPsig
+dAFOoz
+dAFOsig
+dKOnote
