@@ -102,44 +102,12 @@ class Brew(TabbedPanel):
             self.manager.current_screen.screen.text = 'mash_screen'
             self.change_screen()
 
-    def create_process(self):
-        self.db_path = ConfigParser.RawConfigParser()
-        self.db_path.read('conn.cfg')
-
-        try:
-            self.stat.text = 'Status - Working'
-            tGRStemp = float(self.ap.tGRStemp.text)
-            tSTKtemp = float(self.ap.tSTKtemp.text)
-            tMSHvol = float(self.ap.tMSHvol.text)
-            tMSHtemp = float(self.ap.tMSHtemp.text)
-            tMASHphLOW = float(self.ap.tMASHphLOW.text)
-            tMASHphHI = float(self.ap.tMASHphHI.text)
-            tSPGvol = float(self.ap.tSPGvol.text)
-
-            try:
-                dbwrite.add_process(self.db_path,
-                    self.ap.brand.text,
-                    tGRStemp,
-                    tSTKtemp,
-                    tMSHvol,
-                    tMSHtemp,
-                    tMASHphLOW,
-                    tMASHphHI,
-                    tSPGvol)
-                self.stat.text = 'Status: Process Created'
-            except:
-                self.stat.text = 'Error - The Brand Size Combination Already Exists.'
-                
-        except:
-            self.stat.text = 'Error - A non-number was entered.'
-
     def create_brew(self):
         self.db_path = ConfigParser.RawConfigParser()
         self.db_path.read('conn.cfg')
         if not inval.check_brew(self.db_path, self.ab.brew_num.text):
             if inval.check_int(self.ab.batches.text):
                 if inval.check_brand(self.db_path, self.ab.brand.text):
-                    
                     try:
                         x = time.strptime(self.ab.strtDATE.text, '%Y%m%d')
                         x = time.strptime(self.ab.finDATE.text, '%Y%m%d')
@@ -148,11 +116,6 @@ class Brew(TabbedPanel):
                         self.stat.text = 'Status - Brew number ' + self.ab.brew_num.text + ' has been added.'
                     except:
                         self.stat.text = 'Error - Invalid date entered.'
-
-
-
-
-
                 else: self.stat.text = 'Error - No process for brand.'
             else: self.stat.text = 'Error - Number of bacthes must be an integer.'
         else: self.stat.text = 'Error - Brew number aready exists.'

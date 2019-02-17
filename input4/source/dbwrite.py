@@ -5,41 +5,6 @@ def xNone(s):
         return None
     return str(s)
 
-def add_process(db_path,
-	brand,
-	tGRStemp,
-	tSTKtemp,
-	tMSHvol,
-	tMSHtemp,
-	tMASHphLOW,
-	tMASHphHI,
-	tSPGvol):
-	conn = mysql.connector.connect(
-			user=db_path.get('mysql', 'usr'),
-			password=db_path.get('mysql', 'pw'),
-			host='127.0.0.1',
-			database=db_path.get('mysql', 'db'),
-			port=int(db_path.get('mysql', 'local_bind_port')))
-	c = conn.cursor()
-	c.execute('''INSERT INTO process (brand,
-		tGRStemp,
-		tSTKtemp,
-		tMSHvol,
-		tMSHtemp,
-		tMASHphLOW,
-		tMASHphHI,
-		tSPGvol) values (%s, %s, %s, %s, %s, %s, %s, %s)''',
-		(xNone(brand),
-		tGRStemp,
-		tSTKtemp,
-		tMSHvol,
-		tMSHtemp,
-		tMASHphLOW,
-		tMASHphHI,
-		tSPGvol))
-	conn.commit()
-	conn.close()
-
 def add_brew(db_path, batches, brew_num, brand, FV, strtDATE, finDATE):
 	new_data = []
 	for ii in range(int(batches)):
