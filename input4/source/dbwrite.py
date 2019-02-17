@@ -40,7 +40,7 @@ def add_process(db_path,
 	conn.commit()
 	conn.close()
 
-def add_brew(db_path, batches, brew_num, brand):
+def add_brew(db_path, batches, brew_num, brand, FV, strtDATE, finDATE):
 	new_data = []
 	for ii in range(int(batches)):
 		new_data.append((brew_num, str(ii+1)))
@@ -51,7 +51,7 @@ def add_brew(db_path, batches, brew_num, brand):
 			database=db_path.get('mysql', 'db'),
 			port=int(db_path.get('mysql', 'local_bind_port')))
 	c = conn.cursor()
-	c.execute('INSERT into brews (brew_num, batches, brand) values (%s,%s,%s)', [brew_num, batches, brand])
+	c.execute('INSERT into brews (brew_num, batches, brand, FV, strtDATE, finDATE) values (%s,%s,%s,%s,%s,%s)', [brew_num, batches, brand, FV, strtDATE, finDATE])
 	c.executemany('INSERT into mash (brew_num, batch_num) values (%s,%s)', new_data)
 	c.executemany('INSERT into boil (brew_num, batch_num) values (%s,%s)', new_data)
 	conn.commit()

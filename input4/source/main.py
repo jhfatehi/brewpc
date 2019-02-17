@@ -140,7 +140,7 @@ class Brew(TabbedPanel):
             if inval.check_int(self.ab.batches.text):
                 if inval.check_brand(self.db_path, self.ab.brand.text):
                     self.stat.text = 'Status - Working'
-                    dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brand.text)
+                    dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brand.text, self.ab.fV.text, self.ab.strtDATE.text, self.ab.finDATE.text)
                     self.stat.text = 'Status - Brew number ' + self.ab.brew_num.text + ' has been added.'
                 else: self.stat.text = 'Error - No process for brand.'
             else: self.stat.text = 'Error - Number of bacthes must be an integer.'
