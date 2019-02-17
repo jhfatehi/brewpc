@@ -139,9 +139,20 @@ class Brew(TabbedPanel):
         if not inval.check_brew(self.db_path, self.ab.brew_num.text):
             if inval.check_int(self.ab.batches.text):
                 if inval.check_brand(self.db_path, self.ab.brand.text):
-                    self.stat.text = 'Status - Working'
-                    dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brand.text, self.ab.fV.text, self.ab.strtDATE.text, self.ab.finDATE.text)
-                    self.stat.text = 'Status - Brew number ' + self.ab.brew_num.text + ' has been added.'
+                    
+                    try:
+                        x = time.strptime(self.ab.strtDATE.text, '%Y%m%d')
+                        x = time.strptime(self.ab.finDATE.text, '%Y%m%d')
+                        self.stat.text = 'Status - Working'
+                        dbwrite.add_brew(self.db_path, self.ab.batches.text, self.ab.brew_num.text, self.ab.brand.text, self.ab.fV.text, self.ab.strtDATE.text, self.ab.finDATE.text)
+                        self.stat.text = 'Status - Brew number ' + self.ab.brew_num.text + ' has been added.'
+                    except:
+                        self.stat.text = 'Error - Invalid date entered.'
+
+
+
+
+
                 else: self.stat.text = 'Error - No process for brand.'
             else: self.stat.text = 'Error - Number of bacthes must be an integer.'
         else: self.stat.text = 'Error - Brew number aready exists.'
