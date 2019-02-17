@@ -60,24 +60,28 @@ class Brew(TabbedPanel):
                 self.manager.current = self.scn1
                 self.manager.current_screen.screen.text = self.scn1[0:-1]
                 self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+                self.t1id.text = str(r) + ' - ' + str(a) + ' - ' + self.scn1[0].upper()
             elif self.current_tab.name == 'tab2':
                 self.scn2 = self.manager.current_screen.screen.text+'2'
                 r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
                 self.manager.current = self.scn2
                 self.manager.current_screen.screen.text = self.scn2[0:-1]
                 self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+                self.t2id.text = str(r) + ' - ' + str(a) + ' - ' + self.scn2[0].upper()
             elif self.current_tab.name == 'tab3':
                 self.scn3 = self.manager.current_screen.screen.text+'3'
                 r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
                 self.manager.current = self.scn3
                 self.manager.current_screen.screen.text = self.scn3[0:-1]
                 self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+                self.t3id.text = str(r) + ' - ' + str(a) + ' - ' + self.scn3[0].upper()
             elif self.current_tab.name == 'tab4':
                 self.scn4 = self.manager.current_screen.screen.text+'4'
                 r,a = self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text
                 self.manager.current = self.scn4
                 self.manager.current_screen.screen.text = self.scn4[0:-1]
                 self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
+                self.t4id.text = str(r) + ' - ' + str(a) + ' - ' + self.scn4[0].upper()
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
     def previous_screen(self):
