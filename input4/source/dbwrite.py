@@ -41,9 +41,9 @@ def add_process(db_path,
 	conn.close()
 
 def add_brew(db_path, batches, brew_num, brand):
-	mash_data = []
+	new_data = []
 	for ii in range(int(batches)):
-		mash_data.append((brew_num, str(ii+1)))
+		new_data.append((brew_num, str(ii+1)))
 	conn = mysql.connector.connect(
 			user=db_path.get('mysql', 'usr'),
 			password=db_path.get('mysql', 'pw'),
@@ -52,7 +52,8 @@ def add_brew(db_path, batches, brew_num, brand):
 			port=int(db_path.get('mysql', 'local_bind_port')))
 	c = conn.cursor()
 	c.execute('INSERT into brews (brew_num, batches, brand) values (%s,%s,%s)', [brew_num, batches, brand])
-	c.executemany('INSERT into mash (brew_num, batch_num) values (%s,%s)', mash_data)
+	c.executemany('INSERT into mash (brew_num, batch_num) values (%s,%s)', new_data)
+	c.executemany('INSERT into boil (brew_num, batch_num) values (%s,%s)', new_data)
 	conn.commit()
 	conn.close()
 
@@ -73,7 +74,8 @@ def mash(db_path,
 	dROFtime,
 	dRACKcnt,
 	dFILLtime,
-	dFILLvol):
+	dFILLvol,
+	dMASHnote):
 	conn = mysql.connector.connect(
 			user=db_path.get('mysql', 'usr'),
 			password=db_path.get('mysql', 'pw'),
@@ -96,7 +98,8 @@ def mash(db_path,
 			dROFtime = %s,
 			dRACKcnt = %s,
 			dFILLtime = %s,
-			dFILLvol = %s
+			dFILLvol = %s,
+			dMASHnote = %s
 			WHERE brew_num = %s AND batch_num = %s''',
 			(xNone(dGRStemp),
 			xNone(dSTKtemp),
@@ -113,6 +116,72 @@ def mash(db_path,
 			xNone(dRACKcnt),
 			xNone(dFILLtime),
 			xNone(dFILLvol),
+			xNone(dMASHnote),
+			xNone(brew_num),
+			xNone(batch_num)))
+	conn.commit()
+	conn.close()
+
+def boil(db_path,
+	brew_num,
+	batch_num,
+	dBOILtime,
+	dHOP1time,
+	dIGp,
+	dIPH,
+	dLIQ1gal,
+	dHOP2time,
+	dZINCtime,
+	dKICKtime,
+	dHOP3time,
+	dMESLVLbbl,
+	dMESGp,
+	dLIQ2gal,
+	dFNLLVLbbl,
+	dFNLGp,
+	dFNLPH,
+	dBOILnote):
+	conn = mysql.connector.connect(
+			user=db_path.get('mysql', 'usr'),
+			password=db_path.get('mysql', 'pw'),
+			host='127.0.0.1',
+			database=db_path.get('mysql', 'db'),
+			port=int(db_path.get('mysql', 'local_bind_port')))
+	c = conn.cursor()
+	c.execute('''UPDATE boil SET
+			dBOILtime = %s,
+			dHOP1time = %s,
+			dIGp = %s,
+			dIPH = %s,
+			dLIQ1gal = %s,
+			dHOP2time = %s,
+			dZINCtime = %s,
+			dKICKtime = %s,
+			dHOP3time = %s,
+			dMESLVLbbl = %s,
+			dMESGp = %s,
+			dLIQ2gal = %s,
+			dFNLLVLbbl = %s,
+			dFNLGp = %s,
+			dFNLPH = %s,
+			dBOILnote = %s
+			WHERE brew_num = %s AND batch_num = %s''',
+			(xNone(dBOILtime),
+			xNone(dHOP1time),
+			xNone(dIGp),
+			xNone(dIPH),
+			xNone(dLIQ1gal),
+			xNone(dHOP2time),
+			xNone(dZINCtime),
+			xNone(dKICKtime),
+			xNone(dHOP3time),
+			xNone(dMESLVLbbl),
+			xNone(dMESGp),
+			xNone(dLIQ2gal),
+			xNone(dFNLLVLbbl),
+			xNone(dFNLGp),
+			xNone(dFNLPH),
+			xNone(dBOILnote),
 			xNone(brew_num),
 			xNone(batch_num)))
 	conn.commit()

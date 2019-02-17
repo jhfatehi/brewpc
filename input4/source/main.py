@@ -123,7 +123,6 @@ class Brew(TabbedPanel):
             else: self.stat.text = 'Error - Number of bacthes must be an integer.'
         else: self.stat.text = 'Error - Brew number aready exists.'
 
-
     def db_read(self):
         self.db_path = ConfigParser.RawConfigParser()
         self.db_path.read('conn.cfg')
@@ -133,7 +132,6 @@ class Brew(TabbedPanel):
                 ms = {'mash_screen1':self.ms1, 'mash_screen2':self.ms2, 'mash_screen3':self.ms3, 'mash_screen4':self.ms4}
                 x = self.manager.current
                 self.stat.text = 'Status - Working'
-                #ms[x].dGRStemp.text, ms[x].dSTKtemp.text, ms[x].dMSHvol.text, ms[x].dMSHtemp.text, ms[x].dMSHtime.text, ms[x].dBREWsig.text, ms[x].dRNCvol.text, ms[x].dVLFtime.text, ms[x].dMASHph.text, ms[x].d1RNvol.text, ms[x].dSPGvol.text, ms[x].dROFtime.text, ms[x].dRACKcnt.text, ms[x].dFILLtime.text, ms[x].dFILLvol.text, ms[x].tsize.text, ms[x].tbrand.text , ms[x].tGRStemp.text , ms[x].tSTKtemp.text , ms[x].tMSHvol.text , ms[x].tMSHtemp.text , ms[x].tMASHphLOW.text , ms[x].tMASHphHI.text , ms[x].tSPGvol.text  = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
                 datas, targets, brewfo = dbread.mash(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
                 ms[x].dGRStemp.text   = datas['dGRStemp']
                 ms[x].dSTKtemp.text   = datas['dSTKtemp']
@@ -150,6 +148,7 @@ class Brew(TabbedPanel):
                 ms[x].dRACKcnt.text   = datas['dRACKcnt']
                 ms[x].dFILLtime.text  = datas['dFILLtime']
                 ms[x].dFILLvol.text   = datas['dFILLvol']
+                ms[x].dMASHnote.text  = datas['dMASHnote']
                 ms[x].tGRStemp.text   = targets['tGRStemp']
                 ms[x].tSTKtemp.text   = targets['tSTKtemp']
                 ms[x].tMSHvol.text    = targets['tMSHvol']
@@ -189,10 +188,62 @@ class Brew(TabbedPanel):
                 ms[x].iGST7sk.text    = targets['iGST7sk']
                 ms[x].iGST7lb.text    = targets['iGST7lb']
                 ms[x].iGSTtotlb.text  = targets['iGSTtotlb']
+                ms[x].tbrand.text     = brewfo['tbrand']
+                ms[x].tbatches.text   = brewfo['tbatches']
+                ms[x].tFV.text        = brewfo['tFV']
+                ms[x].tstrtDATE.text  = brewfo['tstrtDATE']
+                ms[x].tfinDATE.text   = brewfo['tfinDATE']
 
-
-
-
+                self.stat.text = 'Status: Load Complete'
+            #####################################################
+            ############# db read from boil table ###############
+            if self.manager.current_screen.screen.text == 'boil_screen':
+                ms = {'boil_screen1':self.bs1, 'boil_screen2':self.bs2, 'boil_screen3':self.bs3, 'boil_screen4':self.bs4}
+                x = self.manager.current
+                self.stat.text = 'Status - Working'
+                datas, targets, brewfo = dbread.boil(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)
+                ms[x].dBOILtime.text   = datas['dBOILtime']
+                ms[x].dHOP1time.text   = datas['dHOP1time']
+                ms[x].dIGp.text    = datas['dIGp']
+                ms[x].dIPH.text   = datas['dIPH']
+                ms[x].dLIQ1gal.text   = datas['dLIQ1gal']
+                ms[x].dHOP2time.text   = datas['dHOP2time']
+                ms[x].dZINCtime.text    = datas['dZINCtime']
+                ms[x].dKICKtime.text   = datas['dKICKtime']
+                ms[x].dHOP3time.text    = datas['dHOP3time']
+                ms[x].dMESLVLbbl.text    = datas['dMESLVLbbl']
+                ms[x].dMESGp.text    = datas['dMESGp']
+                ms[x].dLIQ2gal.text   = datas['dLIQ2gal']
+                ms[x].dFNLLVLbbl.text   = datas['dFNLLVLbbl']
+                ms[x].dFNLGp.text  = datas['dFNLGp']
+                ms[x].dFNLPH.text   = datas['dFNLPH']
+                ms[x].dBOILnote.text   = datas['dBOILnote']
+                ms[x].tFG.text        = targets['tFG']
+                ms[x].tBOILphLO.text  = targets['tBOILphLO']
+                ms[x].tBOILphHI.text  = targets['tBOILphHI']
+                ms[x].iZNg.text       = targets['iZNg']
+                ms[x].iKICKoz.text    = targets['iKICKoz']
+                ms[x].iHOP1.text      = targets['iHOP1']
+                ms[x].iHOP1kg.text    = targets['iHOP1kg']  
+                ms[x].iHOP1min.text   = targets['iHOP1min']
+                ms[x].iHOP2.text      = targets['iHOP2']
+                ms[x].iHOP2kg.text    = targets['iHOP2kg']
+                ms[x].iHOP2min.text   = targets['iHOP2min']
+                ms[x].iHOP3.text      = targets['iHOP3']
+                ms[x].iHOP3kg.text    = targets['iHOP3kg']
+                ms[x].iHOP3min.text   = targets['iHOP3min']
+                ms[x].iHOP4.text      = targets['iHOP4']
+                ms[x].iHOP4kg.text    = targets['iHOP4kg']
+                ms[x].iHOP4min.text   = targets['iHOP4min']
+                ms[x].iHOP5.text      = targets['iHOP5']
+                ms[x].iHOP5kg.text    = targets['iHOP5kg']
+                ms[x].iHOP5min.text   = targets['iHOP5min']
+                ms[x].iHOP6.text      = targets['iHOP6']
+                ms[x].iHOP6kg.text    = targets['iHOP6kg']
+                ms[x].iHOP6min.text   = targets['iHOP6min']
+                ms[x].iHOP7.text      = targets['iHOP7']
+                ms[x].iHOP7kg.text    = targets['iHOP7kg']
+                ms[x].iHOP7min.text   = targets['iHOP7min']
                 ms[x].tbrand.text     = brewfo['tbrand']
                 ms[x].tbatches.text   = brewfo['tbatches']
                 ms[x].tFV.text        = brewfo['tFV']
@@ -212,6 +263,8 @@ class Brew(TabbedPanel):
         def xtime(s):
             if s == '':
                 return ''
+            if len(s)!=4:
+                raise Exception('Time is not 4 digits')
             try:
                 x = time.strptime(s, '%H%M')
                 return (s+'00')
@@ -246,9 +299,41 @@ class Brew(TabbedPanel):
                         xtime(ms[x].dROFtime.text),
                         xfloat(ms[x].dRACKcnt.text),
                         xtime(ms[x].dFILLtime.text),
-                        xfloat(ms[x].dFILLvol.text))
+                        xfloat(ms[x].dFILLvol.text),
+                        ms[x].dMASHnote.text)
                     self.stat.text = 'Status: Save complete'
-                except:
+                except Exception as e:
+                    print(e)
+                    self.stat.text = 'Error - A non-number or bad time was entered.'
+            #####################################################
+            ############# db write from boil table ###############
+            if self.manager.current_screen.screen.text == 'boil_screen':
+                ms = {'boil_screen1':self.bs1, 'boil_screen2':self.bs2, 'boil_screen3':self.bs3, 'boil_screen4':self.bs4}
+                x = self.manager.current
+                try:
+                    self.stat.text = 'Status - Working'
+                    dbwrite.boil(self.db_path,
+                        xfloat(ms[x].brew_num.text),
+                        xfloat(ms[x].batch_num.text),
+                        xtime(ms[x].dBOILtime.text),
+                        xtime(ms[x].dHOP1time.text),
+                        xfloat(ms[x].dIGp.text),
+                        xfloat(ms[x].dIPH.text),
+                        xfloat(ms[x].dLIQ1gal.text),
+                        xtime(ms[x].dHOP2time.text),
+                        xtime(ms[x].dZINCtime.text),
+                        xtime(ms[x].dKICKtime.text),
+                        xtime(ms[x].dHOP3time.text),
+                        xfloat(ms[x].dMESLVLbbl.text),
+                        xfloat(ms[x].dMESGp.text),
+                        xfloat(ms[x].dLIQ2gal.text),
+                        xfloat(ms[x].dFNLLVLbbl.text),
+                        xfloat(ms[x].dFNLGp.text),
+                        xfloat(ms[x].dFNLPH.text),
+                        ms[x].dBOILnote.text)
+                    self.stat.text = 'Status: Save complete'
+                except Exception as e:
+                    print(e)
                     self.stat.text = 'Error - A non-number or bad time was entered.'
             #####################################################
 
