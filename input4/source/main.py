@@ -49,6 +49,7 @@ class Brew(TabbedPanel):
     # so self.manager.current should be something like 'blank_screen2'
 
     def change_screen(self):
+        print('change screen')
         self.db_path = ConfigParser.RawConfigParser()
         self.db_path.read('conn.cfg')
         if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
@@ -78,6 +79,28 @@ class Brew(TabbedPanel):
                 self.manager.current_screen.screen.text = self.scn4[0:-1]
                 self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text = r,a
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
+
+    def previous_screen(self):
+        if self.manager.current_screen.name[0:-1] == 'mash_screen':
+            self.manager.current_screen.screen.text = 'knock_out_screen'
+            self.change_screen()
+        elif self.manager.current_screen.name[0:-1] == 'boil_screen':
+            self.manager.current_screen.screen.text = 'mash_screen'
+            self.change_screen()
+        elif self.manager.current_screen.name[0:-1] == 'knock_out_screen':
+            self.manager.current_screen.screen.text = 'boil_screen'
+            self.change_screen()
+
+    def next_screen(self):
+        if self.manager.current_screen.name[0:-1] == 'mash_screen':
+            self.manager.current_screen.screen.text = 'boil_screen'
+            self.change_screen()
+        elif self.manager.current_screen.name[0:-1] == 'boil_screen':
+            self.manager.current_screen.screen.text = 'knock_out_screen'
+            self.change_screen()
+        elif self.manager.current_screen.name[0:-1] == 'knock_out_screen':
+            self.manager.current_screen.screen.text = 'mash_screen'
+            self.change_screen()
 
     def create_process(self):
         self.db_path = ConfigParser.RawConfigParser()
@@ -252,6 +275,9 @@ class Brew(TabbedPanel):
 
                 self.stat.text = 'Status: Load Complete'
             #####################################################
+            ############# db read from knock_out table ###############
+            if self.manager.current_screen.screen.text == 'knock_out_screen':
+                print('ko_read')
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
     def db_write(self):

@@ -23,7 +23,7 @@ CREATE TABLE mash (
 	dRNCvol float,
 	dVLFtime time,
 	dMASHph float,
-	d1RNvol float,
+	d1RNp float,
 	dSPGvol float,
 	dROFtime time,
 	dRACKcnt int,

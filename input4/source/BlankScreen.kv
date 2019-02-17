@@ -105,12 +105,12 @@
         size_hint: (.095, .075)
         pos_hint: {'x': .01, 'y': .25}
         font_size: 25
-        on_press: app.root.change_screen()
+        on_press: app.root.previous_screen()
         on_release: app.root.db_read()
 
     Button:
         size_hint: (.095, .075)
         pos_hint: {'x': .01, 'y': .1}
         font_size: 25
-        on_press: app.root.change_screen()
+        on_press: app.root.next_screen()
         on_release: app.root.db_read()
