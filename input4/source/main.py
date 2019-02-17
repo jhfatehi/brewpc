@@ -49,7 +49,6 @@ class Brew(TabbedPanel):
     # so self.manager.current should be something like 'blank_screen2'
 
     def change_screen(self):
-        print('change screen')
         self.db_path = ConfigParser.RawConfigParser()
         self.db_path.read('conn.cfg')
         if inval.check_brew_batch(self.db_path, self.manager.current_screen.brew_num.text, self.manager.current_screen.batch_num.text):
@@ -308,7 +307,7 @@ class Brew(TabbedPanel):
                     self.stat.text = 'Status: Save complete'
                 except Exception as e:
                     print(e)
-                    self.stat.text = 'Error - A non-number or bad time was entered.'
+                    self.stat.text = 'Error - A incorrectly formatted time was entered.'
             #####################################################
             ############# db write from boil table ###############
             if self.manager.current_screen.screen.text == 'boil_screen':
@@ -338,7 +337,40 @@ class Brew(TabbedPanel):
                     self.stat.text = 'Status: Save complete'
                 except Exception as e:
                     print(e)
-                    self.stat.text = 'Error - A non-number or bad time was entered.'
+                    self.stat.text = 'Error - A incorrectly formatted time was entered.'
+            #####################################################
+            ############# db write from knock out table ###############
+            if self.manager.current_screen.screen.text == 'knock_out_screen':
+                ms = {'knock_out_screen1':self.ks1, 'knock_out_screen2':self.ks2, 'knock_out_screen3':self.ks3, 'knock_out_screen4':self.ks4}
+                x = self.manager.current
+                try:
+                    self.stat.text = 'Status - Working'
+                    dbwrite.knock_out(self.db_path,
+                        xtime(ms[x].dKOSRTtime.text),
+                        ms[x].dKOsig.text,
+                        xfloat(ms[x].dKOtemp.text),
+                        xfloat(ms[x].dO2lpm.text),
+                        xfloat(ms[x].dO2ppm.text),
+                        xtime(ms[x].dKOENDtime.text),
+                        xfloat(ms[x].dFMVOLbbl.text),
+                        xfloat(ms[x].dCLDFVbbl.text),
+                        ms[x].dBD600sig.text,
+                        ms[x].dBD900sig.text,
+                        ms[x].dBD1200sig.text,
+                        ms[x].dBD1500sig.text,
+                        xfloat(ms[x].dOGp.text),
+                        xfloat(ms[x].dYSTGEN.text),
+                        xfloat(ms[x].dSRCFV.text),
+                        xfloat(ms[x].dSRCNUM.text),
+                        xtime(ms[x].dAMTPTCHtime.text),
+                        ms[x].dFRMTEMPsig.text,
+                        xfloat(ms[x].dAFOoz.text),
+                        ms[x].dAFOsig.text,
+                        ms[x].dKOnote.text)
+                    self.stat.text = 'Status: Save complete'
+                except Exception as e:
+                    print(e)
+                    self.stat.text = 'Error - A incorrectly formatted time was entered.'
             #####################################################
 
 
