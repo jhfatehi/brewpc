@@ -74,7 +74,7 @@ CREATE TABLE ko (
 	dYSTGEN int,
 	dSRCFV int,
 	dSRCNUM int,
-	dAMTPTCHtime time,
+	dAMTPTCHs float,
 	dFRMTEMPsig varchar(20),
 	dAFOoz float,
 	dAFOsig varchar(20),
