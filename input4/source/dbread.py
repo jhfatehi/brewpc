@@ -383,27 +383,3 @@ def knock_out(db_path, brew_num, batch_num):
     conn.close()
 
     return datas, targets, brewfo
-
-
-
-dKOSRTtime
-dKOsig
-dKOtemp
-dO2lpm
-dO2ppm
-dKOENDtime
-dFMVOLbbl
-dCLDFVbbl
-dBD600sig
-dBD900sig
-dBD1200sig
-dBD1500sig
-dOGp
-dYSTGEN
-dSRCFV
-dSRCNUM
-dAMTPTCHtime
-dFRMTEMPsig
-dAFOoz
-dAFOsig
-dKOnote
