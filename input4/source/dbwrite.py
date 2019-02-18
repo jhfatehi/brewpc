@@ -5,6 +5,17 @@ def xNone(s):
         return None
     return str(s)
 
+
+def xseccal(mins, secs):
+    if mins=='':
+    	mins=0
+    if secs=='':
+    	secs=0
+    x = mins*60+secs
+    if x == 0:
+    	return None
+    else:
+    	return x
 def add_brew(db_path, batches, brew_num, brand, FV, strtDATE, finDATE):
 	new_data = []
 	for ii in range(int(batches)):
@@ -19,6 +30,7 @@ def add_brew(db_path, batches, brew_num, brand, FV, strtDATE, finDATE):
 	c.execute('INSERT into brews (brew_num, batches, brand, FV, strtDATE, finDATE) values (%s,%s,%s,%s,%s,%s)', [brew_num, batches, brand, FV, strtDATE, finDATE])
 	c.executemany('INSERT into mash (brew_num, batch_num) values (%s,%s)', new_data)
 	c.executemany('INSERT into boil (brew_num, batch_num) values (%s,%s)', new_data)
+	c.executemany('INSERT into ko (brew_num, batch_num) values (%s,%s)', new_data)
 	conn.commit()
 	conn.close()
 
@@ -172,7 +184,8 @@ def knock_out(db_path,
 	dYSTGEN,
 	dSRCFV,
 	dSRCNUM,
-	dAMTPTCHtime,
+	dAMTPTCHmin,
+	dAMTPTCHsec,
 	dFRMTEMPsig,
 	dAFOoz,
 	dAFOsig,
@@ -202,7 +215,7 @@ def knock_out(db_path,
 			dYSTGEN = %s,
 			dSRCFV = %s,
 			dSRCNUM = %s,
-			dAMTPTCHtime = %s,
+			dAMTPTCHs = %s,
 			dFRMTEMPsig = %s,
 			dAFOoz = %s,
 			dAFOsig = %s,
@@ -224,7 +237,7 @@ def knock_out(db_path,
 			xNone(dYSTGEN),
 			xNone(dSRCFV),
 			xNone(dSRCNUM),
-			xNone(dAMTPTCHtime),
+			xseccal(dAMTPTCHmin, dAMTPTCHsec),
 			xNone(dFRMTEMPsig),
 			xNone(dAFOoz),
 			xNone(dAFOsig),

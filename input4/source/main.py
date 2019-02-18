@@ -253,40 +253,44 @@ class Brew(TabbedPanel):
                 self.stat.text = 'Status: Load Complete'
             #####################################################
             ############# db read from knock_out table ###############
-            # if self.manager.current_screen.screen.text == 'knock_out_screen':
-            #     ms = {'knock_out_screen1':self.ks1, 'knock_out_screen2':self.ks2, 'knock_out_screen3':self.ks3, 'knock_out_screen4':self.ks4}
-            #     x = self.manager.current
-            #     self.stat.text = 'Status - Working'
-            #     datas, targets, brewfo  = dbread.knock_out(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)              
-            #     ms[x].dKOSRTtime.text   = datas['dKOSRTtime']
-            #     ms[x].dKOsig.text       = datas['dKOsig']
-            #     ms[x].dKOtemp.text      = datas['dKOtemp']
-            #     ms[x].dO2lpm.text       = datas['dO2lpm']
-            #     ms[x].dO2ppm.text       = datas['dO2ppm']
-            #     ms[x].dKOENDtime.text   = datas['dKOENDtime']
-            #     ms[x].dFMVOLbbl.text    = datas['dFMVOLbbl']
-            #     ms[x].dCLDFVbbl.text    = datas['dCLDFVbbl']
-            #     ms[x].dBD600sig.text    = datas['dBD600sig']
-            #     ms[x].dBD900sig.text    = datas['dBD900sig']
-            #     ms[x].dBD1200sig.text   = datas['dBD1200sig']
-            #     ms[x].dBD1500sig.text   = datas['dBD1500sig']
-            #     ms[x].dOGp.text         = datas['dOGp']
-            #     ms[x].dYSTGEN.text      = datas['dYSTGEN']
-            #     ms[x].dSRCFV.text       = datas['dSRCFV']
-            #     ms[x].dSRCNUM.text      = datas['dSRCNUM']
-            #     ms[x].dAMTPTCHtime.text = datas['dAMTPTCHtime']
-            #     ms[x].dFRMTEMPsig.text  = datas['dFRMTEMPsig']
-            #     ms[x].dAFOoz.text       = datas['dAFOoz']
-            #     ms[x].dAFOsig.text      = datas['dAFOsig']
-            #     ms[x].dKOnote.text      = datas['dKOnote']
-            #     ms[x].tWASTEbbl.text    = targets['tWASTEbbl']
-            #     ms[x].tFERMf.text       = targets['tFERMf']
-            #     ms[x].tYEASTtype.text   = targets['tYEASTtype']
-            #     ms[x].tbrand.text       = brewfo['tbrand']
-            #     ms[x].tbatches.text     = brewfo['tbatches']
-            #     ms[x].tFV.text          = brewfo['tFV']
-            #     ms[x].tstrtDATE.text    = brewfo['tstrtDATE']
-            #     ms[x].tfinDATE.text     = brewfo['tfinDATE']
+            if self.manager.current_screen.screen.text == 'knock_out_screen':
+                ms = {'knock_out_screen1':self.ks1, 'knock_out_screen2':self.ks2, 'knock_out_screen3':self.ks3, 'knock_out_screen4':self.ks4}
+                x = self.manager.current
+                self.stat.text = 'Status - Working'
+                datas, targets, brewfo  = dbread.knock_out(self.db_path, ms[x].brew_num.text, ms[x].batch_num.text)              
+                ms[x].dKOSRTtime.text   = datas['dKOSRTtime']
+                ms[x].dKOsig.text       = datas['dKOsig']
+                ms[x].dKOtemp.text      = datas['dKOtemp']
+                ms[x].dO2lpm.text       = datas['dO2lpm']
+                ms[x].dO2ppm.text       = datas['dO2ppm']
+                ms[x].dKOENDtime.text   = datas['dKOENDtime']
+                ms[x].dFMVOLbbl.text    = datas['dFMVOLbbl']
+                ms[x].dCLDFVbbl.text    = datas['dCLDFVbbl']
+                ms[x].dBD600sig.text    = datas['dBD600sig']
+                ms[x].dBD900sig.text    = datas['dBD900sig']
+                ms[x].dBD1200sig.text   = datas['dBD1200sig']
+                ms[x].dBD1500sig.text   = datas['dBD1500sig']
+                ms[x].dOGp.text         = datas['dOGp']
+                ms[x].dYSTGEN.text      = datas['dYSTGEN']
+                ms[x].dSRCFV.text       = datas['dSRCFV']
+                ms[x].dSRCNUM.text      = datas['dSRCNUM']
+                ms[x].dAMTPTCHmin.text  = datas['dAMTPTCHmin']
+                ms[x].dAMTPTCHsec.text  = datas['dAMTPTCHsec']
+                ms[x].dFRMTEMPsig.text  = datas['dFRMTEMPsig']
+                ms[x].dAFOoz.text       = datas['dAFOoz']
+                ms[x].dAFOsig.text      = datas['dAFOsig']
+                ms[x].dKOnote.text      = datas['dKOnote']
+                ms[x].tWASTEbbl.text    = targets['tWASTEbbl']
+                ms[x].tFERMf.text       = targets['tFERMf']
+                ms[x].tYEASTtype.text   = targets['tYEASTtype']
+                ms[x].tbrand.text       = brewfo['tbrand']
+                ms[x].tbatches.text     = brewfo['tbatches']
+                ms[x].tFV.text          = brewfo['tFV']
+                ms[x].tstrtDATE.text    = brewfo['tstrtDATE']
+                ms[x].tfinDATE.text     = brewfo['tfinDATE']
+
+                self.stat.text = 'Status: Load Complete'
+                
         else: self.stat.text = 'Error - Brew and Batch do not exist.'
 
     def db_write(self):
@@ -372,37 +376,40 @@ class Brew(TabbedPanel):
                     self.stat.text = 'Error - A incorrectly formatted time was entered.'
             #####################################################
             ############# db write from knock out table ###############
-            # if self.manager.current_screen.screen.text == 'knock_out_screen':
-            #     ms = {'knock_out_screen1':self.ks1, 'knock_out_screen2':self.ks2, 'knock_out_screen3':self.ks3, 'knock_out_screen4':self.ks4}
-            #     x = self.manager.current
-            #     try:
-            #         self.stat.text = 'Status - Working'
-            #         dbwrite.knock_out(self.db_path,
-            #             xtime(ms[x].dKOSRTtime.text),
-            #             ms[x].dKOsig.text,
-            #             xfloat(ms[x].dKOtemp.text),
-            #             xfloat(ms[x].dO2lpm.text),
-            #             xfloat(ms[x].dO2ppm.text),
-            #             xtime(ms[x].dKOENDtime.text),
-            #             xfloat(ms[x].dFMVOLbbl.text),
-            #             xfloat(ms[x].dCLDFVbbl.text),
-            #             ms[x].dBD600sig.text,
-            #             ms[x].dBD900sig.text,
-            #             ms[x].dBD1200sig.text,
-            #             ms[x].dBD1500sig.text,
-            #             xfloat(ms[x].dOGp.text),
-            #             xfloat(ms[x].dYSTGEN.text),
-            #             xfloat(ms[x].dSRCFV.text),
-            #             xfloat(ms[x].dSRCNUM.text),
-            #             xtime(ms[x].dAMTPTCHtime.text),
-            #             ms[x].dFRMTEMPsig.text,
-            #             xfloat(ms[x].dAFOoz.text),
-            #             ms[x].dAFOsig.text,
-            #             ms[x].dKOnote.text)
-            #         self.stat.text = 'Status: Save complete'
-            #     except Exception as e:
-            #         print(e)
-            #         self.stat.text = 'Error - A incorrectly formatted time was entered.'
+            if self.manager.current_screen.screen.text == 'knock_out_screen':
+                ms = {'knock_out_screen1':self.ks1, 'knock_out_screen2':self.ks2, 'knock_out_screen3':self.ks3, 'knock_out_screen4':self.ks4}
+                x = self.manager.current
+                try:
+                    self.stat.text = 'Status - Working'
+                    dbwrite.knock_out(self.db_path,
+                        xfloat(ms[x].brew_num.text),
+                        xfloat(ms[x].batch_num.text),
+                        xtime(ms[x].dKOSRTtime.text),
+                        ms[x].dKOsig.text,
+                        xfloat(ms[x].dKOtemp.text),
+                        xfloat(ms[x].dO2lpm.text),
+                        xfloat(ms[x].dO2ppm.text),
+                        xtime(ms[x].dKOENDtime.text),
+                        xfloat(ms[x].dFMVOLbbl.text),
+                        xfloat(ms[x].dCLDFVbbl.text),
+                        ms[x].dBD600sig.text,
+                        ms[x].dBD900sig.text,
+                        ms[x].dBD1200sig.text,
+                        ms[x].dBD1500sig.text,
+                        xfloat(ms[x].dOGp.text),
+                        xfloat(ms[x].dYSTGEN.text),
+                        xfloat(ms[x].dSRCFV.text),
+                        xfloat(ms[x].dSRCNUM.text),
+                        xfloat(ms[x].dAMTPTCHmin.text),
+                        xfloat(ms[x].dAMTPTCHsec.text),
+                        ms[x].dFRMTEMPsig.text,
+                        xfloat(ms[x].dAFOoz.text),
+                        ms[x].dAFOsig.text,
+                        ms[x].dKOnote.text)
+                    self.stat.text = 'Status: Save complete'
+                except Exception as e:
+                    print(e)
+                    self.stat.text = 'Error - A incorrectly formatted time was entered.'
             #####################################################
 
 

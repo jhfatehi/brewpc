@@ -13,6 +13,20 @@ def xtime(s):
     x = time.strptime(s, '%H:%M:%S')
     return time.strftime('%H%M', x)
 
+def xmod60q(secs):
+    try:
+        x = secs//60
+        return str(x)
+    except:
+        return ''
+
+def xmod60r(secs):
+    try:
+        x = secs%60
+        return str(x)
+    except:
+        return ''
+
 def mash(db_path, brew_num, batch_num):
     conn = mysql.connector.connect(
             user=db_path.get('mysql', 'usr'),
@@ -320,7 +334,7 @@ def knock_out(db_path, brew_num, batch_num):
         dYSTGEN,
         dSRCFV,
         dSRCNUM,
-        dAMTPTCHtime,
+        dAMTPTCHs,
         dFRMTEMPsig,
         dAFOoz,
         dAFOsig,
@@ -346,7 +360,8 @@ def knock_out(db_path, brew_num, batch_num):
     datas['dYSTGEN'] = xstr(rows[0][13])
     datas['dSRCFV'] = xstr(rows[0][14])
     datas['dSRCNUM'] = xstr(rows[0][15])
-    datas['dAMTPTCHtime'] = xtime(rows[0][16])
+    datas['dAMTPTCHmin'] = xmod60q(rows[0][16])
+    datas['dAMTPTCHsec'] = xmod60r(rows[0][16])
     datas['dFRMTEMPsig'] = xstr(rows[0][17])
     datas['dAFOoz'] = xstr(rows[0][18])
     datas['dAFOsig'] = xstr(rows[0][19])
