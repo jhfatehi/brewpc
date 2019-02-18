@@ -17,7 +17,8 @@
     # dYSTGEN: dYSTGEN
     # dSRCFV: dSRCFV
     # dSRCNUM: dSRCNUM
-    # dAMTPTCHtime: dAMTPTCHtime
+    # dAMTPTCHmin: dAMTPTCHmin
+    # dAMTPTCHsec: dAMTPTCHsec
     # dFRMTEMPsig: dFRMTEMPsig
     # dAFOoz: dAFOoz
     # dAFOsig: dAFOsig
@@ -40,6 +41,243 @@
         pos_hint: {'x': .045, 'y': .125}
         color: [1,1,1,1]
 
+#######################################
+#######################################
+
     TextBox:
-	    text: 'KNOCK OUT SCREEN PLACEHOLDER'
-	    pos_hint: {'x': .5, 'y': .5}
+        text: "Knockout Start"
+        pos_hint: {'x': .24, 'y': .85}
+    Data:
+        id: dKOSRTtime
+        pos_hint: {'x': .35, 'y': .85}
+        input_filter: 'int'
+    TextBox:
+        text: "time"
+        pos_hint: {'x': .405, 'y': .85}
+#######################################
+    TextBox:
+        text: "Signature"
+        pos_hint: {'x': .24, 'y': .80}
+    Data:
+        id: dKOsig
+        pos_hint: {'x': .35, 'y': .80}
+#######################################
+    TextBox:
+        text: "Knockout Temp"
+        pos_hint: {'x': .24, 'y': .75}
+    Data:
+        id: dKOtemp
+        pos_hint: {'x': .35, 'y': .75}
+        input_filter: 'float'
+    TextBox:
+        text: "oF"
+        pos_hint: {'x': .405, 'y': .75}
+#######################################
+    TextBox:
+        text: "Waste"
+        pos_hint: {'x': .24, 'y': .70}
+    Target:
+        id: tWASTEbbl
+        pos_hint: {'x': .35, 'y': .70}
+    TextBox:
+        text: "bbl"
+        pos_hint: {'x': .405, 'y': .70}
+#######################################
+    TextBox:
+        text: "Oxygen LPM"
+        pos_hint: {'x': .24, 'y': .65}
+    Data:
+        id: dO2lpm
+        pos_hint: {'x': .35, 'y': .65}
+        input_filter: 'float'
+    TextBox:
+        text: "lpm"
+        pos_hint: {'x': .405, 'y': .65}
+#######################################
+    TextBox:
+        text: "Oxygen PPM"
+        pos_hint: {'x': .24, 'y': .60}
+    Data:
+        id: dO2ppm
+        pos_hint: {'x': .35, 'y': .60}
+        input_filter: 'float'
+    TextBox:
+        text: "ppm"
+        pos_hint: {'x': .405, 'y': .60}
+#######################################
+    TextBox:
+        text: "Knockout End"
+        pos_hint: {'x': .24, 'y': .55}
+    Data:
+        id: dKOENDtime
+        pos_hint: {'x': .35, 'y': .55}
+        input_filter: 'int'
+    TextBox:
+        text: "time"
+        pos_hint: {'x': .405, 'y': .55}
+#######################################
+    TextBox:
+        text: "Flow Meter Vol"
+        pos_hint: {'x': .24, 'y': .50}
+    Data:
+        id: dFMVOLbbl
+        pos_hint: {'x': .35, 'y': .50}
+        input_filter: 'float'
+    TextBox:
+        text: "bbl"
+        pos_hint: {'x': .405, 'y': .50}
+#######################################
+    TextBox:
+        text: "Cold to FV"
+        pos_hint: {'x': .24, 'y': .45}
+    Data:
+        id: dCLDFVbbl
+        pos_hint: {'x': .35, 'y': .45}
+        input_filter: 'float'
+    TextBox:
+        text: "bbl"
+        pos_hint: {'x': .405, 'y': .45}
+#######################################
+    TextBox:
+        text: "Blow Down 600"
+        pos_hint: {'x': .24, 'y': .35}
+    Data:
+        id: dBD600sig
+        pos_hint: {'x': .35, 'y': .35}
+#######################################
+    TextBox:
+        text: "Blow Down 900"
+        pos_hint: {'x': .24, 'y': .30}
+    Data:
+        id: dBD900sig
+        pos_hint: {'x': .35, 'y': .30}
+#######################################
+    TextBox:
+        text: "Blow Down 1200"
+        pos_hint: {'x': .24, 'y': .25}
+    Data:
+        id: dBD1200sig
+        pos_hint: {'x': .35, 'y': .25}
+#######################################
+    TextBox:
+        text: "Blow Down 1500"
+        pos_hint: {'x': .24, 'y': .20}
+    Data:
+        id: dBD1500sig
+        pos_hint: {'x': .35, 'y': .20}
+
+#######################################
+#######################################
+
+    TextBox:
+        text: "Original Gravity"
+        pos_hint: {'x': .54, 'y': .85}
+    Data:
+        id: dOGp
+        pos_hint: {'x': .65, 'y': .85}
+        input_filter: 'int'
+    TextBox:
+        text: "oP"
+        pos_hint: {'x': .705, 'y': .85}
+#######################################
+    TextBox:
+        text: "Ferm Temp"
+        pos_hint: {'x': .54, 'y': .80}
+    Target:
+        id: tFERMf
+        pos_hint: {'x': .65, 'y': .80}
+    TextBox:
+        text: "oF"
+        pos_hint: {'x': .705, 'y': .80}
+#######################################
+    TextBox:
+        text: "Pitch"
+        pos_hint: {'x': .54, 'y': .70}
+        bold: True
+#######################################
+    TextBox:
+        text: "Yeast Type"
+        pos_hint: {'x': .54, 'y': .65}
+    Target:
+        id: tYEASTtype
+        pos_hint: {'x': .65, 'y': .65}
+#######################################
+    TextBox:
+        text: "Yeast Gen"
+        pos_hint: {'x': .54, 'y': .60}
+    Data:
+        id: dYSTGEN
+        pos_hint: {'x': .65, 'y': .60}
+        input_filter: 'int'
+#######################################
+    TextBox:
+        text: "Source FV"
+        pos_hint: {'x': .54, 'y': .55}
+    Data:
+        id: dSRCFV
+        pos_hint: {'x': .65, 'y': .55}
+        input_filter: 'int'
+#######################################
+    TextBox:
+        text: "Source #"
+        pos_hint: {'x': .54, 'y': .50}
+    Data:
+        id: dSRCNUM
+        pos_hint: {'x': .65, 'y': .50}
+        input_filter: 'float'
+#######################################
+    TextBox:
+        text: "Amt Pitched"
+        pos_hint: {'x': .54, 'y': .45}
+    Data:
+        id: dAMTPTCHmin
+        pos_hint: {'x': .65, 'y': .45}
+        input_filter: 'int'
+    TextBox:
+        text: "minutes"
+        pos_hint: {'x': .705, 'y': .45}
+#######################################
+    Data:
+        id: dAMTPTCHsec
+        pos_hint: {'x': .65, 'y': .40}
+        input_filter: 'int'
+    TextBox:
+        text: "seconds"
+        pos_hint: {'x': .705, 'y': .40}
+#######################################
+    TextBox:
+        text: "Initials"
+        pos_hint: {'x': .71, 'y': .30}
+        bold: True
+#######################################
+    TextBox:
+        text: "Ferm Tank Temp Set"
+        pos_hint: {'x': .54, 'y': .25}
+    Data:
+        id: dFRMTEMPsig
+        pos_hint: {'x': .71, 'y': .25}
+#######################################
+    TextBox:
+        text: "Anti-Foam Oil"
+        pos_hint: {'x': .54, 'y': .20}
+
+    Data:
+        id: dAFOoz
+        pos_hint: {'x': .63, 'y': .20}
+    TextBox:
+        text: "oz"
+        pos_hint: {'x': .685, 'y': .20}
+    Data:
+        id: dAFOsig
+        pos_hint: {'x': .71, 'y': .20}
+
+#######################################
+#######################################
+
+    TextBox:
+        text: "Notes"
+        pos_hint: {'x': .13, 'y': .10}
+    Data:
+        id: dKOnote
+        pos_hint: {'x': .17, 'y': .07}
+        size_hint: (.815, .06)
